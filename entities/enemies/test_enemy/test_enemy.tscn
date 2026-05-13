@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://ddme1kmoeqdfn"]
+
+[ext_resource type="Texture2D" uid="uid://b0310olh2wh0v" path="res://entities/enemies/test_enemy/sheet.png" id="1_cruag"]
+
+[sub_resource type="Animation" id="Animation_xodnm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6hoha"]
+resource_name = "attack"
+length = 0.6
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_0oqtj"]
+resource_name = "hurt"
+length = 0.6
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [6, 7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_nx3f2"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+step = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oand4"]
+_data = {
+&"RESET": SubResource("Animation_xodnm"),
+&"attack": SubResource("Animation_6hoha"),
+&"hurt": SubResource("Animation_0oqtj"),
+&"idle": SubResource("Animation_nx3f2")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2jg18"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1hbvv"]
+animation = &"hurt"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nqgrw"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pt4tj"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xjmso"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ma05j"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e2kh0"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_07brv"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_bcqf6"]
+states/attack/node = SubResource("AnimationNodeAnimation_2jg18")
+states/attack/position = Vector2(464, 65.8)
+states/hurt/node = SubResource("AnimationNodeAnimation_1hbvv")
+states/hurt/position = Vector2(463.68, 171.4)
+states/idle/node = SubResource("AnimationNodeAnimation_nqgrw")
+states/idle/position = Vector2(333.6, 95.4)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_pt4tj"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_xjmso"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ma05j"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_e2kh0"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_07brv")]
+graph_offset = Vector2(66, 29)
+
+[node name="Enemy" type="Node2D" unique_id=895145600]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1409488724]
+texture = ExtResource("1_cruag")
+hframes = 3
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=264700821]
+libraries/ = SubResource("AnimationLibrary_oand4")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1080510630]
+tree_root = SubResource("AnimationNodeStateMachine_bcqf6")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=751938959]
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=990823645]
+offset_left = -174.0
+offset_top = -160.0
+offset_right = 177.0
+offset_bottom = -114.0
+value = 100.0
+show_percentage = false
