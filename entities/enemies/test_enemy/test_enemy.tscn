@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ddme1kmoeqdfn"]
 
 [ext_resource type="Texture2D" uid="uid://b0310olh2wh0v" path="res://entities/enemies/test_enemy/sheet.png" id="1_cruag"]
+[ext_resource type="Script" uid="uid://cvkg6d7kqb0dd" path="res://entities/enemies/test_enemy/test_enemy.gd" id="1_xodnm"]
 
 [sub_resource type="Animation" id="Animation_xodnm"]
 length = 0.001
@@ -77,37 +78,40 @@ _data = {
 &"idle": SubResource("Animation_nx3f2")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2jg18"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xodnm"]
 animation = &"attack"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1hbvv"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6hoha"]
 animation = &"hurt"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nqgrw"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0oqtj"]
 animation = &"idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pt4tj"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nx3f2"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xjmso"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oand4"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ma05j"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2jg18"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e2kh0"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1hbvv"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_07brv"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nqgrw"]
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_bcqf6"]
-states/attack/node = SubResource("AnimationNodeAnimation_2jg18")
-states/attack/position = Vector2(464, 65.8)
-states/hurt/node = SubResource("AnimationNodeAnimation_1hbvv")
-states/hurt/position = Vector2(463.68, 171.4)
-states/idle/node = SubResource("AnimationNodeAnimation_nqgrw")
-states/idle/position = Vector2(333.6, 95.4)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_pt4tj"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_xjmso"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ma05j"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_e2kh0"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_07brv")]
-graph_offset = Vector2(66, 29)
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_pt4tj"]
+states/attack/node = SubResource("AnimationNodeAnimation_xodnm")
+states/attack/position = Vector2(469.52, 55.2)
+states/hurt/node = SubResource("AnimationNodeAnimation_6hoha")
+states/hurt/position = Vector2(469.19998, 180)
+states/idle/node = SubResource("AnimationNodeAnimation_0oqtj")
+states/idle/position = Vector2(342, 100.64)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_nx3f2"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_oand4"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_2jg18"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_1hbvv"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_nqgrw")]
 
 [node name="Enemy" type="Node2D" unique_id=895145600]
+script = ExtResource("1_xodnm")
+enemy_name = null
+max_health = null
+actions_per_turn = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1409488724]
 texture = ExtResource("1_cruag")
@@ -118,12 +122,12 @@ vframes = 4
 libraries/ = SubResource("AnimationLibrary_oand4")
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1080510630]
-tree_root = SubResource("AnimationNodeStateMachine_bcqf6")
+tree_root = SubResource("AnimationNodeStateMachine_pt4tj")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=751938959]
 
-[node name="ProgressBar" type="ProgressBar" parent="." unique_id=990823645]
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=990823645]
 offset_left = -174.0
 offset_top = -160.0
 offset_right = 177.0
