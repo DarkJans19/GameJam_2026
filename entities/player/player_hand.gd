@@ -1,7 +1,6 @@
 extends Node2D
 
 const MAX_HAND = 4
-const CARD_SCENE_PATH = "res://entities/cards/Card.tscn"
 const CARD_WIDTH = 200
 const HAND_Y_POSITION = 890
 
@@ -11,12 +10,7 @@ var center_screen_x
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	center_screen_x = get_viewport().size.x / 2
-	var card_scene = preload(CARD_SCENE_PATH)
-	for i in range(MAX_HAND):
-		var new_card = card_scene.instantiate()
-		$"../CardManager".add_child(new_card)
-		new_card.name = "Card"
-		add_card_to_hand(new_card)
+
 		
 
 func add_card_to_hand(new_card):
@@ -39,14 +33,14 @@ func animate_card_to_position(card, new_position):
 	var tween = get_tree().create_tween()
 	tween.tween_property(card, "position", new_position, 0.1)
 	pass
-	
+
 
 func remove_cards_of_hand(card):
 	print(player_hand)
 	if card in player_hand:
 		player_hand.erase(card)
 		update_hand_position()
-	
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

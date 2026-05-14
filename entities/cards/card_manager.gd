@@ -5,9 +5,12 @@ const OFFSET_SELECTION = 20
 
 # Variables
 var selected_cards = []
+var player_hand_reference
+
+
 
 func _ready() -> void:
-	pass
+	player_hand_reference = $"../PlayerHand"
 
 func _process(delta: float) -> void:
 	pass
@@ -53,7 +56,6 @@ func select_card(card):
 	if card in selected_cards:
 		selected_cards.erase(card)
 		high_light_selected_cards(card, false)
-
 	else:
 		selected_cards.append(card)
 		high_light_selected_cards(card, true)
