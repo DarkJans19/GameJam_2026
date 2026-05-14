@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://0s3j7dkyhc4u"]
+
+[ext_resource type="Script" uid="uid://bmf5pksplnnsw" path="res://stages/map/random_event.gd" id="1_p6050"]
+
+[sub_resource type="Gradient" id="Gradient_abjsm"]
+colors = PackedColorArray(0, 0, 0, 1, 0.012617188, 0.012617188, 0.012617188, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p6050"]
+gradient = SubResource("Gradient_abjsm")
+width = 64
+
+[node name="Random_event" type="Control" unique_id=649993746]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 128.0
+offset_right = 192.0
+offset_bottom = 64.0
+script = ExtResource("1_p6050")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1279602885]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+pivot_offset = Vector2(32, 32)
+texture = SubResource("GradientTexture1D_p6050")
+
+[node name="Label" type="Label" parent="TextureRect" unique_id=1609512818]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 65.0
+offset_bottom = 88.0
+text = "Random"
+horizontal_alignment = 1

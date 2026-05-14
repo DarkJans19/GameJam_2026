@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dlxum2nam1ek4"]
+
+[ext_resource type="Script" uid="uid://cbig6atmpocwn" path="res://stages/map/shop_event.gd" id="1_1lq6j"]
+
+[sub_resource type="Gradient" id="Gradient_kojo8"]
+colors = PackedColorArray(0, 0, 0, 1, 0.012617188, 0.012617188, 0.012617188, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1lq6j"]
+gradient = SubResource("Gradient_kojo8")
+width = 64
+
+[node name="Shop_event" type="Control" unique_id=1246624021]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 256.0
+offset_right = 320.0
+offset_bottom = 64.0
+script = ExtResource("1_1lq6j")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=203674165]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+pivot_offset = Vector2(32, 32)
+texture = SubResource("GradientTexture1D_1lq6j")
+
+[node name="Label" type="Label" parent="TextureRect" unique_id=1779090799]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 64.0
+offset_bottom = 87.0
+text = "Shop"
+horizontal_alignment = 1

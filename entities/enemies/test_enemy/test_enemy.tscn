@@ -109,9 +109,6 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 
 [node name="Enemy" type="Node2D" unique_id=895145600]
 script = ExtResource("1_xodnm")
-enemy_name = null
-max_health = null
-actions_per_turn = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1409488724]
 texture = ExtResource("1_cruag")
