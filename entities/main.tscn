@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://16ps72bj144"]
+
+[ext_resource type="PackedScene" uid="uid://q6d27imrgt4t" path="res://entities/cards/CardManager.tscn" id="1_36ije"]
+[ext_resource type="PackedScene" uid="uid://3xjnj3dw2lqo" path="res://entities/player/PlayerHand.tscn" id="2_1v22p"]
+[ext_resource type="PackedScene" uid="uid://ddme1kmoeqdfn" path="res://entities/enemies/test_enemy/test_enemy.tscn" id="3_2runn"]
+
+[node name="Main" type="Node2D" unique_id=1905538197]
+
+[node name="CardManager" parent="." unique_id=1051861820 instance=ExtResource("1_36ije")]
+
+[node name="PlayerHand" parent="." unique_id=1070096955 instance=ExtResource("2_1v22p")]
+
+[node name="Enemy" parent="." unique_id=895145600 instance=ExtResource("3_2runn")]

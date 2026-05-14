@@ -49,7 +49,6 @@ func high_light_selected_cards(card, hovered):
 		card.z_index = 1	
 
 
-
 func select_card(card):
 	if card in selected_cards:
 		selected_cards.erase(card)
