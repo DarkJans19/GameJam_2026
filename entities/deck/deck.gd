@@ -1,6 +1,6 @@
 extends Node2D
 
-const CARD_SCENE_PATH = "res://entities/cards/Card.tscn"
+const CARD_SCENE_PATH = "res://entities/cards/card/card.tscn"
 var card_database_reference
 var player_deck = ["Card", "Card"]
 
@@ -8,7 +8,7 @@ var player_deck = ["Card", "Card"]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var card_scene = preload(CARD_SCENE_PATH)
-	var card_database = preload("res://entities/cards/cardDatabase.gd")
+	var card_database = preload("res://entities/cards/cardDatabase/cardDatabase.gd")
 	
 	player_deck.shuffle()
 	

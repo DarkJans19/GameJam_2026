@@ -14,7 +14,6 @@ func _process(delta: float) -> void:
 func connect_button_signals(button):
 	button.connect("hovered", on_hovered_over_button)
 	button.connect("hovered_off", on_hovered_off_button)
-	button.connect("selected", select_button)
 
 
 func connect_card_manager_signals(card_manager):

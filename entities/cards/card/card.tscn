@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://v1we4m2libkl"]
 
-[ext_resource type="Script" uid="uid://vs45iy3pkqp5" path="res://entities/cards/card.gd" id="1_q5fv7"]
+[ext_resource type="Script" uid="uid://vs45iy3pkqp5" path="res://entities/cards/card/card.gd" id="1_q5fv7"]
 [ext_resource type="Texture2D" uid="uid://cgh8itya8jdjf" path="res://entities/cards/assets/Balatro.jpg" id="2_q65dp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q5fv7"]

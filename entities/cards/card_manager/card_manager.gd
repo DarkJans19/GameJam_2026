@@ -7,8 +7,6 @@ const OFFSET_SELECTION = 20
 var selected_cards = []
 var player_hand_reference
 
-
-
 func _ready() -> void:
 	player_hand_reference = $"../PlayerHand"
 

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bapdcwi3gl58p"]
 
 [ext_resource type="Script" uid="uid://ds4l6trp7b2q2" path="res://entities/deck/deck.gd" id="1_x4kaa"]
-[ext_resource type="Texture2D" uid="uid://b31w7xfsfsayk" path="res://entities/cards/assets/WhatsApp Image 2026-05-13 at 8.43.55 PM (1).jpeg" id="2_kb81t"]
+[ext_resource type="Texture2D" uid="uid://cxn4h41v0y1aq" path="res://entities/cards/assets/Miku_Balatro.jpeg" id="2_kb81t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udrku"]
 size = Vector2(532.5, 706)
