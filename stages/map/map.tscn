@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b4hj0lkqi6hw2"]
 
 [ext_resource type="PackedScene" uid="uid://ms188et4yyuh" path="res://stages/map/enemy_event.tscn" id="1_qw2a2"]
+[ext_resource type="Script" uid="uid://trn12008a6js" path="res://stages/map/map.gd" id="1_xghif"]
 [ext_resource type="PackedScene" uid="uid://0s3j7dkyhc4u" path="res://stages/map/random_event.tscn" id="2_x8gmq"]
 [ext_resource type="PackedScene" uid="uid://dlxum2nam1ek4" path="res://stages/map/shop_event.tscn" id="3_wjkhs"]
 [ext_resource type="PackedScene" uid="uid://6ga84j3uyeah" path="res://stages/map/boss_event.tscn" id="4_x8gmq"]
@@ -13,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_xghif")
 
 [node name="Enemy_event" parent="." unique_id=1682874225 instance=ExtResource("1_qw2a2")]
 layout_mode = 0
@@ -122,8 +124,8 @@ offset_bottom = 480.0
 [node name="Player" type="TextureRect" parent="." unique_id=1359655554]
 layout_mode = 0
 offset_left = 16.0
-offset_top = 288.0
+offset_top = 208.0
 offset_right = 144.0
-offset_bottom = 416.0
+offset_bottom = 336.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_wjkhs")

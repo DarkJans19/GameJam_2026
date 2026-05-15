@@ -13,27 +13,44 @@ script = ExtResource("1_xh5sh")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2078726476]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -151.82599
-offset_top = -218.0
-offset_right = 151.82532
-offset_bottom = -40.681396
+anchor_bottom = 0.5
+offset_left = -49.0
+offset_top = -64.0
+offset_right = 49.0
+offset_bottom = 64.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 alignment = 1
 
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=854115027]
+layout_mode = 2
+text = "Alien Project"
+horizontal_alignment = 1
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer" unique_id=2013334845]
+custom_minimum_size = Vector2(0, 175)
+layout_mode = 2
+
 [node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=1264154441]
-custom_minimum_size = Vector2(0.11, 0)
+custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
 text = "Play"
+
+[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="VBoxContainer" unique_id=418435786]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer" unique_id=1973838228]
 layout_mode = 2
 text = "Settings"
+
+[node name="AspectRatioContainer3" type="AspectRatioContainer" parent="VBoxContainer" unique_id=2122239066]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
 
 [node name="ExitButton" type="Button" parent="VBoxContainer" unique_id=1587185978]
 layout_mode = 2

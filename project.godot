@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="AlienProject"
-run/main_scene="uid://ddme1kmoeqdfn"
+run/main_scene="uid://dv7m4cs71mrig"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://assets/icon.svg"
 
