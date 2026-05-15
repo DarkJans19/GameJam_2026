@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://v1we4m2libkl"]
+
+[ext_resource type="Script" uid="uid://vs45iy3pkqp5" path="res://entities/cards/card/card.gd" id="1_q5fv7"]
+[ext_resource type="Texture2D" uid="uid://cgh8itya8jdjf" path="res://entities/cards/assets/Balatro.jpg" id="2_q65dp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q5fv7"]
+size = Vector2(187.5, 253.5)
+
+[node name="Card" type="Node2D" unique_id=1210287730]
+script = ExtResource("1_q5fv7")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1604717929]
+texture = ExtResource("2_q65dp")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1641327299]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2044261057]
+position = Vector2(0.25, 1.25)
+shape = SubResource("RectangleShape2D_q5fv7")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
