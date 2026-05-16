@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://dvh8u7rwy3s66"]
+
+[ext_resource type="Texture2D" uid="uid://doefh2c87psh7" path="res://assets/Cartas/Guantes.png" id="1_cml8l"]
+[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/especific_cards/cardData.gd" id="2_k2gtg"]
+
+[resource]
+script = ExtResource("2_k2gtg")
+card_name = "menguantes"
+image = ExtResource("1_cml8l")

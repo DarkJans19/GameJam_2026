@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://cygi71mchkchy"]
-
-[ext_resource type="Texture2D" uid="uid://bp0m4jjk0jo2x" path="res://assets/Cartas/Cabeza.png" id="1_8swmi"]
-[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/cards/card/especific_cards/cardData.gd" id="2_d577n"]
-
-[resource]
-script = ExtResource("2_d577n")
-card_name = "cabeza_alien"
-image = ExtResource("1_8swmi")

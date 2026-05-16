@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://c81ycy0bipb6q"]
+
+[ext_resource type="Texture2D" uid="uid://cwpoauivkoq8p" path="res://assets/Cartas/Naranja Medieval.png" id="1_gajfl"]
+[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/especific_cards/cardData.gd" id="2_fwqha"]
+
+[resource]
+script = ExtResource("2_fwqha")
+card_name = "Naranja Medieval"
+image = ExtResource("1_gajfl")

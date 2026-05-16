@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://vle2axnv2uo1"]
+
+[ext_resource type="Texture2D" uid="uid://b8fpj7kopl6bw" path="res://assets/Cartas/Caballo Bandera.png" id="1_m5ref"]
+[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/especific_cards/cardData.gd" id="2_siocf"]
+
+[resource]
+script = ExtResource("2_siocf")
+card_name = "caballo_bandera"
+image = ExtResource("1_m5ref")
