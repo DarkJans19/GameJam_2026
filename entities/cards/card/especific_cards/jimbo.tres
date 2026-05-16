@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://ducq67g7ulv38"]
+
+[ext_resource type="Texture2D" uid="uid://ciqs8rsj5wmre" path="res://assets/Cartas/Jimbo.png" id="1_gi2pb"]
+[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/cards/card/especific_cards/cardData.gd" id="2_hkish"]
+
+[resource]
+script = ExtResource("2_hkish")
+card_name = "Jimbo"
+image = ExtResource("1_gi2pb")

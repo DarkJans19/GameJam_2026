@@ -122,8 +122,6 @@ libraries/ = SubResource("AnimationLibrary_oand4")
 tree_root = SubResource("AnimationNodeStateMachine_pt4tj")
 anim_player = NodePath("../AnimationPlayer")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=751938959]
-
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=990823645]
 offset_left = -174.0
 offset_top = -160.0

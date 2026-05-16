@@ -7,6 +7,8 @@ const OFFSET_SELECTION = 20
 var selected_cards = []
 var player_hand_reference
 
+@onready var timer = $Timer
+
 func _ready() -> void:
 	player_hand_reference = $"../PlayerHand"
 
@@ -17,6 +19,8 @@ func connect_card_signals(card):
 	card.connect("hovered", on_hovered_over_card)
 	card.connect("hovered_off", on_hovered_off_card)
 	card.connect("selected", select_card)
+	card.connect("show_description", show_description)
+	card.connect("hide_description", hide_description)
 
 func on_hovered_over_card(card):
 	if card in selected_cards:
@@ -57,4 +61,14 @@ func select_card(card):
 	else:
 		selected_cards.append(card)
 		high_light_selected_cards(card, true)
-		
+
+
+func show_description(card):
+	card.description.text = card.card_data.description
+	card.description.show() 
+
+# Limpia y oculta la descripción al salir el mouse
+func hide_description(card):
+	card.description.text = ""
+	card.description.hide()
+	
