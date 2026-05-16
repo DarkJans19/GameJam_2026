@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://b2exqhrmkt7v8"]
-
-[ext_resource type="Texture2D" uid="uid://cu4kj23lg8xnv" path="res://assets/Cartas/Lobo Fantasma.png" id="1_f4qqo"]
-[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/cards/card/especific_cards/cardData.gd" id="2_6a02w"]
-
-[resource]
-script = ExtResource("2_6a02w")
-card_name = "lobo_fantasma"
-image = ExtResource("1_f4qqo")

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://qw47xfvj1vub"]
+
+[ext_resource type="Texture2D" uid="uid://cri3ryoywcgm3" path="res://assets/Cartas/Doble Alien.png" id="1_uv7f4"]
+[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/especific_cards/cardData.gd" id="2_xdjg2"]
+
+[resource]
+script = ExtResource("2_xdjg2")
+card_name = "doble_alien"
+image = ExtResource("1_uv7f4")

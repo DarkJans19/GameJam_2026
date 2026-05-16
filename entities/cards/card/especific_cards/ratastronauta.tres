@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://b45neidnt85de"]
-
-[ext_resource type="Texture2D" uid="uid://c6tra2s6xwtd0" path="res://assets/Cartas/Ratastronauta.png" id="1_qcs7y"]
-[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/cards/card/especific_cards/cardData.gd" id="2_sdp7m"]
-
-[resource]
-script = ExtResource("2_sdp7m")
-card_name = "Ratastronauta"
-image = ExtResource("1_qcs7y")

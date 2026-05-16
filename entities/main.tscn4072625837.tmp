@@ -12,5 +12,6 @@
 [node name="CardManager" parent="." unique_id=1051861820 instance=ExtResource("1_1v22p")]
 
 [node name="Deck" parent="." unique_id=901379245 instance=ExtResource("4_1v22p")]
+player_deck = null
 
 [node name="PlayerHand" parent="." unique_id=1070096955 instance=ExtResource("2_2runn")]

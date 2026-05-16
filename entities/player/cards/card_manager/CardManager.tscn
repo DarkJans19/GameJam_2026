@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://q6d27imrgt4t"]
+
+[ext_resource type="Script" uid="uid://cq3p8ynenpav8" path="res://entities/player/cards/card_manager/card_manager.gd" id="1_mynes"]
+
+[node name="CardManager" type="Node2D" unique_id=1051861820]
+script = ExtResource("1_mynes")
+
+[node name="Timer" type="Timer" parent="." unique_id=1770020430]
+wait_time = 3.0
+one_shot = true
+ignore_time_scale = true
