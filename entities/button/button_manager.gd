@@ -35,7 +35,3 @@ func high_light_button(button, hovered):
 	else:
 		button.scale = Vector2(1, 1)
 		button.z_index = 1	
-
-
-
-
