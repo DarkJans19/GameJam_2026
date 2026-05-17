@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://dgvhtlgb375bg"]
+
+[ext_resource type="Texture2D" uid="uid://btmbjh5mpr2a8" path="res://assets/Enemigos y Jefes/Bat Laser.png" id="1_phueo"]
+[ext_resource type="Script" uid="uid://cxs1d6q6kobo8" path="res://entities/enemies/EnemyData.gd" id="2_e0vly"]
+
+[resource]
+script = ExtResource("2_e0vly")
+enemy_name = "Bat Laser"
+enemy_health = 50
+image = ExtResource("1_phueo")

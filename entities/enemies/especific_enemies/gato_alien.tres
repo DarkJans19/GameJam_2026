@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://dhdd7d2ryyxre"]
+
+[ext_resource type="Script" uid="uid://cxs1d6q6kobo8" path="res://entities/enemies/EnemyData.gd" id="1_lsc0c"]
+[ext_resource type="Texture2D" uid="uid://b86utgti1oo4e" path="res://assets/Enemigos y Jefes/GatoAlien.png" id="1_o0jbk"]
+
+[resource]
+script = ExtResource("1_lsc0c")
+enemy_name = "Gato Alien"
+enemy_health = 30
+image = ExtResource("1_o0jbk")

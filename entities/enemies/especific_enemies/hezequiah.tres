@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://dfi0myb7wjwqd"]
+
+[ext_resource type="Texture2D" uid="uid://b8ivc06y3lk4x" path="res://assets/Enemigos y Jefes/Hezequiah.png" id="1_8t2bw"]
+[ext_resource type="Script" uid="uid://cxs1d6q6kobo8" path="res://entities/enemies/EnemyData.gd" id="1_j7wjm"]
+
+[resource]
+script = ExtResource("1_j7wjm")
+enemy_name = "Hezequiah"
+enemy_health = 200
+image = ExtResource("1_8t2bw")
+description = "?????"
