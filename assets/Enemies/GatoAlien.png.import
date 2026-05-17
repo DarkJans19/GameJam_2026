@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0310olh2wh0v"
-path="res://.godot/imported/sheet.png-fc712bc06e49594085fd798df70c6541.ctex"
+uid="uid://b86utgti1oo4e"
+path="res://.godot/imported/GatoAlien.png-abc88d705db71365538199e3a57ef316.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/enemies/test_enemy/sheet.png"
-dest_files=["res://.godot/imported/sheet.png-fc712bc06e49594085fd798df70c6541.ctex"]
+source_file="res://assets/Enemies/GatoAlien.png"
+dest_files=["res://.godot/imported/GatoAlien.png-abc88d705db71365538199e3a57ef316.ctex"]
 
 [params]
 

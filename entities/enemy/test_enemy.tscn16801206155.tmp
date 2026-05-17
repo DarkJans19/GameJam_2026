@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://ddme1kmoeqdfn"]
 
-[ext_resource type="Texture2D" uid="uid://b0310olh2wh0v" path="res://entities/enemies/test_enemy/sheet.png" id="1_cruag"]
-[ext_resource type="Script" uid="uid://cvkg6d7kqb0dd" path="res://entities/enemies/test_enemy/test_enemy.gd" id="1_xodnm"]
+[ext_resource type="Texture2D" uid="uid://bed1x11xust63" path="res://assets/Cartas/Joaquin.png" id="1_qqwja"]
 
 [sub_resource type="Animation" id="Animation_xodnm"]
 length = 0.001
@@ -108,12 +107,10 @@ states/idle/position = Vector2(342, 100.64)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_nx3f2"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_oand4"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_2jg18"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_1hbvv"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_nqgrw")]
 
 [node name="Enemy" type="Node2D" unique_id=895145600]
-script = ExtResource("1_xodnm")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1409488724]
-texture = ExtResource("1_cruag")
-hframes = 3
-vframes = 4
+position = Vector2(1, 0)
+texture = ExtResource("1_qqwja")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=264700821]
 libraries/ = SubResource("AnimationLibrary_oand4")
@@ -122,12 +119,10 @@ libraries/ = SubResource("AnimationLibrary_oand4")
 tree_root = SubResource("AnimationNodeStateMachine_pt4tj")
 anim_player = NodePath("../AnimationPlayer")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=751938959]
-
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=990823645]
-offset_left = -174.0
-offset_top = -160.0
-offset_right = 177.0
-offset_bottom = -114.0
+offset_left = -59.0
+offset_top = -58.0
+offset_right = 59.0
+offset_bottom = -41.0
 value = 100.0
 show_percentage = false

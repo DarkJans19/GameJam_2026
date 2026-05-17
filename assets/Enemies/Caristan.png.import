@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bugks4ckj6cv5"
-path="res://.godot/imported/Abeja.png-afa61c3ce44eb972b1d2fecc4a7a89bf.ctex"
+uid="uid://b1emeupica2ph"
+path="res://.godot/imported/Caristan.png-83d6016fa079a6fbcc86932f02f196e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Enemigos y Jefes/Abeja.png"
-dest_files=["res://.godot/imported/Abeja.png-afa61c3ce44eb972b1d2fecc4a7a89bf.ctex"]
+source_file="res://assets/Enemies/Caristan.png"
+dest_files=["res://.godot/imported/Caristan.png-83d6016fa079a6fbcc86932f02f196e7.ctex"]
 
 [params]
 

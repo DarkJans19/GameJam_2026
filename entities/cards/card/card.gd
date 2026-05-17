@@ -5,6 +5,7 @@ signal hovered_off
 signal selected
 signal description
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# In this case all cards must be childs of CardManager otherwise will fail

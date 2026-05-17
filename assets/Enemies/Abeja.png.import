@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btmbjh5mpr2a8"
-path="res://.godot/imported/Bat Laser.png-dc56a977481fd23abdcf5367701c263e.ctex"
+uid="uid://bugks4ckj6cv5"
+path="res://.godot/imported/Abeja.png-55fefdade1e0d692bf26e27008926925.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Enemigos y Jefes/Bat Laser.png"
-dest_files=["res://.godot/imported/Bat Laser.png-dc56a977481fd23abdcf5367701c263e.ctex"]
+source_file="res://assets/Enemies/Abeja.png"
+dest_files=["res://.godot/imported/Abeja.png-55fefdade1e0d692bf26e27008926925.ctex"]
 
 [params]
 
