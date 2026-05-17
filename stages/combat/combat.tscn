@@ -5,12 +5,14 @@
 [ext_resource type="Texture2D" uid="uid://bbopromy71yp3" path="res://assets/Escenario/Midground.png" id="3_b28yy"]
 [ext_resource type="Script" uid="uid://7b8slrvn35gr" path="res://MaquinaStatus/state_machine.gd" id="4_558st"]
 [ext_resource type="Texture2D" uid="uid://iejk1x6x22be" path="res://assets/UI/UI Lunas Sheet.png" id="4_b28yy"]
+[ext_resource type="PackedScene" uid="uid://16ps72bj144" path="res://entities/main.tscn" id="6_3yhi6"]
 
 [node name="Combat" type="Control" unique_id=597753731]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 320.0
 offset_bottom = 180.0
+mouse_filter = 2
 
 [node name="Background" type="TextureRect" parent="." unique_id=256129514]
 layout_mode = 0
@@ -46,3 +48,6 @@ position = Vector2(160, 18)
 texture = ExtResource("4_b28yy")
 region_enabled = true
 region_rect = Rect2(1, 1, 196, 22)
+
+[node name="Main" parent="." unique_id=1905538197 instance=ExtResource("6_3yhi6")]
+z_index = 6

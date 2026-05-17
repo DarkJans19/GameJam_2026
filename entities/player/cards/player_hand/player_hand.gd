@@ -1,19 +1,20 @@
 extends Node2D
 
-const MAX_HAND = 4
-const CARD_WIDTH = 200
-const HAND_Y_POSITION = 890
+const CARD_WIDTH = 50
+
+const HAND_Y_POSITION = 150
+const X_LENGHT = 320
 
 var player_hand = []
-var center_screen_x
+var center_screen_x = 320
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	center_screen_x = get_viewport().size.x / 2
-
+	center_screen_x = X_LENGHT / 2
 
 func add_card_to_hand(new_card):
 	player_hand.insert(0, new_card)
+	new_card.scale = Vector2(0.3, 0.3)
 	update_hand_position()
 	
 func update_hand_position():

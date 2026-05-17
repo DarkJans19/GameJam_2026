@@ -1,7 +1,7 @@
 extends Node2D
 
 # Constants
-const OFFSET_SELECTION = 20
+const OFFSET_SELECTION = 10
 
 # Variables
 var selected_cards = []
@@ -34,20 +34,20 @@ func on_hovered_off_card(card):
 
 func high_light_card(card, hovered):
 	if hovered:
-		card.scale = Vector2(1.05, 1.05)
+		card.scale = Vector2(0.4, 0.4)
 		card.z_index = 2
 	else:
-		card.scale = Vector2(1, 1)
+		card.scale = Vector2(0.3, 0.3)
 		card.z_index = 1	
 
 
 func high_light_selected_cards(card, hovered):
 	if hovered:
-		card.scale = Vector2(1.05, 1.05)
+		card.scale = Vector2(0.5, 0.5)
 		card.position.y -= OFFSET_SELECTION
 		card.z_index = 3
 	else:
-		card.scale = Vector2(1, 1)
+		card.scale = Vector2(0.3, 0.3)
 		card.position.y += OFFSET_SELECTION
 		card.z_index = 1	
 

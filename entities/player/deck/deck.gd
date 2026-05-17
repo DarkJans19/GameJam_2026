@@ -19,7 +19,7 @@ const CARD_SCENE = preload("res://entities/player/cards/card/card.tscn")
 @export var comodin_cards_resources: Array[String] = []
 
 const INITIAL_NORMAL_CARDS = 5
-const INITIAL_LUNAR_CARDS = 5
+const INITIAL_LUNAR_CARDS = 10
 const INITIAL_COMODIN_CARDS = 0
 
 var player_deck = []
