@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 signal jugador_selecciona_enemigo()
 signal ataque_iniciado()

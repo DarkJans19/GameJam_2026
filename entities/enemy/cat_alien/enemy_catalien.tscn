@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cb8l1h0hrra7y"]
+
+[ext_resource type="PackedScene" uid="uid://ddme1kmoeqdfn" path="res://entities/enemy/enemy.tscn" id="1_6uxk3"]
+[ext_resource type="Texture2D" uid="uid://b86utgti1oo4e" path="res://assets/Enemies/GatoAlien.png" id="2_o53xm"]
+
+[node name="Enemy" unique_id=895145600 instance=ExtResource("1_6uxk3")]
+
+[node name="Sprite2D" parent="." index="0" unique_id=1409488724]
+texture = ExtResource("2_o53xm")
+offset = Vector2(0, -20)

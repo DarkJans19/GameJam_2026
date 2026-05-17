@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b8ivc06y3lk4x"
-path="res://.godot/imported/Hezequiah.png-6fec9683f907e4d80577a1a99fa61814.ctex"
+path="res://.godot/imported/Hezequiah.png-46f7cb78691544aa9217825628f5da91.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Enemigos y Jefes/Hezequiah.png"
-dest_files=["res://.godot/imported/Hezequiah.png-6fec9683f907e4d80577a1a99fa61814.ctex"]
+source_file="res://assets/Enemies/Hezequiah.png"
+dest_files=["res://.godot/imported/Hezequiah.png-46f7cb78691544aa9217825628f5da91.ctex"]
 
 [params]
 

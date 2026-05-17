@@ -12,6 +12,7 @@
 [node name="PlayerHand" parent="." unique_id=1070096955 instance=ExtResource("2_2runn")]
 
 [node name="Deck" parent="." unique_id=901379245 instance=ExtResource("4_1v22p")]
+position = Vector2(0, 3)
 
 [node name="Enemy" parent="." unique_id=895145600 instance=ExtResource("3_2runn")]
 position = Vector2(937, 547)

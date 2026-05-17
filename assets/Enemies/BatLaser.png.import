@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b86utgti1oo4e"
-path="res://.godot/imported/GatoAlien.png-12b59c0215f8ddd5d8c7fc851b93175a.ctex"
+uid="uid://btmbjh5mpr2a8"
+path="res://.godot/imported/BatLaser.png-7790582c8e06df118ed1d6305f034b5c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Enemigos y Jefes/GatoAlien.png"
-dest_files=["res://.godot/imported/GatoAlien.png-12b59c0215f8ddd5d8c7fc851b93175a.ctex"]
+source_file="res://assets/Enemies/BatLaser.png"
+dest_files=["res://.godot/imported/BatLaser.png-7790582c8e06df118ed1d6305f034b5c.ctex"]
 
 [params]
 
