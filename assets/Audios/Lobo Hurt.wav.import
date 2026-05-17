@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://1f14aatgk66c"
+path="res://.godot/imported/Lobo Hurt.wav-4c922b1ad0090660c23863814d4e92b6.sample"
+
+[deps]
+
+source_file="res://assets/Audios/Lobo Hurt.wav"
+dest_files=["res://.godot/imported/Lobo Hurt.wav-4c922b1ad0090660c23863814d4e92b6.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

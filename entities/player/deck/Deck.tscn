@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ds4l6trp7b2q2" path="res://entities/player/deck/deck.gd" id="1_x4kaa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udrku"]
-size = Vector2(532.5, 706)
+size = Vector2(510, 243)
 
 [node name="Deck" type="Node2D" unique_id=901379245]
 script = ExtResource("1_x4kaa")
@@ -13,5 +13,5 @@ script = ExtResource("1_x4kaa")
 [node name="Area2D" type="Area2D" parent="." unique_id=780749075]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=541604340]
-position = Vector2(0.75, -6)
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_udrku")

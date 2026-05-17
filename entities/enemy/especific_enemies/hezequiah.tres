@@ -1,11 +1,9 @@
-[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://dfi0myb7wjwqd"]
+[gd_resource type="Resource" script_class="enemyData" format=3 uid="uid://cc3xah2tnlmcu"]
 
-[ext_resource type="Texture2D" uid="uid://b8ivc06y3lk4x" path="res://assets/Enemigos y Jefes/Hezequiah.png" id="1_8t2bw"]
-[ext_resource type="Script" uid="uid://cxs1d6q6kobo8" path="res://entities/enemies/EnemyData.gd" id="1_j7wjm"]
+[ext_resource type="Script" uid="uid://b3q4jk3aickui" path="res://entities/enemy/enemyData.gd" id="1_8cmv6"]
+[ext_resource type="Texture2D" uid="uid://b8ivc06y3lk4x" path="res://assets/Enemies/Hezequiah.png" id="2_ku1ia"]
 
 [resource]
-script = ExtResource("1_j7wjm")
-enemy_name = "Hezequiah"
-enemy_health = 200
-image = ExtResource("1_8t2bw")
-description = "?????"
+script = ExtResource("1_8cmv6")
+sprite = ExtResource("2_ku1ia")
+metadata/_custom_type_script = "uid://b3q4jk3aickui"

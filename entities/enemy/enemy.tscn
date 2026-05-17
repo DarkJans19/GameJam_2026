@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://ddme1kmoeqdfn"]
 
 [ext_resource type="Script" uid="uid://do1uql0fkvybh" path="res://entities/enemy/enemy.gd" id="1_im2q6"]
-[ext_resource type="Texture2D" uid="uid://bed1x11xust63" path="res://assets/Cartas/Joaquin.png" id="1_qqwja"]
+[ext_resource type="Texture2D" uid="uid://b4ikx3tataikx" path="res://assets/Cartas/Lunares/Joaquin.png" id="2_im2q6"]
+[ext_resource type="Texture2D" uid="uid://ccn6rm8mtgs41" path="res://assets/icon.svg" id="3_3fvr7"]
 
 [sub_resource type="Animation" id="Animation_im2q6"]
 length = 0.001
@@ -89,19 +90,85 @@ _data = {
 &"idle": SubResource("Animation_4wwj3")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3fvr7"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0.30980393, 0.5921569, 0.5137255)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+corner_detail = 7
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3fvr7"]
+size = Vector2(63, 74)
+
 [node name="Enemy" type="Node2D" unique_id=895145600]
 script = ExtResource("1_im2q6")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1409488724]
-texture = ExtResource("1_qqwja")
-
-[node name="HealthBar" type="ProgressBar" parent="." unique_id=990823645]
-offset_left = -59.0
-offset_top = -58.0
-offset_right = 59.0
-offset_bottom = -41.0
-value = 100.0
-show_percentage = false
+texture = ExtResource("2_im2q6")
+metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=649213239]
 libraries/ = SubResource("AnimationLibrary_d50e0")
+
+[node name="SelectionCursor" type="Sprite2D" parent="." unique_id=901802733]
+position = Vector2(0, -75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_3fvr7")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1158220706]
+clip_children = 2
+offset_left = -55.0
+offset_top = -57.0
+offset_right = 55.0
+offset_bottom = -41.0
+theme_override_styles/background = SubResource("StyleBoxFlat_3fvr7")
+show_percentage = false
+
+[node name="BarText" type="Label" parent="HealthBar" unique_id=357866574]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.5
+offset_bottom = 3.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="mouseDetector" type="Area2D" parent="." unique_id=166723423]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mouseDetector" unique_id=1353849014]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_3fvr7")
+metadata/_edit_lock_ = true
+
+[node name="EnemyTooltip" type="PanelContainer" parent="." unique_id=371618243]
+visible = false
+z_index = 50
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -30.0
+offset_right = -35.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TooltipText" type="RichTextLabel" parent="EnemyTooltip" unique_id=1961834238]
+layout_mode = 2
+mouse_filter = 2
+scroll_active = false
+
+[connection signal="mouse_entered" from="mouseDetector" to="." method="_on_mouse_detector_mouse_entered"]
+[connection signal="mouse_exited" from="mouseDetector" to="." method="_on_mouse_detector_mouse_exited"]

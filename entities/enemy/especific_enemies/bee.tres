@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="enemyData" format=3 uid="uid://wcrwrs8v2vti"]
+
+[ext_resource type="Script" uid="uid://b3q4jk3aickui" path="res://entities/enemy/enemyData.gd" id="1_fpjrd"]
+[ext_resource type="Texture2D" uid="uid://bugks4ckj6cv5" path="res://assets/Enemies/Abeja.png" id="2_bl4ls"]
+
+[resource]
+script = ExtResource("1_fpjrd")
+enemy_name = "Bee"
+sprite = ExtResource("2_bl4ls")
+metadata/_custom_type_script = "uid://b3q4jk3aickui"

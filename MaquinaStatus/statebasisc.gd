@@ -4,7 +4,7 @@ class_name statebasics extends Node
 @onready var controlled_node:Node = self.owner
 
 #para referenciar la maquina 
-var State_machine:state_machine
+var State_machine:StateMachine
 
 #region metodos comunes
 func start():

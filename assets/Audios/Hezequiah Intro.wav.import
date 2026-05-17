@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://pjk3imm2seyj"
+path="res://.godot/imported/Hezequiah Intro.wav-18ac548d412e292850abe1a6f89e83bb.sample"
+
+[deps]
+
+source_file="res://assets/Audios/Hezequiah Intro.wav"
+dest_files=["res://.godot/imported/Hezequiah Intro.wav-18ac548d412e292850abe1a6f89e83bb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

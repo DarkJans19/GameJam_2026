@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cukr2aq7qasyr"
+path="res://.godot/imported/Enemie HurtJ.mp3-fdc3bbc4d488ce130c57c84aa3cddfb4.mp3str"
+
+[deps]
+
+source_file="res://assets/Audios/Enemie HurtJ.mp3"
+dest_files=["res://.godot/imported/Enemie HurtJ.mp3-fdc3bbc4d488ce130c57c84aa3cddfb4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

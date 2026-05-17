@@ -1,6 +1,8 @@
 extends Node2D
 class_name Enemy
 
+signal selected(enemy: Enemy)
+
 enum LunarPhase {
 	NEW_MOON,
 	WAXING_CRESCENT,
@@ -16,13 +18,17 @@ static var current_lunar_phase : LunarPhase = (
 	LunarPhase.NEW_MOON
 )
 
-@export var enemy_data : EnemyData
+@export var enemy_data : enemyData
 
 var health : int = 0
+var armor : int = 0  # Escudo/armadura actual del enemigo
 
 var is_my_turn : bool = false
 var is_busy : bool = false
-var is_defending : bool = false
+var is_defending : bool = false:
+	set(value):
+		is_defending = value
+		update_health_bar()
 
 @onready var sprite : Sprite2D = (
 	$Sprite2D
@@ -32,375 +38,313 @@ var is_defending : bool = false
 	$HealthBar
 )
 
+@onready var bar_text : Label = (
+	$HealthBar/BarText
+)
+
 @onready var animation_player : AnimationPlayer = (
 	$AnimationPlayer
 )
 
-func _ready() -> void:
+@onready var selection_cursor : Sprite2D = (
+	$SelectionCursor
+)
 
-	pass
+# --- NUEVAS REFERENCIAS PARA EL TOOLTIP AUTÓNOMO ---
+@onready var enemy_tooltip : PanelContainer = (
+	$EnemyTooltip
+)
+
+@onready var tooltip_text : RichTextLabel = (
+	$EnemyTooltip/TooltipText
+)
+
+func _ready() -> void:
+	add_to_group("enemies")
+	if selection_cursor:
+		selection_cursor.hide()
+	if enemy_tooltip:
+		enemy_tooltip.hide() # Nos aseguramos de que empiece oculto
 
 func setup() -> void:
-
 	if enemy_data == null:
-
 		push_error(
 			"EnemyData no asignado"
 		)
-
 		return
 
 	_setup_enemy()
-
 	play_idle()
 
 func _setup_enemy() -> void:
-
 	health = enemy_data.max_health
-
+	armor = 0
+	
 	health_bar.max_value = (
 		enemy_data.max_health
 	)
-
 	health_bar.value = health
 
 	if enemy_data.sprite != null:
-
 		sprite.texture = (
 			enemy_data.sprite
 		)
+		
+	update_health_bar()
+
+func set_selected(is_selected: bool) -> void:
+	if selection_cursor:
+		selection_cursor.visible = is_selected
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		if sprite and sprite.texture:
+			var local_mouse_pos = to_local(get_global_mouse_position())
+			var texture_size = sprite.texture.get_size()
+			
+			var half_width = (texture_size.x * sprite.scale.x) / 2.0
+			var half_height = (texture_size.y * sprite.scale.y) / 2.0
+			
+			if local_mouse_pos.x >= -half_width and local_mouse_pos.x <= half_width:
+				if local_mouse_pos.y >= -half_height and local_mouse_pos.y <= half_height:
+					emit_signal("selected", self)
+					get_viewport().set_input_as_handled()
+
+func update_health_bar() -> void:
+	if health_bar == null or bar_text == null:
+		return
+		
+	health_bar.value = health
+	
+	var fill_style : StyleBoxFlat = health_bar.get_theme_stylebox("fill").duplicate()
+	
+	if is_defending:
+		if fill_style:
+			fill_style.bg_color = Color("888888")
+		
+		health_bar.add_theme_stylebox_override("fill", fill_style)
+		bar_text.text = str(armor) + " " + str(health) + "/" + str(int(health_bar.max_value))
+	else:
+		if fill_style:
+			fill_style.bg_color = Color("004f97")
+			
+		health_bar.add_theme_stylebox_override("fill", fill_style)
+		bar_text.text = str(health) + "/" + str(int(health_bar.max_value))
+
+func get_next_actions_string() -> String:
+	if enemy_data == null:
+		return "Ninguna"
+		
+	var actions : Array = enemy_data.moon_phase_turns.get(current_lunar_phase, [])
+	if actions.is_empty():
+		return "Pasar Turno"
+	
+	return ", ".join(actions)
+
+func _on_mouse_detector_mouse_entered() -> void:
+	if enemy_data == null or enemy_tooltip == null or tooltip_text == null:
+		return
+		
+	tooltip_text.clear()
+	
+	var nombre = enemy_data.enemy_name.to_upper()
+	var accion_siguiente = get_next_actions_string()
+	
+	var texto_completo = nombre + "\n"
+	texto_completo += "Acción: " + accion_siguiente
+	
+	tooltip_text.add_text(texto_completo)
+	
+	var ancho_deseado : float = 90.0
+	var alto_deseado : float = 35.0
+	
+	enemy_tooltip.custom_minimum_size = Vector2(ancho_deseado, alto_deseado)
+	enemy_tooltip.size = Vector2(ancho_deseado, alto_deseado)
+	
+	tooltip_text.custom_minimum_size = Vector2(ancho_deseado, alto_deseado)
+	tooltip_text.size = Vector2(ancho_deseado, alto_deseado)
+	
+	tooltip_text.add_theme_font_size_override("normal_font_size", 8)
+	
+	var x_centrado = -1.25* ancho_deseado
+	
+	var y_elevado = -25.0 
+	
+	enemy_tooltip.position = Vector2(x_centrado, y_elevado)
+	
+	enemy_tooltip.show()
+	print("[Enemy Tooltip] Mostrando datos maquetados de: " + nombre)
+	
+func _on_mouse_detector_mouse_exited() -> void:
+	if enemy_tooltip:
+		enemy_tooltip.hide()
 
 func start_turn() -> void:
-
 	if is_busy:
 		return
 
 	is_my_turn = true
-
 	is_defending = false
+	armor = 0 
 
-	print(
-		enemy_data.enemy_name +
-		" inicia turno"
-	)
-
-	print(
-		"Fase lunar actual: " +
-		str(current_lunar_phase)
-	)
+	print(enemy_data.enemy_name + " inicia turno")
+	print("Fase lunar actual: " + str(current_lunar_phase))
 
 	await execute_turn()
-
 	end_turn()
 
 func end_turn() -> void:
-
 	is_my_turn = false
-
-	print(
-		enemy_data.enemy_name +
-		" termina turno"
-	)
+	print(enemy_data.enemy_name + " termina turno")
 
 func execute_turn() -> void:
-
 	var actions : Array = (
-		enemy_data.moon_phase_turns.get(
-			current_lunar_phase,
-			[]
-		)
+		enemy_data.moon_phase_turns.get(current_lunar_phase, [])
 	)
 
 	if actions.is_empty():
-
-		print(
-			enemy_data.enemy_name +
-			" no tiene acciones"
-		)
-
+		print(enemy_data.enemy_name + " no tiene acciones")
 		return
 
 	for action_name in actions:
-
 		if is_busy:
 			return
 
-		await execute_action(
-			str(action_name)
-		)
+		await execute_action(str(action_name))
+		await get_tree().create_timer(0.3).timeout
 
-		await get_tree().create_timer(
-			0.3
-		).timeout
-
-func execute_action(
-	action_name : String
-) -> void:
-
+func execute_action(action_name : String) -> void:
 	match action_name:
-
 		"ATTACK":
 			await action_attack()
-
 		"HEAVY ATTACK":
 			await action_heavy_attack()
-
 		"HEAL":
 			await action_heal()
-
 		"FULL HEAL":
 			await action_full_heal()
-
 		"DEFEND":
 			await action_defend()
-
 		"ADVANCE MOON":
 			await action_advance_moon()
-
 		"PASS":
 			await action_pass()
-
 		_:
-			print(
-				"Accion desconocida: " +
-				action_name
-			)
+			print("Accion desconocida: " + action_name)
 
 func action_attack() -> void:
-
 	is_busy = true
-
-	print(
-		enemy_data.enemy_name +
-		" usa ATTACK"
-	)
-
+	print(enemy_data.enemy_name + " usa ATTACK")
 	play_attack()
-
 	await animation_player.animation_finished
-
 	play_idle()
-
 	is_busy = false
 
 func action_heavy_attack() -> void:
-
 	is_busy = true
-
-	print(
-		enemy_data.enemy_name +
-		" usa HEAVY ATTACK"
-	)
-
+	print(enemy_data.enemy_name + " usa HEAVY ATTACK")
 	play_attack()
-
 	await animation_player.animation_finished
-
 	play_idle()
-
 	is_busy = false
 
 func action_heal() -> void:
-
 	is_busy = true
-
-	print(
-		enemy_data.enemy_name +
-		" usa HEAL"
-	)
-
-	heal(
-		enemy_data.heal_amount
-	)
-
+	print(enemy_data.enemy_name + " usa HEAL")
+	heal(enemy_data.heal_amount)
 	play_attack()
-
 	await animation_player.animation_finished
-
 	play_idle()
-
 	is_busy = false
 
 func action_full_heal() -> void:
-
 	is_busy = true
-
-	print(
-		enemy_data.enemy_name +
-		" usa FULL HEAL"
-	)
-
+	print(enemy_data.enemy_name + " usa FULL HEAL")
 	health = enemy_data.max_health
-
 	update_health_bar()
-
 	play_attack()
-
 	await animation_player.animation_finished
-
 	play_idle()
-
 	is_busy = false
 
 func action_defend() -> void:
-
 	is_busy = true
-
+	armor = 15 
 	is_defending = true
-
-	print(
-		enemy_data.enemy_name +
-		" usa DEFEND"
-	)
-
+	
+	print(enemy_data.enemy_name + " usa DEFEND")
 	play_attack()
-
 	await animation_player.animation_finished
-
 	play_idle()
-
 	is_busy = false
 
 func action_advance_moon() -> void:
-
 	is_busy = true
-
 	current_lunar_phase += 1
 
-	if current_lunar_phase > (
-		LunarPhase.WANING_CRESCENT
-	):
+	if current_lunar_phase > LunarPhase.WANING_CRESCENT:
+		current_lunar_phase = LunarPhase.NEW_MOON
 
-		current_lunar_phase = (
-			LunarPhase.NEW_MOON
-		)
-
-	print(
-		enemy_data.enemy_name +
-		" adelanta la fase lunar a: " +
-		str(current_lunar_phase)
-	)
-
+	print(enemy_data.enemy_name + " adelanta la fase lunar a: " + str(current_lunar_phase))
 	play_attack()
-
 	await animation_player.animation_finished
-
 	play_idle()
-
 	is_busy = false
 
 func action_pass() -> void:
-
 	is_busy = true
-
-	print(
-		enemy_data.enemy_name +
-		" pasa turno"
-	)
-
-	await get_tree().create_timer(
-		0.9
-	).timeout
-
+	print(enemy_data.enemy_name + " pasa turno")
+	await get_tree().create_timer(0.9).timeout
 	play_idle()
-
 	is_busy = false
 
-func take_damage(
-	amount : int
-) -> void:
-
+func take_damage(amount : int) -> void:
 	if is_busy:
 		return
 
 	if is_defending:
-
+		if armor > 0:
+			var damage_to_armor = min(armor, amount)
+			armor -= damage_to_armor
+			amount -= damage_to_armor
 		amount *= 0.5
 
 	health -= amount
-
 	if health < 0:
 		health = 0
 
 	update_health_bar()
-
-	print(
-		enemy_data.enemy_name +
-		" recibe " +
-		str(amount) +
-		" daño"
-	)
+	print(enemy_data.enemy_name + " recibe " + str(amount) + " dany")
 
 	is_busy = true
-
 	play_hurt()
-
 	await animation_player.animation_finished
-
 	play_idle()
-
 	is_busy = false
 
 	if health <= 0:
 		die()
 
-func heal(
-	amount : int
-) -> void:
-
+func heal(amount : int) -> void:
 	health += amount
-
 	if health > enemy_data.max_health:
-
 		health = enemy_data.max_health
 
 	update_health_bar()
-
-	print(
-		enemy_data.enemy_name +
-		" recupera " +
-		str(amount)
-	)
-
-func update_health_bar() -> void:
-
-	health_bar.value = health
+	print(enemy_data.enemy_name + " recupera " + str(amount))
 
 func die() -> void:
-
-	print(
-		enemy_data.enemy_name +
-		" muere"
-	)
-
+	print(enemy_data.enemy_name + " muere")
 	queue_free()
 
 func play_idle() -> void:
-
-	if animation_player.has_animation(
-		"idle"
-	):
-
-		animation_player.play(
-			"idle"
-		)
+	if animation_player and animation_player.has_animation("idle"):
+		animation_player.play("idle")
 
 func play_attack() -> void:
-
-	if animation_player.has_animation(
-		"attack"
-	):
-
-		animation_player.play(
-			"attack"
-		)
+	if animation_player and animation_player.has_animation("attack"):
+		animation_player.play("attack")
 
 func play_hurt() -> void:
-
-	if animation_player.has_animation(
-		"hurt"
-	):
-
-		animation_player.play(
-			"hurt"
-		)
+	if animation_player and animation_player.has_animation("hurt"):
+		animation_player.play("hurt")

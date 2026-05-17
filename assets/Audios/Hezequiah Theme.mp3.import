@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bmxgi0qr6y1ih"
+path="res://.godot/imported/Hezequiah Theme.mp3-ee581eff90d24d7cd3fc6692b3542191.mp3str"
+
+[deps]
+
+source_file="res://assets/Audios/Hezequiah Theme.mp3"
+dest_files=["res://.godot/imported/Hezequiah Theme.mp3-ee581eff90d24d7cd3fc6692b3542191.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

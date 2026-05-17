@@ -1,47 +1,40 @@
 extends Node2D
 
-const CARD_WIDTH = 50
-
-const HAND_Y_POSITION = 150
-const X_LENGHT = 320
+const CARD_WIDTH = 22  
+const HAND_Y_POSITION = 60 
 
 var player_hand = []
-var center_screen_x = 320
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	center_screen_x = X_LENGHT / 2
+	position = Vector2(0, 0)
 
 func add_card_to_hand(new_card):
 	player_hand.insert(0, new_card)
-	new_card.scale = Vector2(0.3, 0.3)
 	update_hand_position()
 	
 func update_hand_position():
 	for i in range(player_hand.size()):
-		var new_position = Vector2(calculate_new_card_position(i), HAND_Y_POSITION)
 		var card = player_hand[i]
+		var current_y = card.position.y if card.position.y != 0 else HAND_Y_POSITION
+		
+		if not card in get_node("../CardManager").selected_cards:
+			current_y = HAND_Y_POSITION
+			card.scale = get_node("../CardManager").BASE_SCALE
+			card.z_index = 10 + i
+			
+		var new_position = Vector2(calculate_new_card_position(i), current_y)
 		animate_card_to_position(card, new_position)
-	
 
 func calculate_new_card_position(index):
 	var total_width = (player_hand.size() - 1) * CARD_WIDTH 
-	var x_offset = center_screen_x + (index * CARD_WIDTH) - (total_width / 2)
+	var x_offset = (index * CARD_WIDTH) - (total_width / 2)
 	return x_offset
 
 func animate_card_to_position(card, new_position):
 	var tween = get_tree().create_tween()
 	tween.tween_property(card, "position", new_position, 0.1)
-	pass
-
 
 func remove_cards_of_hand(card):
-	print(player_hand)
 	if card in player_hand:
 		player_hand.erase(card)
 		update_hand_position()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

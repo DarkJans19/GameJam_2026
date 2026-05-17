@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://dmca8f8tcr4re"]
-
-[ext_resource type="PackedScene" uid="uid://ddme1kmoeqdfn" path="res://entities/enemy/enemy.tscn" id="1_qpltd"]
-[ext_resource type="Texture2D" uid="uid://bugks4ckj6cv5" path="res://assets/Enemies/Abeja.png" id="2_gj3pa"]
-
-[node name="Enemy" unique_id=895145600 instance=ExtResource("1_qpltd")]
-
-[node name="Sprite2D" parent="." index="0" unique_id=1409488724]
-texture = ExtResource("2_gj3pa")

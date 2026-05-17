@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardData" format=3 uid="uid://dq0duat6vxfai"]
 
-[ext_resource type="Texture2D" uid="uid://bdvu1xrvmw0hx" path="res://assets/Cartas/Mosquito Magico.png" id="1_7d628"]
+[ext_resource type="Texture2D" uid="uid://buut2ltjdepnx" path="res://assets/Cartas/Lunares/Mago Dan.png" id="1_7d628"]
 [ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/especific_cards/cardData.gd" id="2_l7uuy"]
 
 [resource]

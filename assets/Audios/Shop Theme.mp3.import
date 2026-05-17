@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dq1rps3yfgg3s"
+path="res://.godot/imported/Shop Theme.mp3-ca1118f514d069b803debc962b2082c5.mp3str"
+
+[deps]
+
+source_file="res://assets/Audios/Shop Theme.mp3"
+dest_files=["res://.godot/imported/Shop Theme.mp3-ca1118f514d069b803debc962b2082c5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

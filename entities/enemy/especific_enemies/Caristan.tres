@@ -1,10 +1,9 @@
-[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://rqgpyhd4u6ol"]
+[gd_resource type="Resource" script_class="enemyData" format=3 uid="uid://c11b777pv3hu0"]
 
-[ext_resource type="Texture2D" uid="uid://b1emeupica2ph" path="res://assets/Enemigos y Jefes/Caristan.png" id="1_ov2v3"]
-[ext_resource type="Script" uid="uid://cxs1d6q6kobo8" path="res://entities/enemies/EnemyData.gd" id="1_tht0w"]
+[ext_resource type="Script" uid="uid://b3q4jk3aickui" path="res://entities/enemy/enemyData.gd" id="1_ule3u"]
+[ext_resource type="Texture2D" uid="uid://b1emeupica2ph" path="res://assets/Enemies/Caristan.png" id="2_f4xk0"]
 
 [resource]
-script = ExtResource("1_tht0w")
-enemy_name = "Caristan"
-enemy_health = 100
-image = ExtResource("1_ov2v3")
+script = ExtResource("1_ule3u")
+sprite = ExtResource("2_f4xk0")
+metadata/_custom_type_script = "uid://b3q4jk3aickui"
