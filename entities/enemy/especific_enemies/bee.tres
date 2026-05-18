@@ -8,6 +8,8 @@ script = ExtResource("1_fpjrd")
 enemy_name = "Bee"
 max_health = 25
 heal_amount = 10
+damage = 7
+heavy_damage = 0
 sprite = ExtResource("2_bl4ls")
 moon_phase_turns = {
 0: ["ATTACK", "ATTACK", "ATTACK"],
