@@ -9,7 +9,6 @@ var normal_cards: Array[String] = []
 var lunar_cards: Array[String] = []
 var comodin_cards: Array[String] = []
 
-# Copias de trabajo que se pueden agotar libremente
 var normal_deck: Array[String] = []
 var lunar_deck: Array[String] = []
 var comodin_deck: Array[String] = []
@@ -26,16 +25,22 @@ func preparate_initial_hand() -> void:
 		if not ResourceLoader.exists(card_path):
 			push_error("No se pudo encontrar el recurso: " + card_path)
 			continue
+
 		var resource = load(card_path)
+
 		if resource is CardData:
 			match resource.type:
-				CardData.CardType.NORMAL:   normal_cards.append(card_path)
-				CardData.CardType.LUNAR:    lunar_cards.append(card_path)
-				CardData.CardType.COMODIN:  comodin_cards.append(card_path)
+				CardData.CardType.NORMAL:
+					normal_cards.append(card_path)
 
-	# Las copias de trabajo son las que se gastan
-	normal_deck  = normal_cards.duplicate()
-	lunar_deck   = lunar_cards.duplicate()
+				CardData.CardType.LUNAR:
+					lunar_cards.append(card_path)
+
+				CardData.CardType.COMODIN:
+					comodin_cards.append(card_path)
+
+	normal_deck = normal_cards.duplicate()
+	lunar_deck = lunar_cards.duplicate()
 	comodin_deck = comodin_cards.duplicate()
 
 	normal_deck.shuffle()
@@ -46,8 +51,10 @@ func draw_card_by_type(amount: int, type: CardData.CardType) -> void:
 	match type:
 		CardData.CardType.NORMAL:
 			draw_card(amount, normal_deck)
+
 		CardData.CardType.LUNAR:
 			draw_card(amount, lunar_deck)
+
 		CardData.CardType.COMODIN:
 			draw_card(amount, comodin_deck)
 
@@ -64,6 +71,7 @@ func draw_card(amount_cards_to_drawn: int, deck: Array) -> void:
 			continue
 
 		var new_card = CARD_SCENE.instantiate()
+
 		new_card.card_data = resource
 
 		card_manager.add_child(new_card)

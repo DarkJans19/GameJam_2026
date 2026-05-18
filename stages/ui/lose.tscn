@@ -3,13 +3,15 @@
 [ext_resource type="Script" uid="uid://cl3k83se8mcdi" path="res://stages/ui/lose.gd" id="1_qkg0j"]
 
 [node name="Lose" type="Control" unique_id=803556122]
+process_mode = 2
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_qkg0j")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2014950103]
 layout_mode = 0
-offset_right = 371.0
+offset_left = -61.0
+offset_right = 435.0
 offset_bottom = 291.0
 color = Color(0, 0, 0, 0.48235294)
 

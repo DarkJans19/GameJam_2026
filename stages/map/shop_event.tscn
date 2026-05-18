@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dlxum2nam1ek4"]
 
-[ext_resource type="Script" uid="uid://cbig6atmpocwn" path="res://stages/map/shop_event.gd" id="1_1lq6j"]
+[ext_resource type="Script" uid="uid://7hjhw1po1h7d" path="res://stages/map/event.gd" id="1_1lq6j"]
 [ext_resource type="Texture2D" uid="uid://bon2034id6xbk" path="res://assets/Iconos/Icono tienda.png" id="2_2vqhh"]
 
 [node name="Shop_event" type="Control" unique_id=1246624021]

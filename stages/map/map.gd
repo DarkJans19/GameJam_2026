@@ -3,23 +3,6 @@ class_name Map
 
 const PLAYER_HEIGHT_OFFSET := 25
 
-# Se eliminó ENEMY_SCENES porque ahora usas la escena única combat.tscn
-
-const SHOP_SCENES := [
-	"res://stages/map/shop_1.tscn",
-	"res://stages/map/shop_2.tscn",
-]
-
-const RANDOM_SCENES := [
-	"res://stages/map/random_1.tscn",
-	"res://stages/map/random_2.tscn",
-	"res://stages/map/random_3.tscn",
-]
-
-const BOSS_SCENES := [
-	"res://stages/map/boss_1.tscn",
- ]
-
 const EVENT_STEPS: Array = [
 	["Enemy_event"],
 	["Enemy_event2"],
@@ -33,6 +16,7 @@ const EVENT_STEPS: Array = [
 ]
 
 @onready var player: TextureRect = $Player
+@onready var pause_menu : PauseMenu = $Pause
 
 @onready var event_nodes: Dictionary = {
 	"Enemy_event": $Enemy_event,
@@ -57,106 +41,155 @@ const EVENT_STEPS: Array = [
 
 func _ready() -> void:
 	randomize()
+
 	player.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	player.z_index = 100
-	_connect_events()
+	player.z_index = 10
+	pause_menu.z_index = 11
+
 	_refresh_map()
 
-func _connect_events() -> void:
-	for event_name in event_nodes.keys():
-		var event_node: Control = event_nodes[event_name]
-		if not event_node.gui_input.is_connected(_on_event_gui_input):
-			event_node.gui_input.connect(_on_event_gui_input.bind(event_name))
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		pause_menu.toggle_pause()
 
 func _refresh_map() -> void:
-	for step_index in range(EVENT_STEPS.size()):
-		var enabled: bool = (step_index == (game_manager as Node).get("current_event"))
-		for event_name in EVENT_STEPS[step_index]:
-			_set_event_enabled(event_nodes[event_name], enabled)
+	for event_name in event_nodes.keys():
+		_set_event_enabled(
+			event_nodes[event_name],
+			false
+		)
+
+	if game_manager.current_event < EVENT_STEPS.size():
+		for event_name in EVENT_STEPS[game_manager.current_event]:
+			_set_event_enabled(
+				event_nodes[event_name],
+				true
+			)
 
 	if game_manager.last_selected_event == "":
-		if game_manager.current_event < EVENT_STEPS.size():
-			var first_event: String = (EVENT_STEPS[game_manager.current_event][0])
-			_position_player_initial(event_nodes[first_event])
+		var first_event := EVENT_STEPS[0][0]
+
+		_position_player_initial(
+			event_nodes[first_event]
+		)
 	else:
-		_position_player_completed(event_nodes[game_manager.last_selected_event])
+		_position_player_completed(
+			event_nodes[game_manager.last_selected_event]
+		)
 
 func _position_player_initial(target_node: Control) -> void:
-	var target_center := (target_node.global_position + (target_node.size * 0.5))
+	var target_center := (
+		target_node.global_position +
+		(target_node.size * 0.5)
+	)
+
 	var player_size := player.size
+
 	player.global_position = Vector2(
 		target_center.x - (player_size.x * 0.25),
 		target_node.global_position.y - player_size.y + 15
 	)
 
 func _position_player_completed(target_node: Control) -> void:
-	var target_center := (target_node.global_position + (target_node.size * 0.5))
+	var target_center := (
+		target_node.global_position +
+		(target_node.size * 0.5)
+	)
+
 	var player_size := player.size
+
 	player.global_position = Vector2(
 		target_center.x - (player_size.x * 0.25),
 		target_node.global_position.y
 	)
 
-func _on_event_gui_input(event: InputEvent, event_name: String) -> void:
+func _on_event_gui_input(
+	event: InputEvent,
+	event_name: String
+) -> void:
+
+	print("RECIBIDO:", event_name)
+	print("CURRENT EVENT:", game_manager.current_event)
+
 	if not _is_event_selectable(event_name):
+		print("NO SELECCIONABLE")
 		return
 
 	if event is InputEventMouseButton:
-		if (event.button_index == MOUSE_BUTTON_LEFT and event.pressed):
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			print("CAMBIANDO ESCENA")
 			_select_event(event_name)
 
 func _is_event_selectable(event_name: String) -> bool:
 	if game_manager.current_event >= EVENT_STEPS.size():
 		return false
-	return (event_name in EVENT_STEPS[game_manager.current_event])
+
+	return (
+		event_name in EVENT_STEPS[game_manager.current_event]
+	)
 
 func _select_event(event_name: String) -> void:
-	var scene_path: String = ""
+	var scene_path := ""
 
-	# --- CONTROL DE COMBATES ---
-	if event_name == "Enemy_event" or event_name == "Enemy_event2":
-		game_manager.etapa_combate_actual = 0 # StageType.EARLY
+	if event_name in [
+		"Enemy_event",
+		"Enemy_event2"
+	]:
+		game_manager.etapa_combate_actual = 0
 		scene_path = "res://stages/combat/combat.tscn"
 
 	elif event_name == "Enemy_event3":
-		game_manager.etapa_combate_actual = 1 # StageType.MID
+		game_manager.etapa_combate_actual = 1
 		scene_path = "res://stages/combat/combat.tscn"
 
-	elif event_name in ["Enemy_event4", "Enemy_event5", "Enemy_event6"]:
-		game_manager.etapa_combate_actual = 2 # StageType.LATE
+	elif event_name in [
+		"Enemy_event4",
+		"Enemy_event5",
+		"Enemy_event6"
+	]:
+		game_manager.etapa_combate_actual = 2
 		scene_path = "res://stages/combat/combat.tscn"
 
 	elif event_name == "Boss_event":
-		game_manager.etapa_combate_actual = 3 # StageType.BOSS
+		game_manager.etapa_combate_actual = 3
 		scene_path = "res://stages/combat/combat.tscn"
 
-	# --- CONTROL DE TIENDAS Y EVENTOS ALEATORIOS (CORREGIDO MAYÚSCULAS) ---
 	elif event_name.begins_with("Shop_event"):
-		scene_path = SHOP_SCENES.pick_random()
+		scene_path = "res://stages/map/shop.tscn"
 
 	elif event_name.begins_with("Random_event"):
-		scene_path = RANDOM_SCENES.pick_random()
+		scene_path = "res://stages/map/random.tscn"
 
-	# Validación de seguridad
 	if scene_path == "":
-		push_error("No se asignó escena para: " + event_name)
+		push_error(
+			"No se asignó escena para: " +
+			event_name
+		)
 		return
 
 	game_manager.last_selected_event = event_name
 	game_manager.current_event += 1
 
-	# Si era el evento final del Boss, reiniciamos el progreso global y vamos al menú
-	if event_name == "Boss_event":
-		game_manager.reset_progress()
-		get_tree().change_scene_to_file("res://stages/menu/menu.tscn")
-		return
+	print("CARGANDO:", scene_path)
 
-	_refresh_map()
 	get_tree().change_scene_to_file(scene_path)
 
-func _set_event_enabled(event_node: Control, enabled: bool) -> void:
-	event_node.mouse_filter = (Control.MOUSE_FILTER_STOP if enabled else Control.MOUSE_FILTER_IGNORE)
-	for child in event_node.get_children():
-		if child is Control:
-			child.mouse_filter = (Control.MOUSE_FILTER_IGNORE)
-	event_node.modulate = (Color(1, 1, 1, 1) if enabled else Color(1, 1, 1, 0.35))
+func _set_event_enabled(
+	event_node: Control,
+	enabled: bool
+) -> void:
+
+	event_node.mouse_filter = (
+		Control.MOUSE_FILTER_STOP
+		if enabled
+		else Control.MOUSE_FILTER_IGNORE
+	)
+
+	event_node.modulate = (
+		Color(1, 1, 1, 1)
+		if enabled
+		else Color(1, 1, 1, 0.35)
+	)
+
+func _on_pause_pressed() -> void:
+	pause_menu.toggle_pause()

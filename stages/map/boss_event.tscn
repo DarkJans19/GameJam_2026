@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://6ga84j3uyeah"]
 
-[ext_resource type="Script" uid="uid://7hjhw1po1h7d" path="res://stages/map/boss_event.gd" id="1_3hx3f"]
+[ext_resource type="Script" uid="uid://7hjhw1po1h7d" path="res://stages/map/event.gd" id="1_3hx3f"]
 [ext_resource type="Texture2D" uid="uid://c4swdrc1tkedu" path="res://assets/Iconos/Icono Jefe.png" id="2_3pq23"]
 
 [node name="Boss_event" type="Control" unique_id=598231483]

@@ -67,7 +67,7 @@ func aplicar_damage_jugador(cantidad: int) -> void:
 	print("[GameManager] Jugador recibe daño puro: -", cantidad, " | Vida restante: ", vida_actual_jugador, "/", vida_max_jugador)
 	
 	if vida_actual_jugador <= 0:
-		_procesar_derrota_global()
+		print("[GameManager] Jugador derrotado")
 
 func modificar_oro(cantidad: int) -> void:
 	oro = max(0, oro + cantidad)
@@ -107,8 +107,3 @@ func remover_carta_del_mazo(ruta_carta: String) -> bool:
 		print("[GameManager] Carta removida del mazo: ", ruta_carta)
 		return true
 	return false
-
-func _procesar_derrota_global() -> void:
-	print("[GameManager] Fin de la partida: La vida del jugador ha llegado a cero.")
-	reset_progress()
-	get_tree().change_scene_to_file("res://stages/menu/menu.tscn")

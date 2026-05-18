@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dy0ewsimw8mem" path="res://entities/player/health.tscn" id="7_athdf"]
 [ext_resource type="PackedScene" uid="uid://b662s4f2al1rk" path="res://entities/player/gold.tscn" id="8_1oiya"]
 [ext_resource type="Texture2D" uid="uid://dss0i0a3pdla7" path="res://assets/UI/UI Pausa.png" id="9_1oiya"]
+[ext_resource type="PackedScene" uid="uid://4y02hes2oncj" path="res://stages/ui/pause.tscn" id="10_2afta"]
 
 [sub_resource type="Gradient" id="Gradient_xghif"]
 offsets = PackedFloat32Array(0)
@@ -18,280 +19,353 @@ colors = PackedColorArray(0.12298488, 0.12298488, 0.12298488, 1)
 gradient = SubResource("Gradient_xghif")
 width = 64
 
+[sub_resource type="GDScript" id="GDScript_2afta"]
+script/source = "extends Control
+
+@export var world_index:int = 0
+
+func _ready() -> void:
+	mouse_filter = Control.MOUSE_FILTER_STOP
+	_set_children_mouse_filter(self)
+
+func _set_children_mouse_filter(node: Node) -> void:
+	for child in node.get_children():
+		if child is Control:
+			child.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+		_set_children_mouse_filter(child)
+
+func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			print(\"CLICK:\", name)
+
+			if get_parent() and get_parent().has_method(\"_on_event_gui_input\"):
+				get_parent()._on_event_gui_input(event, name)
+"
+
+[sub_resource type="GDScript" id="GDScript_ru7y3"]
+script/source = "extends Control
+
+@export var world_index:int = 0
+
+func _ready() -> void:
+	mouse_filter = Control.MOUSE_FILTER_STOP
+	_set_children_mouse_filter(self)
+
+func _set_children_mouse_filter(node: Node) -> void:
+	for child in node.get_children():
+		if child is Control:
+			child.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+		_set_children_mouse_filter(child)
+
+func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			print(\"CLICK:\", name)
+
+			if get_parent() and get_parent().has_method(\"_on_event_gui_input\"):
+				get_parent()._on_event_gui_input(event, name)
+"
+
 [node name="Map" type="Control" unique_id=143094939]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -954.0
-offset_bottom = -534.0
+offset_left = -106.0
+offset_right = -777.0
+offset_bottom = -363.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xghif")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=972101176]
-position = Vector2(6.237488, 12)
-scale = Vector2(19.023827, 689.99994)
+z_index = -7
+position = Vector2(1022.7623, 430.00003)
+scale = Vector2(19.023825, 689.99994)
 texture = SubResource("GradientTexture1D_22rbi")
 
 [node name="Enemy_event" parent="." unique_id=1682874225 instance=ExtResource("1_qw2a2")]
 layout_mode = 0
-offset_left = -539.0
-offset_top = -29.0
-offset_right = -475.0
-offset_bottom = 35.0
+offset_left = 477.5249
+offset_top = 389.0
+offset_right = 541.5249
+offset_bottom = 453.0
 
 [node name="Random_event" parent="." unique_id=649993746 instance=ExtResource("2_x8gmq")]
 layout_mode = 0
-offset_left = -283.0
-offset_top = -29.0
-offset_right = -219.0
-offset_bottom = 35.0
+offset_left = 733.5249
+offset_top = 389.0
+offset_right = 797.5249
+offset_bottom = 453.0
+script = SubResource("GDScript_2afta")
 
 [node name="Shop_event" parent="." unique_id=1246624021 instance=ExtResource("3_wjkhs")]
 layout_mode = 0
-offset_left = -155.0
-offset_top = -29.0
-offset_right = -91.0
-offset_bottom = 35.0
+offset_left = 861.5249
+offset_top = 389.0
+offset_right = 925.5249
+offset_bottom = 453.0
+script = SubResource("GDScript_ru7y3")
 
 [node name="Boss_event" parent="." unique_id=598231483 instance=ExtResource("4_x8gmq")]
 layout_mode = 0
-offset_left = 485.0
-offset_top = -29.0
-offset_right = 549.0
-offset_bottom = 35.0
+offset_left = 1501.5249
+offset_top = 389.0
+offset_right = 1565.5249
+offset_bottom = 453.0
 
 [node name="Enemy_event2" parent="." unique_id=267478785 instance=ExtResource("1_qw2a2")]
 layout_mode = 0
-offset_left = -411.0
-offset_top = -29.0
-offset_right = -347.0
-offset_bottom = 35.0
+offset_left = 605.5249
+offset_top = 389.0
+offset_right = 669.5249
+offset_bottom = 453.0
 
 [node name="Random_event2" parent="." unique_id=2146633925 instance=ExtResource("2_x8gmq")]
 layout_mode = 0
-offset_left = -283.0
-offset_top = -157.0
-offset_right = -219.0
-offset_bottom = -93.0
+offset_left = 733.5249
+offset_top = 261.0
+offset_right = 797.5249
+offset_bottom = 325.0
+script = SubResource("GDScript_2afta")
 
 [node name="Random_event3" parent="." unique_id=1472071464 instance=ExtResource("2_x8gmq")]
 layout_mode = 0
-offset_left = -283.0
-offset_top = 99.0
-offset_right = -219.0
-offset_bottom = 163.0
+offset_left = 733.5249
+offset_top = 517.0
+offset_right = 797.5249
+offset_bottom = 581.0
+script = SubResource("GDScript_2afta")
 
 [node name="Enemy_event3" parent="." unique_id=1476831584 instance=ExtResource("1_qw2a2")]
 layout_mode = 0
-offset_left = -27.0
-offset_top = -29.0
-offset_right = 37.0
-offset_bottom = 35.0
+offset_left = 989.5249
+offset_top = 389.0
+offset_right = 1053.5249
+offset_bottom = 453.0
 
 [node name="Enemy_event4" parent="." unique_id=506856272 instance=ExtResource("1_qw2a2")]
 layout_mode = 0
-offset_left = 101.0
-offset_top = -29.0
-offset_right = 165.0
-offset_bottom = 35.0
+offset_left = 1117.5249
+offset_top = 389.0
+offset_right = 1181.5249
+offset_bottom = 453.0
 
 [node name="Enemy_event5" parent="." unique_id=289420101 instance=ExtResource("1_qw2a2")]
 layout_mode = 0
-offset_left = 101.0
-offset_top = -157.0
-offset_right = 165.0
-offset_bottom = -93.0
+offset_left = 1117.5249
+offset_top = 261.0
+offset_right = 1181.5249
+offset_bottom = 325.0
 
 [node name="Enemy_event6" parent="." unique_id=364325682 instance=ExtResource("1_qw2a2")]
 layout_mode = 0
-offset_left = 101.0
-offset_top = 99.0
-offset_right = 165.0
-offset_bottom = 163.0
+offset_left = 1117.5249
+offset_top = 517.0
+offset_right = 1181.5249
+offset_bottom = 581.0
 
 [node name="Shop_event2" parent="." unique_id=648143024 instance=ExtResource("3_wjkhs")]
 layout_mode = 0
-offset_left = 229.0
-offset_top = -29.0
-offset_right = 293.0
-offset_bottom = 35.0
+offset_left = 1245.5249
+offset_top = 389.0
+offset_right = 1309.5249
+offset_bottom = 453.0
+script = SubResource("GDScript_ru7y3")
 
 [node name="Random_event4" parent="." unique_id=1835164965 instance=ExtResource("2_x8gmq")]
 layout_mode = 0
-offset_left = 357.0
-offset_top = -29.0
-offset_right = 421.0
-offset_bottom = 35.0
+offset_left = 1373.5249
+offset_top = 389.0
+offset_right = 1437.5249
+offset_bottom = 453.0
+script = SubResource("GDScript_2afta")
 
 [node name="Random_event5" parent="." unique_id=976991688 instance=ExtResource("2_x8gmq")]
 layout_mode = 0
-offset_left = 357.0
-offset_top = -157.0
-offset_right = 421.0
-offset_bottom = -93.0
+offset_left = 1373.5249
+offset_top = 261.0
+offset_right = 1437.5249
+offset_bottom = 325.0
+script = SubResource("GDScript_2afta")
 
 [node name="Random_event6" parent="." unique_id=937348148 instance=ExtResource("2_x8gmq")]
 layout_mode = 0
-offset_left = 357.0
-offset_top = 99.0
-offset_right = 421.0
-offset_bottom = 163.0
+offset_left = 1373.5249
+offset_top = 517.0
+offset_right = 1437.5249
+offset_bottom = 581.0
+script = SubResource("GDScript_2afta")
 
 [node name="Player" type="TextureRect" parent="." unique_id=1359655554]
+z_index = -7
+z_as_relative = false
 layout_mode = 0
-offset_left = -539.0
-offset_top = -109.0
-offset_right = -411.0
-offset_bottom = 19.0
+offset_left = 477.5249
+offset_top = 309.0
+offset_right = 605.5249
+offset_bottom = 437.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_wjkhs")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=986689956]
-zoom = Vector2(1.7, 1.7)
-
 [node name="Line2D2" type="Line2D" parent="." unique_id=1253546555]
+position = Vector2(1016.5249, 418)
 points = PackedVector2Array(-407, 0, -477, 0)
 default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
 
 [node name="Line2D14" type="Line2D" parent="." unique_id=1745463512]
-position = Vector2(440, 114)
+position = Vector2(1456.5249, 532)
 scale = Vector2(0.35741702, 1)
 points = PackedVector2Array(-421.5149, -74, -240.61536, -5)
 default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
 
 [node name="Line2D10" type="Line2D" parent="." unique_id=981032023]
-position = Vector2(291, 117)
+position = Vector2(1307.5249, 535)
 scale = Vector2(0.59784365, 1)
 points = PackedVector2Array(-421.5149, -74, -314.4635, -5)
 default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
 
 [node name="Line2D12" type="Line2D" parent="." unique_id=1812177802]
-position = Vector2(316.55884, -60)
+position = Vector2(1333.0837, 358)
 scale = Vector2(0.16056277, 1)
 points = PackedVector2Array(245.64319, -47, -227.6919, 22)
 default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
 
 [node name="Line2D20" type="Line2D" parent="." unique_id=1039382331]
-position = Vector2(-1944, -619)
+position = Vector2(-927.4751, -201)
 scale = Vector2(1e-05, 1)
 points = PackedVector2Array(244400000, 659, 234900000, 730)
 default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
 
 [node name="Line2D19" type="Line2D" parent="." unique_id=1718207006]
-position = Vector2(-202.89937, -523)
+position = Vector2(813.62555, -105)
 scale = Vector2(1.7134405e-05, 1)
 points = PackedVector2Array(25906900, 562, 21121208, 639)
 default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
 
 [node name="Line2D18" type="Line2D" parent="." unique_id=1823776325]
-position = Vector2(-202.95187, -397)
+position = Vector2(813.573, 21)
 scale = Vector2(0.00010671469, 1)
 points = PackedVector2Array(571166.6, 434, -225349.63, 515)
 default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
 
 [node name="Line2D17" type="Line2D" parent="." unique_id=845915245]
-position = Vector2(-203.27888, -271)
+position = Vector2(813.24603, 147)
 scale = Vector2(0.0006646291, 1)
 points = PackedVector2Array(937784.56, 169, 1046115.6, 237)
 default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
 
 [node name="Line2D16" type="Line2D" parent="." unique_id=1906577018]
-position = Vector2(-205.31554, -145)
+position = Vector2(811.20935, 273)
 scale = Vector2(0.0041393726, 1)
 points = PackedVector2Array(89944.92, 51, 107580.44, 118)
 default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
 
 [node name="Line2D15" type="Line2D" parent="." unique_id=885072424]
-position = Vector2(-218, -19)
+position = Vector2(798.5249, 399)
 scale = Vector2(0.025780402, 1)
 points = PackedVector2Array(38.789063, -73, 2637.662, -12)
 default_color = Color(18.892002, 18.892002, 18.892002, 0.267)
 
 [node name="Line2D13" type="Line2D" parent="." unique_id=711030679]
-position = Vector2(-297, 107)
+position = Vector2(719.5249, 525)
 scale = Vector2(0.16056277, 1)
 points = PackedVector2Array(-336.90802, -67, 43.596558, 3)
 default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
 
 [node name="Line2D11" type="Line2D" parent="." unique_id=1644000504]
-position = Vector2(226, -30)
+position = Vector2(1242.5249, 388)
 scale = Vector2(0.40070283, 1)
 points = PackedVector2Array(-336.90802, -67, -492.8826, 8)
 default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
 
 [node name="Line2D9" type="Line2D" parent="." unique_id=1668977660]
-position = Vector2(-42.99994, -29)
+position = Vector2(973.52496, 389)
 scale = Vector2(0.6330109, 1)
 points = PackedVector2Array(-374.4012, -68, -492.8826, 8)
 default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
 
 [node name="Line2D8" type="Line2D" parent="." unique_id=1821145393]
-position = Vector2(747, 0)
+position = Vector2(1763.5249, 418)
 scale = Vector2(0.6702469, 1)
 points = PackedVector2Array(-407, 0, -420.7202, 0, -452.6119, 0, -477, 0)
 default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
 
 [node name="Line2D7" type="Line2D" parent="." unique_id=1086755767]
-position = Vector2(631.8889, 0)
+position = Vector2(1648.4138, 418)
 scale = Vector2(0.7096732, 1)
 points = PackedVector2Array(-407, 0, -420.7202, 0, -452.6119, 0, -477, 0)
 default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
 
 [node name="Line2D6" type="Line2D" parent="." unique_id=1234212655]
-position = Vector2(528, 0)
+position = Vector2(1544.5249, 418)
 scale = Vector2(0.7514187, 1)
 points = PackedVector2Array(-407, 0, -420.7202, 0, -452.6119, 0, -477, 0)
 default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
 
 [node name="Line2D5" type="Line2D" parent="." unique_id=1222815839]
-position = Vector2(418, 0)
+position = Vector2(1434.5249, 418)
 scale = Vector2(0.79561985, 1)
 points = PackedVector2Array(-407, 0, -420.7202, 0, -452.6119, 0, -477, 0)
 default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
 
 [node name="Line2D4" type="Line2D" parent="." unique_id=587033946]
-position = Vector2(311, 0)
+position = Vector2(1327.5249, 418)
 scale = Vector2(0.84242105, 1)
 points = PackedVector2Array(-407, 0, -420.7202, 0, -452.6119, 0, -477, 0)
 default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
 
 [node name="Line2D3" type="Line2D" parent="." unique_id=759119803]
-position = Vector2(205.99998, 0)
+position = Vector2(1222.5249, 418)
 scale = Vector2(0.8919753, 1)
 points = PackedVector2Array(-407, 0, -420.7202, 0, -477, 0)
 default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
 
 [node name="Line2D" type="Line2D" parent="." unique_id=379068526]
-position = Vector2(100, 0)
+position = Vector2(1116.5249, 418)
 scale = Vector2(0.9444444, 1)
 points = PackedVector2Array(-407, 0, -420.7202, 0, -477, 0)
 default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
 
 [node name="Health" parent="." unique_id=519478812 instance=ExtResource("7_athdf")]
 layout_mode = 1
-offset_left = -551.0
-offset_top = -317.0
-offset_right = -395.0
-offset_bottom = -206.0
+offset_left = 465.5249
+offset_top = 101.0
+offset_right = -631.4751
+offset_bottom = -556.5
 scale = Vector2(2, 2)
-metadata/_edit_lock_ = true
 
 [node name="Gold" parent="." unique_id=737112638 instance=ExtResource("8_1oiya")]
 layout_mode = 1
-offset_left = -216.0
-offset_top = -347.0
-offset_right = -1182.0
-offset_bottom = -893.0
+offset_left = 800.5249
+offset_top = 71.0
+offset_right = -165.4751
+offset_bottom = -475.0
 scale = Vector2(2, 2)
 
 [node name="pause" type="Button" parent="." unique_id=2015247067]
 layout_mode = 0
-offset_left = 407.0
-offset_top = -322.0
-offset_right = 444.0
-offset_bottom = -289.0
+offset_left = 1423.5249
+offset_top = 96.0
+offset_right = 1460.5249
+offset_bottom = 129.0
 scale = Vector2(4, 4)
 icon = ExtResource("9_1oiya")
 flat = true
+
+[node name="Pause" parent="." unique_id=1715612470 instance=ExtResource("10_2afta")]
+layout_mode = 0
+offset_left = 547.0
+offset_top = 55.000023
+offset_right = 547.0
+offset_bottom = 55.000023
+scale = Vector2(2.5, 2.5)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=986689956]
+position = Vector2(1016.5249, 418)
+zoom = Vector2(1.7, 1.7)
+
+[connection signal="pressed" from="pause" to="." method="_on_pause_pressed"]

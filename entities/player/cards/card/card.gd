@@ -15,11 +15,12 @@ signal hide_description
 func _ready() -> void:
 	timer.wait_time = 0.4
 	timer.one_shot = true
-	
-	var card_manager = get_node("../../CardManager")
+
+	var card_manager = get_tree().get_first_node_in_group("CardManager")
+
 	if card_manager and card_manager.has_method("connect_card_signals"):
 		card_manager.connect_card_signals(self)
-	
+
 	actualizar_estado_visual()
 	ajustar_colision_al_sprite()
 

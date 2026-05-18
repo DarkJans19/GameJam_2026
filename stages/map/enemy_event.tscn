@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ms188et4yyuh"]
 
-[ext_resource type="Script" uid="uid://c0rdny8wrqdmq" path="res://stages/map/enemy_event.gd" id="1_li42m"]
+[ext_resource type="Script" uid="uid://7hjhw1po1h7d" path="res://stages/map/event.gd" id="1_dm6jo"]
 [ext_resource type="Texture2D" uid="uid://c7y5jjgw1s47d" path="res://assets/Iconos/Icono enemigo.png" id="2_dm6jo"]
 
 [node name="Enemy_event" type="Control" unique_id=1682874225]
@@ -8,7 +8,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 64.0
 offset_bottom = 64.0
-script = ExtResource("1_li42m")
+script = ExtResource("1_dm6jo")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=2144607453]
 layout_mode = 0
