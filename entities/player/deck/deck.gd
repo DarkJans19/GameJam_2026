@@ -5,78 +5,50 @@ const CARD_SCENE = preload("res://entities/player/cards/card/card.tscn")
 @onready var card_manager = $"../CardManager"
 @onready var player_hand = $"../PlayerHand"
 
-@export var lunar_cards_resources: Array[String] = [
-	"res://entities/player/cards/card/especific_cards/caballo_bandera.tres",
-	"res://entities/player/cards/card/especific_cards/cabeza_alien.tres",
-	"res://entities/player/cards/card/especific_cards/doble_alien.tres",
-	"res://entities/player/cards/card/especific_cards/guantes.tres",
-	"res://entities/player/cards/card/especific_cards/jimbo.tres",
-	"res://entities/player/cards/card/especific_cards/joaquin.tres",
-	"res://entities/player/cards/card/especific_cards/lobo_fantasma.tres",
-	"res://entities/player/cards/card/especific_cards/mosquito_magico.tres",
-	"res://entities/player/cards/card/especific_cards/naranja_medieval.tres",
-	"res://entities/player/cards/card/especific_cards/ratastronauta.tres",
-]
-
-@export var normal_cards_resources: Array[String] = [
-	"res://entities/player/cards/card/normal_cards/daño.tres",
-	"res://entities/player/cards/card/normal_cards/escudo.tres",
-	"res://entities/player/cards/card/normal_cards/vida.tres",
-]
-@export var comodin_cards_resources: Array[String] = [
-	"res://entities/player/cards/card/comodin_cards/daño_sin_dinero.tres",
-	"res://entities/player/cards/card/comodin_cards/escudo_sin_dinero.tres",
-	"res://entities/player/cards/card/comodin_cards/luna_llena.tres",
-	"res://entities/player/cards/card/comodin_cards/luna_nueva.tres",
-	"res://entities/player/cards/card/comodin_cards/sacrifica_roba.tres",
-	"res://entities/player/cards/card/comodin_cards/salto_turno.tres",
-	"res://entities/player/cards/card/comodin_cards/vida_escudo.tres",
-]
-
-const INITIAL_NORMAL_CARDS_IN_DECK = 10
-const INITIAL_LUNAR_CARDS_IN_DECK = 10
-const INITIAL_COMODIN_CARDS = 1
-
-const INITIAL_NORMAL_CARDS_IN_HAND = 5
-const INITIAL_LUNAR_CARDS_IN_HAND = 5
-
-var player_deck = []
-var game_deck = []
-
-var lunar_cards: Array[String] = []
 var normal_cards: Array[String] = []
+var lunar_cards: Array[String] = []
 var comodin_cards: Array[String] = []
 
-func _ready() -> void:
-	pass
-
 func preparate_initial_hand() -> void:
-	lunar_cards = initialize_deck(INITIAL_LUNAR_CARDS_IN_DECK, lunar_cards_resources)
-	normal_cards = initialize_deck(INITIAL_NORMAL_CARDS_IN_DECK, normal_cards_resources)
-	comodin_cards = initialize_deck(INITIAL_COMODIN_CARDS, comodin_cards_resources)
+	var mazo = get_tree().get_first_node_in_group("deck")
+	if mazo and mazo.has_method("preparate_initial_hand"):
+		mazo.preparate_initial_hand()
+		
+	normal_cards.clear()
+	lunar_cards.clear()
+	comodin_cards.clear()
 	
-	draw_card(INITIAL_NORMAL_CARDS_IN_HAND, normal_cards)
-	draw_card(INITIAL_LUNAR_CARDS_IN_HAND, lunar_cards)
-	draw_card(INITIAL_COMODIN_CARDS, comodin_cards)
-	print(lunar_cards)
-	print("[Deck] Mano inicial repartida con éxito.")
+	for card_path in game_manager.mazo_jugador:
+		if not ResourceLoader.exists(card_path):
+			push_error("No se pudo encontrar el recurso de la carta en: " + card_path)
+			continue
+			
+		var resource = load(card_path)
+		if resource is CardData:
+			match resource.type:
+				CardData.CardType.NORMAL:
+					normal_cards.append(card_path)
+				CardData.CardType.LUNAR:
+					lunar_cards.append(card_path)
+				CardData.CardType.COMODIN:
+					comodin_cards.append(card_path)
+					
+	normal_cards.shuffle()
+	lunar_cards.shuffle()
+	comodin_cards.shuffle()
 
-func initialize_deck(amount_cards_of_deck: int, available_resources: Array) -> Array:
-	var new_deck: Array[String] = []
-
-	if available_resources.is_empty():
-		return new_deck
-
-	for i in range(amount_cards_of_deck):
-		new_deck.append(available_resources.pick_random())
-	return new_deck
-
+func draw_card_by_type(amount: int, type: CardData.CardType) -> void:
+	match type:
+		CardData.CardType.NORMAL:
+			draw_card(amount, normal_cards)
+		CardData.CardType.LUNAR:
+			draw_card(amount, lunar_cards)
+		CardData.CardType.COMODIN:
+			draw_card(amount, comodin_cards)
 
 func draw_card(amount_cards_to_drawn: int, deck: Array) -> void:
 	for i in range(amount_cards_to_drawn):
-
 		if deck.is_empty():
-			print("No quedan más cartas en este mazo.")
 			break
 
 		var card_path = deck.pop_front()
@@ -90,19 +62,5 @@ func draw_card(amount_cards_to_drawn: int, deck: Array) -> void:
 		new_card.card_data = resource
 
 		if player_hand.has_method("add_card_to_hand"):
-			player_hand.add_child(new_card)
 			player_hand.add_card_to_hand(new_card)
-
-		player_deck.append(new_card)
-
-
-func draw_card_by_type(amount: int, card_type: CardData.CardType) -> void:
-	match card_type:
-		CardData.CardType.COMODIN:
-			draw_card(amount, comodin_cards)
-
-		CardData.CardType.NORMAL:
-			draw_card(amount, normal_cards)
-
-		CardData.CardType.LUNAR:
-			draw_card(amount, lunar_cards)
+			card_manager.call_deferred("add_child", new_card)

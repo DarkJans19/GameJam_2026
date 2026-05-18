@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d1bnksp4bjli5" path="res://entities/player/cards/card/effects/Effect.gd" id="1_ht4va"]
 [ext_resource type="Texture2D" uid="uid://bt201vmmfnsv2" path="res://assets/Cartas/Comodin/Luna llena.png" id="2_s0bat"]
-[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/especific_cards/cardData.gd" id="3_nsnov"]
+[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/lunar_cards/cardData.gd" id="3_nsnov"]
 
 [resource]
 script = ExtResource("3_nsnov")

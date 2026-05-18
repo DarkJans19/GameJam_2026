@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://dvh8u7rwy3s66"]
+
+[ext_resource type="Script" uid="uid://d1bnksp4bjli5" path="res://entities/player/cards/card/effects/Effect.gd" id="1_3ac2h"]
+[ext_resource type="Script" uid="uid://dbc7m5yy3bseg" path="res://entities/player/cards/card/effects/lunar_effects/AttackEffect.gd" id="2_d56hn"]
+[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/lunar_cards/cardData.gd" id="2_k2gtg"]
+[ext_resource type="Texture2D" uid="uid://chy6lqnxojdtw" path="res://assets/Cartas/Lunares/Menguantes.png" id="2_x6018"]
+[ext_resource type="Script" uid="uid://cr1r0pvuprqr2" path="res://entities/player/cards/card/effects/lunar_effects/DefenseEffect.gd" id="3_0e60j"]
+
+[sub_resource type="Resource" id="Resource_qujcf"]
+script = ExtResource("2_d56hn")
+damage_quantity = 5
+effect_name = "Daño"
+target_type = 4
+metadata/_custom_type_script = "uid://dbc7m5yy3bseg"
+
+[sub_resource type="Resource" id="Resource_x3qd7"]
+script = ExtResource("3_0e60j")
+defense_quantity = 1
+effect_name = "Escudo"
+target_type = 4
+metadata/_custom_type_script = "uid://cr1r0pvuprqr2"
+
+[resource]
+script = ExtResource("2_k2gtg")
+card_name = "menguantes"
+image = ExtResource("2_x6018")
+type = 2
+effects = Array[ExtResource("1_3ac2h")]([SubResource("Resource_qujcf"), SubResource("Resource_x3qd7")])

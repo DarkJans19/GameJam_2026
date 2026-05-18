@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://c81ycy0bipb6q"]
+
+[ext_resource type="Script" uid="uid://d1bnksp4bjli5" path="res://entities/player/cards/card/effects/Effect.gd" id="1_o0w7d"]
+[ext_resource type="Script" uid="uid://dq7ir856ygn6n" path="res://entities/player/cards/card/effects/lunar_effects/CoinsEffect.gd" id="2_lm1u5"]
+[ext_resource type="Script" uid="uid://cr1r0pvuprqr2" path="res://entities/player/cards/card/effects/lunar_effects/DefenseEffect.gd" id="3_csa3m"]
+[ext_resource type="Script" uid="uid://dcd2te2eyjk85" path="res://entities/player/cards/card/effects/lunar_effects/CurationEffect.gd" id="4_7embk"]
+[ext_resource type="Texture2D" uid="uid://bxjahoto56mud" path="res://assets/Cartas/Lunares/Lorang.png" id="5_vn2y0"]
+[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/lunar_cards/cardData.gd" id="6_ygap4"]
+
+[sub_resource type="Resource" id="Resource_etdyn"]
+script = ExtResource("2_lm1u5")
+amount_of_coins = 6
+effect_name = "Robar monedas"
+target_type = 4
+random_targets_count = 0
+metadata/_custom_type_script = "uid://dq7ir856ygn6n"
+
+[sub_resource type="Resource" id="Resource_xsr31"]
+script = ExtResource("3_csa3m")
+defense_quantity = 6
+effect_name = "Escudo"
+target_type = 4
+random_targets_count = 0
+metadata/_custom_type_script = "uid://cr1r0pvuprqr2"
+
+[sub_resource type="Resource" id="Resource_ihpr4"]
+script = ExtResource("4_7embk")
+heal_quantity = 6
+effect_name = "Curar"
+target_type = 4
+random_targets_count = 0
+metadata/_custom_type_script = "uid://dcd2te2eyjk85"
+
+[resource]
+script = ExtResource("6_ygap4")
+card_name = "Lorang"
+image = ExtResource("5_vn2y0")
+type = 2
+effects = Array[ExtResource("1_o0w7d")]([SubResource("Resource_etdyn"), SubResource("Resource_xsr31"), SubResource("Resource_ihpr4")])

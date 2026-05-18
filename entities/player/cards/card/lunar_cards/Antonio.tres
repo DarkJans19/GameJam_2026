@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://vle2axnv2uo1"]
+
+[ext_resource type="Script" uid="uid://d1bnksp4bjli5" path="res://entities/player/cards/card/effects/Effect.gd" id="1_psgkm"]
+[ext_resource type="Texture2D" uid="uid://gxh5pic63rde" path="res://assets/Cartas/Lunares/Antonio.png" id="2_eq2hb"]
+[ext_resource type="Script" uid="uid://ccou5mbrjrjnp" path="res://entities/player/cards/card/effects/comodin_effects/StealCards.gd" id="2_x4l73"]
+[ext_resource type="Script" uid="uid://dq7ir856ygn6n" path="res://entities/player/cards/card/effects/lunar_effects/CoinsEffect.gd" id="3_av5gr"]
+[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/lunar_cards/cardData.gd" id="3_x4l73"]
+
+[sub_resource type="Resource" id="Resource_cywwi"]
+script = ExtResource("2_x4l73")
+amount_of_cards_stolen = 4
+card_type = 1
+effect_name = "StealCards"
+target_type = 5
+metadata/_custom_type_script = "uid://ccou5mbrjrjnp"
+
+[sub_resource type="Resource" id="Resource_lqmqp"]
+script = ExtResource("3_av5gr")
+amount_of_coins = 4
+effect_name = "Steal Coins"
+target_type = 4
+random_targets_count = 0
+metadata/_custom_type_script = "uid://dq7ir856ygn6n"
+
+[resource]
+script = ExtResource("3_x4l73")
+card_name = "Antonio"
+image = ExtResource("2_eq2hb")
+card_type_action = 1
+effects = Array[ExtResource("1_psgkm")]([SubResource("Resource_cywwi"), SubResource("Resource_lqmqp")])

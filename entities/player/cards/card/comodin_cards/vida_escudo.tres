@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d1bnksp4bjli5" path="res://entities/player/cards/card/effects/Effect.gd" id="1_qhugs"]
 [ext_resource type="Texture2D" uid="uid://k7l3ulq2auwk" path="res://assets/Cartas/Comodin/Vida escudo.png" id="2_phajc"]
-[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/especific_cards/cardData.gd" id="2_rtslv"]
+[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/lunar_cards/cardData.gd" id="2_rtslv"]
 
 [resource]
 script = ExtResource("2_rtslv")

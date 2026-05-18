@@ -40,66 +40,39 @@ func _inicializar_pool_eventos() -> void:
 
 	pool_de_eventos.append(EventoConfig.new(
 		"Carne alienigena",
-		"Encuentras un extraño ser muerto en el suelo... se ve sospechoso",
-		"Comer?",
-		"CURAR",
-		35
+		"Un mercader interestelar te ofrece una sustancia viscosa que cura heridas.",
+		"Comer",
+		"CURAR_JUGADOR",
+		30
 	))
 
 	pool_de_eventos.append(EventoConfig.new(
-		"Has sido robado",
-		"Decides tomar un descanso antes de seguir tu viaje, cuando despiertas ves que se han llevado parte de tus cosas",
-		"...",
-		"PERDER_ORO",
-		20
-	))
-
-	pool_de_eventos.append(EventoConfig.new(
-		"Carne alienigena",
-		"Encuentras un extraño ser muerto en el suelo... se ve sospechoso",
-		"Comer?",
-		"DAMAGE",
-		15
-	))
-
-	pool_de_eventos.append(EventoConfig.new(
-		"Lunasticio",
-		"Vas caminando pero te percatas de un brillo extraño proveniente de la luna",
-		"Acercarse",
-		"GANAR_CARTA",
-		10
-	))
-
-	pool_de_eventos.append(EventoConfig.new(
-		"Solsticio",
-		"Vas caminando pero te percatas de un brillo extraño proveniente del sol",
-		"Acercarse",
+		"TORMENTA SOLAR",
+		"Una radiacion golpea tus sistemas de almacenamiento de cartas.",
+		"Resistir",
 		"PERDER_CARTA",
-		8
+		30
 	))
 
 func _cargar_evento_por_peso() -> void:
-	if pool_de_eventos.is_empty():
-		push_error("[Evento Random] El pool de eventos está vacío.")
-		return
-	
-	var peso_total : int = 0
-	for evento in pool_de_eventos:
-		peso_total += evento.peso
-		
-	var rng : int = randi_range(1, peso_total)
-	var acumulado : int = 0
-	
-	for evento in pool_de_eventos:
-		acumulado += evento.peso
-		if rng <= acumulado:
-			evento_actual = evento
+	var total_peso = 0
+	for ev in pool_de_eventos:
+		total_peso += ev.peso
+
+	var rng = randi_range(1, total_peso)
+	var ac = 0
+	for ev in pool_de_eventos:
+		ac += ev.peso
+		if rng <= ac:
+			evento_actual = ev
 			break
-			
+
+	_mostrar_evento_inicial()
+
+func _mostrar_evento_inicial() -> void:
 	descripcion_general.clear()
-	var texto_formateado = "[center][b]" + evento_actual.titulo + "[/b]\n\n" + evento_actual.descripcion + "[/center]"
-	descripcion_general.append_text(texto_formateado)
-	
+	var texto = "[center][b]" + evento_actual.titulo + "[/b]\n\n" + evento_actual.descripcion + "[/center]"
+	descripcion_general.append_text(texto)
 	boton_accion.text = evento_actual.texto_boton
 
 func _on_button_pressed() -> void:
@@ -108,36 +81,27 @@ func _on_button_pressed() -> void:
 		return
 
 	boton_accion.disabled = true
-	var texto_resultado : String = ""
+	_procesar_efecto_evento()
+
+func _procesar_efecto_evento() -> void:
+	var texto_resultado = ""
 
 	match evento_actual.tipo_efecto:
-		"CURAR":
-			var cantidad = _obtener_multiplo_de_5(10, 50)
-			game_manager.curar_jugador(cantidad)
-			texto_resultado = "La extraña carne te supo horrible, pero sientes una vitalidad renovada.\n\n[color=green](+ " + str(cantidad) + " de Vida)[/color]"
-		"DAMAGE":
-			var cantidad = _obtener_multiplo_de_5(5, 25)
-			game_manager.herir_jugador(cantidad)
-			texto_resultado = "Te empieza a doler el estomago de manera terrible. Estaba podrida.\n\n[color=red](- " + str(cantidad) + " de Vida)[/color]"
 		"GANAR_ORO":
-			var cantidad = _obtener_multiplo_de_5(10, 50)
+			var cantidad = _obtener_multiplo_de_5(15, 35)
 			game_manager.modificar_oro(cantidad)
-			texto_resultado = "Logras desmantelar los restos del motor y extraes recursos valiosos.\n\n[color=yellow](+ " + str(cantidad) + " de Oro)[/color]"
-		"PERDER_ORO":
-			var cantidad = _obtener_multiplo_de_5(10, 30)
-			game_manager.modificar_oro(-cantidad)
-			texto_resultado = "Revisas tus bolsillos... Tus sospechas eran ciertas, te falta oro.\n\n[color=orange](- " + str(cantidad) + " de Oro)[/color]"
-		"GANAR_CARTA":
-			var carta_ganada = _efecto_ganar_carta_aleatoria()
-			if carta_ganada != "":
-				var nombre_carta = carta_ganada.get_file().get_basename().capitalize()
-				texto_resultado = "El haz de luz lunar materializa un nuevo conocimiento en tus manos.\n\n[color=cyan](Ganaste la carta: " + nombre_carta + ")[/color]"
-			else:
-				texto_resultado = "El destello se desvanece sin interactuar contigo."
+			texto_resultado = "Encuentras chatarra espacial valiosa.\n\n[color=yellow](+ " + str(cantidad) + " de oro)[/color]"
+
+		"CURAR_JUGADOR":
+			var cantidad = _obtener_multiplo_de_5(20, 40)
+			game_manager.curar_jugador(cantidad)
+			texto_resultado = "Tus nanocitos reparan parte del chasis dañado.\n\n[color=green](+ " + str(cantidad) + " de HP)[/color]"
+
 		"PERDER_CARTA":
-			var carta_perdida = _efecto_perder_carta_aleatoria()
-			if carta_perdida != "":
+			if not game_manager.mazo_jugador.is_empty():
+				var carta_perdida = game_manager.mazo_jugador.pick_random()
 				var nombre_carta = carta_perdida.get_file().get_basename().capitalize()
+				game_manager.remover_carta_del_mazo(carta_perdida)
 				texto_resultado = "El intenso calor solar evapora una de tus posesiones del mazo.\n\n[color=magenta](Perdiste la carta: " + nombre_carta + ")[/color]"
 			else:
 				texto_resultado = "El sol brilla con fuerza pero tu mazo estaba vacio, no perdiste nada."
@@ -166,11 +130,3 @@ func _efecto_ganar_carta_aleatoria() -> String:
 		game_manager.agregar_carta_al_mazo(carta_random)
 		return carta_random
 	return ""
-
-func _efecto_perder_carta_aleatoria() -> String:
-	if game_manager.mazo_jugador.is_empty():
-		return ""
-	var indice_random = randi() % game_manager.mazo_jugador.size()
-	var carta_eliminada = game_manager.mazo_jugador[indice_random]
-	game_manager.remover_carta_del_mazo(carta_eliminada)
-	return carta_eliminada

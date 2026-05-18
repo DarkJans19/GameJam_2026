@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://cygi71mchkchy"]
+
+[ext_resource type="Script" uid="uid://d1bnksp4bjli5" path="res://entities/player/cards/card/effects/Effect.gd" id="1_5011s"]
+[ext_resource type="Script" uid="uid://dbc7m5yy3bseg" path="res://entities/player/cards/card/effects/lunar_effects/AttackEffect.gd" id="2_lkeks"]
+[ext_resource type="Script" uid="uid://ccou5mbrjrjnp" path="res://entities/player/cards/card/effects/comodin_effects/StealCards.gd" id="3_uru8d"]
+[ext_resource type="Texture2D" uid="uid://cfiywd55tjn15" path="res://assets/Cartas/Lunares/Salomon.png" id="4_jag66"]
+[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/lunar_cards/cardData.gd" id="5_liclm"]
+
+[sub_resource type="Resource" id="Resource_hbhcp"]
+script = ExtResource("2_lkeks")
+damage_quantity = 4
+effect_name = "daño"
+target_type = 1
+metadata/_custom_type_script = "uid://dbc7m5yy3bseg"
+
+[sub_resource type="Resource" id="Resource_au8uv"]
+script = ExtResource("3_uru8d")
+amount_of_cards_stolen = 2
+card_type = 1
+effect_name = "StealCards"
+target_type = 5
+metadata/_custom_type_script = "uid://ccou5mbrjrjnp"
+
+[resource]
+script = ExtResource("5_liclm")
+card_name = "Salomon"
+image = ExtResource("4_jag66")
+effects = Array[ExtResource("1_5011s")]([SubResource("Resource_hbhcp"), SubResource("Resource_au8uv")])

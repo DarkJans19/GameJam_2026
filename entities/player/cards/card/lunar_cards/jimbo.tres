@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://ducq67g7ulv38"]
+
+[ext_resource type="Texture2D" uid="uid://dttecxgi5qkhq" path="res://assets/Cartas/Lunares/Yimbo.png" id="1_gi2pb"]
+[ext_resource type="Script" uid="uid://d1bnksp4bjli5" path="res://entities/player/cards/card/effects/Effect.gd" id="1_hbnri"]
+[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/lunar_cards/cardData.gd" id="2_hkish"]
+[ext_resource type="Script" uid="uid://ccou5mbrjrjnp" path="res://entities/player/cards/card/effects/comodin_effects/StealCards.gd" id="2_pdpmd"]
+[ext_resource type="Script" uid="uid://dq7ir856ygn6n" path="res://entities/player/cards/card/effects/lunar_effects/CoinsEffect.gd" id="3_gw5gy"]
+
+[sub_resource type="Resource" id="Resource_c67hh"]
+script = ExtResource("2_pdpmd")
+amount_of_cards_stolen = 3
+card_type = 1
+effect_name = "StealCards"
+target_type = 5
+metadata/_custom_type_script = "uid://ccou5mbrjrjnp"
+
+[sub_resource type="Resource" id="Resource_fvtkn"]
+script = ExtResource("3_gw5gy")
+amount_of_coins = 6
+effect_name = "Steal coins"
+target_type = 4
+random_targets_count = 0
+metadata/_custom_type_script = "uid://dq7ir856ygn6n"
+
+[resource]
+script = ExtResource("2_hkish")
+card_name = "Jimbo"
+image = ExtResource("1_gi2pb")
+type = 2
+effects = Array[ExtResource("1_hbnri")]([SubResource("Resource_c67hh"), SubResource("Resource_fvtkn")])

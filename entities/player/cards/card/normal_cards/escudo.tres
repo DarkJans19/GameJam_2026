@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d1bnksp4bjli5" path="res://entities/player/cards/card/effects/Effect.gd" id="1_7t44n"]
 [ext_resource type="Texture2D" uid="uid://cvcs8wujxublg" path="res://assets/Cartas/Uno escudo.png" id="2_48noa"]
-[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/especific_cards/cardData.gd" id="3_yp7wd"]
+[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/lunar_cards/cardData.gd" id="3_yp7wd"]
 
 [resource]
 script = ExtResource("3_yp7wd")

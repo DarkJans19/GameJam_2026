@@ -1,7 +1,8 @@
 [gd_resource type="Resource" script_class="CardData" format=3 uid="uid://dtox6rvjsm7vh"]
 
 [ext_resource type="Texture2D" uid="uid://b4ikx3tataikx" path="res://assets/Cartas/Lunares/Joaquin.png" id="1_2nyar"]
-[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/especific_cards/cardData.gd" id="2_b1vxy"]
+[ext_resource type="Script" uid="uid://d1bnksp4bjli5" path="res://entities/player/cards/card/effects/Effect.gd" id="1_l7f8y"]
+[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/lunar_cards/cardData.gd" id="2_b1vxy"]
 
 [resource]
 resource_name = "joaquin"

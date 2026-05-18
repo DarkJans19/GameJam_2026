@@ -1,4 +1,3 @@
-# attack_effect.gd
 extends Effect
 class_name CoinsEffect
 

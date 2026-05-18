@@ -130,8 +130,8 @@ func play_card(card: Node2D, clicked_target: Node = null) -> void:
 		return
 	
 	for effect in card.card_data.effects:
-		if effect and effect.has_method("effect"):
-			effect.effect(clicked_target, get_tree())
+		if effect and effect.has_method("apply_effect"):
+			effect.apply_effect(clicked_target, get_tree())
 		else:
 			push_error("El efecto no es válido o no tiene implementado el método 'effect'")
 			
