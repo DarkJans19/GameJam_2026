@@ -53,6 +53,7 @@ var jugadores : Array = []
 var turno_enemigo : int = 0
 var current_selected_enemy : Enemy = null
 var cantidad_inicial_enemigos : int = 0
+var puntos_sacrificio : int = 0
 
 var skip_next_enemy_turn : bool = false
 
@@ -290,33 +291,30 @@ func _on_attack_button_down() -> void:
 	var carta_a_jugar = cm.selected_cards[0]
 	var objetivo = get_current_target()
 
-	# Validar cartas comodin... para evitar que se eliminen)?
 	if carta_a_jugar.card_data.type == CardData.CardType.COMODIN:
 		var fase_correcta = true
-		
-		# Revisamos si alguno de los efectos bloquea la jugada por la fase
 		for effect in carta_a_jugar.card_data.effects:
 			if effect and "requires_specific_phase" in effect and effect.requires_specific_phase:
 				if effect.required_lunar_phase != lunar_phase:
 					fase_correcta = false
 					break
-		
 		if not fase_correcta:
 			print("Fase incorrecta: Este comodín no se puede jugar en la fase lunar actual.")
 			return
 	
-	# Validación estricta para evitar que se gasten cartas solas si se pierde el objetivo
 	if objetivo == null or not is_instance_valid(objetivo):
 		print("Por favor, selecciona un enemigo antes de presionar atacar.")
 		return
 
-	print("Confirmando acción: Jugando ", carta_a_jugar.card_data.card_name)
+	print("Confirmando acción: Intentando jugar ", carta_a_jugar.card_data.card_name)
 	
-	cm.play_card(carta_a_jugar, objetivo)
-	cm.selected_cards.clear()
+	# Cambiamos esto para validar el resultado del coste
+	var se_pudo_jugar = cm.play_card(carta_a_jugar, objetivo)
 	
-	await get_tree().process_frame
-	verificar_estado_batalla()
+	if se_pudo_jugar:
+		cm.selected_cards.clear()
+		await get_tree().process_frame
+		verificar_estado_batalla()
 	
 func _on_sacrifice_button_down() -> void:
 	if actual_turn != TurnState.PLAYER_TURN: return

@@ -12,19 +12,24 @@ amount_of_cards_stolen = 3
 card_type = 1
 effect_name = "StealCards"
 target_type = 5
+required_lunar_phase = 6
+requires_specific_phase = true
 metadata/_custom_type_script = "uid://ccou5mbrjrjnp"
 
 [sub_resource type="Resource" id="Resource_fvtkn"]
 script = ExtResource("3_gw5gy")
 amount_of_coins = 6
 effect_name = "Steal coins"
-target_type = 4
+target_type = 6
 random_targets_count = 0
+required_lunar_phase = 6
+requires_specific_phase = true
 metadata/_custom_type_script = "uid://dq7ir856ygn6n"
 
 [resource]
 script = ExtResource("2_hkish")
 card_name = "Jimbo"
+sacrifice_cost = 2
 image = ExtResource("1_gi2pb")
 type = 2
 effects = Array[ExtResource("1_hbnri")]([SubResource("Resource_c67hh"), SubResource("Resource_fvtkn")])

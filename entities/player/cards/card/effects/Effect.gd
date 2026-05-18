@@ -6,7 +6,6 @@ enum TargetType {
 	SINGLE_ENEMY,
 	ALL_ENEMIES,
 	RANDOM_ENEMIES,
-	PLAYER,
 	COMBAT,
 	DECK,
 	GAME_MANAGER,
@@ -46,12 +45,6 @@ func apply_effect(clicked_target: Node, tree: SceneTree) -> void:
 			var targets_to_hit = min(random_targets_count, all_enemies.size())
 			for i in range(targets_to_hit):
 				effect(all_enemies[i])
-				
-		TargetType.PLAYER:
-			var player = tree.get_first_node_in_group("player")
-			if player:
-				effect(player)
-		
 		TargetType.DECK:
 			var deck = tree.get_first_node_in_group("deck")
 			if deck:

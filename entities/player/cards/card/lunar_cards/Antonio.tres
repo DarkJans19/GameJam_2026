@@ -27,4 +27,5 @@ script = ExtResource("3_x4l73")
 card_name = "Antonio"
 image = ExtResource("2_eq2hb")
 card_type_action = 1
+type = 2
 effects = Array[ExtResource("1_psgkm")]([SubResource("Resource_cywwi"), SubResource("Resource_lqmqp")])

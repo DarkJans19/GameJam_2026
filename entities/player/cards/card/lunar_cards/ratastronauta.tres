@@ -2,9 +2,30 @@
 
 [ext_resource type="Texture2D" uid="uid://c6sq7m4yqgm77" path="res://assets/Cartas/Lunares/Moli.png" id="1_qcs7y"]
 [ext_resource type="Script" uid="uid://d1bnksp4bjli5" path="res://entities/player/cards/card/effects/Effect.gd" id="1_wxyij"]
+[ext_resource type="Script" uid="uid://died6fq2dhv1m" path="res://entities/player/cards/card/effects/comodin_effects/ChangeMoonPhase.gd" id="2_luxww"]
 [ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/lunar_cards/cardData.gd" id="2_sdp7m"]
+[ext_resource type="Script" uid="uid://dbc7m5yy3bseg" path="res://entities/player/cards/card/effects/lunar_effects/AttackEffect.gd" id="3_2wva8"]
+
+[sub_resource type="Resource" id="Resource_x44ft"]
+script = ExtResource("2_luxww")
+lunar_phase_to_change = 4
+effect_description = "Canbia la luna a luna llena"
+target_type = 4
+requires_specific_phase = true
+metadata/_custom_type_script = "uid://died6fq2dhv1m"
+
+[sub_resource type="Resource" id="Resource_xbjms"]
+script = ExtResource("3_2wva8")
+damage_quantity = 5
+effect_name = "Ataque"
+effect_description = "Hace 5 de daño a todos los enemigos"
+target_type = 2
+requires_specific_phase = true
+metadata/_custom_type_script = "uid://dbc7m5yy3bseg"
 
 [resource]
 script = ExtResource("2_sdp7m")
 card_name = "Ratastronauta"
 image = ExtResource("1_qcs7y")
+type = 2
+effects = Array[ExtResource("1_wxyij")]([SubResource("Resource_x44ft"), SubResource("Resource_xbjms")])
