@@ -164,7 +164,6 @@ func start_turn() -> void:
 
 	is_my_turn = true
 	is_defending = false
-	armor = 0 
 	
 	var combat = get_tree().get_first_node_in_group("CombatManager")
 	if combat:
@@ -223,17 +222,29 @@ func action_attack() -> void:
 	await animation_player.animation_finished
 	play_idle()
 	is_busy = false
+	var health_node = get_tree().get_first_node_in_group("health")
+	if health_node:
+		health_node.recibir_damage(enemy_data.damage)
+	
 	emit_signal("animacion_bloqueante_terminada")
 
 func action_heavy_attack() -> void:
 	is_busy = true
-	emit_signal("animacion_bloqueante_iniciada") # <-- BLOQUEA
+	emit_signal("animacion_bloqueante_iniciada")
+
 	print(enemy_data.enemy_name + " usa HEAVY ATTACK")
+
 	play_attack()
+
 	await animation_player.animation_finished
+
+	var health_node = get_tree().get_first_node_in_group("health")
+
+	if health_node:
+		health_node.recibir_damage(enemy_data.heavy_damage)
 	play_idle()
 	is_busy = false
-	emit_signal("animacion_bloqueante_terminada") # <-- LIBERA
+	emit_signal("animacion_bloqueante_terminada")
 
 func take_damage(amount : int) -> void:
 	if is_busy:
@@ -285,7 +296,7 @@ func action_full_heal() -> void:
 
 func action_defend() -> void:
 	is_busy = true
-	armor = 15 
+	armor = 5 
 	is_defending = true
 	
 	print(enemy_data.enemy_name + " usa DEFEND")

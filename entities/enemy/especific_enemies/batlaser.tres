@@ -6,19 +6,10 @@
 [resource]
 script = ExtResource("1_k3i0p")
 enemy_name = "Batlaser"
-max_health = 5
-heal_amount = 2
+max_health = 30
+damage = 5
+heavy_damage = 10
 sprite = ExtResource("2_he4h5")
-moon_phase_turns = {
-0: ["ATTACK"],
-1: ["ATTACK", "DEFEND"],
-2: ["HEAVY ATTACK"],
-3: ["ATTACK", "HEAL"],
-4: ["HEAVY ATTACK", "HEAVY ATTACK"],
-5: ["HEAL"],
-6: ["DEFEND", "ATTACK"],
-7: ["ADVANCE MOON"]
-}
 moon_phase_turns = {
 0: ["ATTACK"],
 1: ["DEFEND"],

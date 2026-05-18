@@ -7,6 +7,7 @@
 script = ExtResource("1_8cmv6")
 max_health = 200
 heal_amount = 40
+damage = 8
 sprite = ExtResource("2_ku1ia")
 moon_phase_turns = {
 0: ["HEAL"],

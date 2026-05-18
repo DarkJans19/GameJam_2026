@@ -7,6 +7,10 @@ class_name EnemyData
 
 @export var heal_amount : int = 2
 
+@export var damage : int = 10
+
+@export var heavy_damage : int = 20
+
 @export var sprite : Texture2D
 
 @export var moon_phase_turns : Dictionary = {
