@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ddme1kmoeqdfn"]
 
 [ext_resource type="Script" uid="uid://do1uql0fkvybh" path="res://entities/enemy/enemy.gd" id="1_im2q6"]
-[ext_resource type="Texture2D" uid="uid://ccn6rm8mtgs41" path="res://assets/icon.svg" id="3_3fvr7"]
+[ext_resource type="Texture2D" uid="uid://dfmogskwcc8pj" path="res://assets/UI/UI selected enemy.png" id="2_im2q6"]
 
 [sub_resource type="Animation" id="Animation_im2q6"]
 length = 0.001
@@ -114,9 +114,9 @@ metadata/_edit_lock_ = true
 libraries/ = SubResource("AnimationLibrary_d50e0")
 
 [node name="SelectionCursor" type="Sprite2D" parent="." unique_id=901802733]
-position = Vector2(0, -75)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_3fvr7")
+position = Vector2(0, -70)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_im2q6")
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=1158220706]
 clip_children = 2

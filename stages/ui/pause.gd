@@ -3,10 +3,15 @@ class_name PauseMenu
 
 @export var return_scene : String = "res://stages/map/map.tscn"
 
-@onready var card_container = $cardsContainer
-@onready var grid_container = $cardsContainer/GridContainer
-@onready var volver_btn = $cardsContainer/volver
+@onready var panel_container: PanelContainer = $PanelContainer
+@onready var label_pausa: Label = $Label
+@onready var resume_btn: Button = $resume
+@onready var menu_btn: Button = $menu
+@onready var ver_cartas_btn: Button = $verCartas
 
+@onready var card_container: PanelContainer = $cardsContainer
+@onready var grid_container: GridContainer = $cardsContainer/GridContainer
+@onready var volver_btn: Button = $cardsContainer/volver
 @onready var descripcion_carta: RichTextLabel = $cardsContainer/ColorRect2/DescripcionCartaLunar
 
 var contenedor_descripcion: Control
@@ -18,7 +23,7 @@ func _ready() -> void:
 	contenedor_descripcion = descripcion_carta.get_parent()
 	contenedor_descripcion.hide()
 
-	descripcion_carta.add_theme_font_size_override("normal_font_size", 8)
+	descripcion_carta.add_theme_font_size_override("normal_font_size", 12)
 
 	if not volver_btn.pressed.is_connected(_on_volver_pressed):
 		volver_btn.pressed.connect(_on_volver_pressed)
@@ -31,6 +36,8 @@ func toggle_pause() -> void:
 
 func pause_game() -> void:
 	show()
+	_set_menu_base_visible(true)
+	card_container.hide()
 	get_tree().paused = true
 
 func resume_game() -> void:
@@ -39,6 +46,7 @@ func resume_game() -> void:
 	card_container.hide()
 
 func abrir_coleccion() -> void:
+	_set_menu_base_visible(false)
 	card_container.show()
 	_cargar_cartas()
 
@@ -46,21 +54,28 @@ func _on_ver_cartas_pressed() -> void:
 	abrir_coleccion()
 
 func _on_volver_pressed() -> void:
+	_hide_card_description()
 	card_container.hide()
-	contenedor_descripcion.hide()
-
+	_set_menu_base_visible(true) 
+	
+func _set_menu_base_visible(is_visible: bool) -> void:
+	panel_container.visible = is_visible
+	label_pausa.visible = is_visible
+	resume_btn.visible = is_visible
+	menu_btn.visible = is_visible
+	ver_cartas_btn.visible = is_visible
+	
 func _cargar_cartas() -> void:
 	for child in grid_container.get_children():
 		child.queue_free()
 
-	grid_container.columns = 5
+	grid_container.columns = 10
 
 	for ruta_carta in game_manager.mazo_jugador:
 		if not ResourceLoader.exists(ruta_carta):
 			continue
 
 		var card_data = load(ruta_carta)
-
 		if card_data == null:
 			continue
 
@@ -73,20 +88,13 @@ func _cargar_cartas() -> void:
 		texture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		texture.custom_minimum_size = Vector2(20, 30)
-		texture.position = Vector2(10, 10)
+		texture.position = Vector2(1, 1)
 		texture.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 		slot.add_child(texture)
 
-		slot.mouse_entered.connect(
-			func():
-				_show_card_description(card_data)
-		)
-
-		slot.mouse_exited.connect(
-			func():
-				_hide_card_description()
-		)
+		slot.mouse_entered.connect(func(): _show_card_description(card_data))
+		slot.mouse_exited.connect(func(): _hide_card_description())
 
 		grid_container.add_child(slot)
 
@@ -95,9 +103,7 @@ func _show_card_description(card_data) -> void:
 		return
 
 	descripcion_carta.clear()
-
 	var moon_phase_str = "NORMAL"
-
 	if card_data.get("type") != null:
 		moon_phase_str = str(card_data.type)
 
@@ -107,7 +113,6 @@ func _show_card_description(card_data) -> void:
 	texto_completo += card_data.description + "[/center]"
 
 	descripcion_carta.append_text(texto_completo)
-
 	contenedor_descripcion.show()
 
 func _hide_card_description() -> void:
@@ -121,13 +126,9 @@ func _on_exit_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file(return_scene)
 
-
-func _on_button_pressed() -> void:
+func _on_menu_pressed() -> void:
 	get_tree().paused = false
 	hide()
-
 	await get_tree().process_frame
-
 	game_manager.reset_progress()
-
 	get_tree().change_scene_to_file("res://stages/menu/menu.tscn")
