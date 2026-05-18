@@ -1,10 +1,10 @@
 extends Control
 class_name VictoryScreen
 
-@onready var label_oro: Label = $CenterContainer/VBoxContainer/LabelOro
+@onready var label_oro: Label = $LabelOro
 
 func _ready() -> void:
-	# Bloqueamos el procesamiento del fondo (opcional) o lo manejamos mediante UI activa
+	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	print("[VictoryScreen] ¡Victoria detectada!")
 	_actualizar_texto_recompensa()
 

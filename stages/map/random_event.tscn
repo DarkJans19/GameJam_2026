@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://0s3j7dkyhc4u"]
 
-[ext_resource type="Script" uid="uid://bmf5pksplnnsw" path="res://stages/map/random_event.gd" id="1_p6050"]
+[ext_resource type="Script" uid="uid://7hjhw1po1h7d" path="res://stages/map/event.gd" id="1_p6050"]
 [ext_resource type="Texture2D" uid="uid://bigpb3vi1xjea" path="res://assets/Iconos/Icono random.png" id="2_qdem8"]
 
 [node name="Random_event" type="Control" unique_id=649993746]

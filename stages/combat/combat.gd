@@ -71,7 +71,14 @@ var skip_next_enemy_turn : bool = false
 
 @onready var finish_turn_button = $FinishTurn
 
+@onready var pause_menu : PauseMenu = $Pause
+@onready var victory_screen : VictoryScreen = $Victory
+@onready var defeat_screen : LoseScreen = $Lose
+
 var enemy_scene : PackedScene = preload("res://entities/enemy/enemy.tscn")
+const PAUSE_MENU_SCENE = preload("res://stages/ui/pause.tscn")
+const VICTORY_SCREEN_SCENE = preload("res://stages/ui/victory.tscn")
+const DEFEAT_SCREEN_SCENE = preload("res://stages/ui/lose.tscn")
 
 var early_formations : Array = [
 	{"weight": 50, "enemies": [BATLASER]},
@@ -100,8 +107,15 @@ func _ready() -> void:
 	enemigos = get_tree().get_nodes_in_group("enemies")
 	cantidad_inicial_enemigos = enemigos.size()
 	jugadores = get_tree().get_nodes_in_group("player")
+	
+	game_manager.vida_cambiada.connect(_on_player_life_changed)
+	
 	_actualizar_sprite_luna()
 	start_battle()
+
+func _on_player_life_changed(actual: int, maxima: int) -> void:
+	if actual <= 0:
+		mostrar_derrota()
 
 func get_stage_formations() -> Array:
 	match current_stage:
@@ -204,18 +218,29 @@ func start_enemy_turn():
 
 func verificar_estado_batalla() -> void:
 	var enemigos_vivos = false
+
 	for enemy in get_tree().get_nodes_in_group("enemies"):
 		if is_instance_valid(enemy) and enemy.health > 0:
 			enemigos_vivos = true
 			break
-			
+
 	if not enemigos_vivos:
 		actual_turn = TurnState.FINISH_BATTLE
-		print("[CombatManager] Todos los enemigos derrotados.")
 		set_botones_bloqueados(true)
+
 		game_manager.procesar_victoria_combate(cantidad_inicial_enemigos)
-		await get_tree().create_timer(1.0).timeout
-		get_tree().change_scene_to_file("res://stages/map/map.tscn")
+
+		mostrar_victoria()
+
+func mostrar_victoria() -> void:
+	get_tree().paused = true
+	victory_screen.show()
+	
+func mostrar_derrota() -> void:
+	actual_turn = TurnState.FINISH_BATTLE
+	set_botones_bloqueados(true)
+	get_tree().paused = true
+	defeat_screen.show()
 
 func _on_enemy_selected(new_enemy: Enemy) -> void:
 	if current_selected_enemy == new_enemy: return
@@ -302,3 +327,15 @@ func set_botones_bloqueados(bloquear: bool) -> void:
 		sacrifice_button.disabled = bloquear
 	if is_instance_valid(finish_turn_button) and finish_turn_button is Button:
 		finish_turn_button.disabled = bloquear
+		
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		if actual_turn == TurnState.FINISH_BATTLE:
+			return
+		
+		if pause_menu:
+			pause_menu.toggle_pause()
+
+
+func _on_pause_pressed() -> void:
+	pause_menu.toggle_pause()
