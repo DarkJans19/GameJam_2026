@@ -6,15 +6,25 @@ signal ataque_iniciado
 
 enum StageType { EARLY, MID, LATE, BOSS }
 enum TurnState { START_BATTLE, FINISH_BATTLE, PLAYER_TURN, ENEMY_TURN }
-enum LunarPhase { NEW_MOON, WANING_CRESCENT, LAST_QUARTER, WANING_GIbBOUS, FULL_MOON, WAXING_GIbBOUS, FIRST_QUARTER, WAXING_CRESCENT}
+
+enum LunarPhase { 
+	NEW_MOON, 
+	WANING_CRESCENT, 
+	LAST_QUARTER,
+	WANING_GIBBOUS, 
+	FULL_MOON, 
+	WAXING_GIBBOUS, 
+	FIRST_QUARTER, 
+	WAXING_CRESCENT
+}
 
 const MOON_PHASE_FRAMES = {
 	LunarPhase.NEW_MOON: 2,
 	LunarPhase.WAXING_CRESCENT: 5,
 	LunarPhase.FIRST_QUARTER: 4,
-	LunarPhase.WAXING_GIbBOUS: 1,
+	LunarPhase.WAXING_GIBBOUS: 1,
 	LunarPhase.FULL_MOON: 0,
-	LunarPhase.WANING_GIbBOUS: 7,
+	LunarPhase.WANING_GIBBOUS: 7,
 	LunarPhase.LAST_QUARTER: 6,
 	LunarPhase.WANING_CRESCENT: 3
 }
@@ -43,6 +53,8 @@ var jugadores : Array = []
 var turno_enemigo : int = 0
 var current_selected_enemy : Enemy = null
 var cantidad_inicial_enemigos : int = 0
+
+var skip_next_enemy_turn : bool = false
 
 @onready var midground : Node2D = $Midground
 @onready var enemy_container : Node2D = $EnemyContainer
@@ -83,6 +95,7 @@ var boss_formations : Array = [
 ]
 
 func _ready() -> void:
+	add_to_group("CombatManager")
 	randomize()
 	if "etapa_combate_actual" in game_manager:
 		current_stage = game_manager.etapa_combate_actual as StageType
@@ -171,7 +184,15 @@ func start_player_turn():
 func start_enemy_turn():
 	actual_turn = TurnState.ENEMY_TURN
 	print("--- Enemies turn ---")
-	set_botones_bloqueados(true) # Desactivar botones en el turno enemigo
+	set_botones_bloqueados(true)
+	
+	if skip_next_enemy_turn:
+		print("[CombatManager] ¡Efecto activado! Saltando el turno de los enemigos.")
+		skip_next_enemy_turn = false
+		
+		avanzar_fase_del_juego() 
+		start_player_turn() 
+		return
 	
 	if current_selected_enemy != null and is_instance_valid(current_selected_enemy):
 		current_selected_enemy.set_selected(false)
@@ -266,12 +287,27 @@ func _on_attack_button_down() -> void:
 	
 	var carta_a_jugar = cm.selected_cards[0]
 	var objetivo = get_current_target()
+
+	# Validar cartas comodin... para evitar que se eliminen)?
+	if carta_a_jugar.card_data.type == CardData.CardType.COMODIN:
+		var fase_correcta = true
+		
+		# Revisamos si alguno de los efectos bloquea la jugada por la fase
+		for effect in carta_a_jugar.card_data.effects:
+			if effect and "requires_specific_phase" in effect and effect.requires_specific_phase:
+				if effect.required_lunar_phase != lunar_phase:
+					fase_correcta = false
+					break
+		
+		if not fase_correcta:
+			print("Fase incorrecta: Este comodín no se puede jugar en la fase lunar actual.")
+			return
 	
 	# Validación estricta para evitar que se gasten cartas solas si se pierde el objetivo
 	if objetivo == null or not is_instance_valid(objetivo):
 		print("Por favor, selecciona un enemigo antes de presionar atacar.")
 		return
-		
+
 	print("Confirmando acción: Jugando ", carta_a_jugar.card_data.card_name)
 	
 	cm.play_card(carta_a_jugar, objetivo)

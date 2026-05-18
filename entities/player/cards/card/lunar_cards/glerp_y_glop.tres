@@ -17,7 +17,7 @@ metadata/_custom_type_script = "uid://dbc7m5yy3bseg"
 script = ExtResource("3_u1tip")
 amount_of_coins = 4
 effect_name = "Robar monedas"
-target_type = 4
+target_type = 7
 metadata/_custom_type_script = "uid://dq7ir856ygn6n"
 
 [resource]

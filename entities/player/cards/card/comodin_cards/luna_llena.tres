@@ -1,12 +1,25 @@
 [gd_resource type="Resource" script_class="CardData" format=3 uid="uid://ct3qagw80gsfl"]
 
 [ext_resource type="Script" uid="uid://d1bnksp4bjli5" path="res://entities/player/cards/card/effects/Effect.gd" id="1_ht4va"]
-[ext_resource type="Texture2D" uid="uid://bt201vmmfnsv2" path="res://assets/Cartas/Comodin/Luna llena.png" id="2_s0bat"]
+[ext_resource type="Script" uid="uid://died6fq2dhv1m" path="res://entities/player/cards/card/effects/comodin_effects/ChangeMoonPhase.gd" id="2_nsnov"]
 [ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/lunar_cards/cardData.gd" id="3_nsnov"]
+
+[sub_resource type="Resource" id="Resource_elb0t"]
+script = ExtResource("2_nsnov")
+lunar_phase_to_change = 4
+effect_name = "New moon change"
+target_type = 5
+random_targets_count = 0
+metadata/_custom_type_script = "uid://died6fq2dhv1m"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ht4va"]
+load_path = "res://.godot/imported/Luna llena.png-2bc9ddeefb68e9c866391025cd221ef5.ctex"
 
 [resource]
 script = ExtResource("3_nsnov")
-card_name = "Luna nueva"
-image = ExtResource("2_s0bat")
-description = "Esta carta cambiara la fase a \"Luna nueva\""
+card_name = "Luna llena"
+sacrifice_cost = 3
+image = SubResource("CompressedTexture2D_ht4va")
+description = "Esta carta cambiara la fase a \"Luna llena\""
 card_type_action = 2
+effects = Array[ExtResource("1_ht4va")]([SubResource("Resource_elb0t")])

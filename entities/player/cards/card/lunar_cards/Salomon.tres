@@ -18,7 +18,7 @@ script = ExtResource("3_uru8d")
 amount_of_cards_stolen = 2
 card_type = 1
 effect_name = "StealCards"
-target_type = 5
+target_type = 6
 metadata/_custom_type_script = "uid://ccou5mbrjrjnp"
 
 [resource]

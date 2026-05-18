@@ -3,8 +3,7 @@ class_name CoinsEffect
 
 @export var amount_of_coins: int
 
-func effect(objetivo: Node):
-	print("robo_monedas")
-	if objetivo.has_method("get_coins"):
-		objetivo.get_coins(amount_of_coins)
+func effect(game_manager: Node):
+	if game_manager.has_method("modificar_oro"):
+		game_manager.modificar_oro(amount_of_coins)
 		print("Se aplico", effect_name, "Con cantidad de monedas", amount_of_coins)

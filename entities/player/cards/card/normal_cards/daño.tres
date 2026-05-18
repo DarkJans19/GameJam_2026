@@ -1,24 +1,13 @@
 [gd_resource type="Resource" script_class="CardData" format=3 uid="uid://qcn8oynus712"]
 
 [ext_resource type="Script" uid="uid://d1bnksp4bjli5" path="res://entities/player/cards/card/effects/Effect.gd" id="1_xg665"]
-[ext_resource type="Script" uid="uid://dbc7m5yy3bseg" path="res://entities/player/cards/card/effects/lunar_effects/AttackEffect.gd" id="2_bdiv7"]
 [ext_resource type="Texture2D" uid="uid://b6es3g3ku4jl4" path="res://assets/Cartas/Uno daño.png" id="2_xg665"]
 [ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/lunar_cards/cardData.gd" id="3_4gpmf"]
 
-[sub_resource type="Resource" id="Resource_4gpmf"]
-script = ExtResource("2_bdiv7")
-damage_quantity = 1
-effect_name = "Daño"
-target_type = 1
-random_targets_count = 0
-metadata/_custom_type_script = "uid://dbc7m5yy3bseg"
-
 [resource]
 script = ExtResource("3_4gpmf")
-card_name = "guracion"
+card_name = "daño"
 image = ExtResource("2_xg665")
-description = "Esta carta curara"
-card_type_action = 1
+description = "esta carta inflige daño"
 effect_value = 1
 type = 1
-effects = Array[ExtResource("1_xg665")]([SubResource("Resource_4gpmf")])
