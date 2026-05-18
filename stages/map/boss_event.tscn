@@ -1,13 +1,7 @@
 [gd_scene format=3 uid="uid://6ga84j3uyeah"]
 
 [ext_resource type="Script" uid="uid://7hjhw1po1h7d" path="res://stages/map/boss_event.gd" id="1_3hx3f"]
-
-[sub_resource type="Gradient" id="Gradient_xghif"]
-colors = PackedColorArray(0, 0, 0, 1, 0.012617188, 0.012617188, 0.012617188, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_22rbi"]
-gradient = SubResource("Gradient_xghif")
-width = 64
+[ext_resource type="Texture2D" uid="uid://c4swdrc1tkedu" path="res://assets/Iconos/Icono Jefe.png" id="2_3pq23"]
 
 [node name="Boss_event" type="Control" unique_id=598231483]
 layout_mode = 3
@@ -22,12 +16,4 @@ layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 pivot_offset = Vector2(32, 32)
-texture = SubResource("GradientTexture1D_22rbi")
-
-[node name="Label" type="Label" parent="TextureRect" unique_id=1828084833]
-layout_mode = 0
-offset_top = 65.0
-offset_right = 64.0
-offset_bottom = 88.0
-text = "Boss"
-horizontal_alignment = 1
+texture = ExtResource("2_3pq23")

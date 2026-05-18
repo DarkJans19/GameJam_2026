@@ -5,9 +5,8 @@ func _ready() -> void:
 
 
 func _on_play_button_pressed() -> void:
-	Map.reset_progress()
+	game_manager.call("reset_progress")
 	get_tree().change_scene_to_file("res://stages/map/map.tscn")
-
 
 func _on_settings_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://stages/options/options.tscn")

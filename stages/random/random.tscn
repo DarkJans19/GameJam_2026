@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://blbg2o7wftxry"]
+
+[ext_resource type="Script" uid="uid://73jn4finnni5" path="res://stages/random/random.gd" id="1_dtgml"]
+
+[sub_resource type="Gradient" id="Gradient_51n5f"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dtgml"]
+gradient = SubResource("Gradient_51n5f")
+
+[node name="Random" type="Control" unique_id=1283316816]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dtgml")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1699794648]
+position = Vector2(6.249939, -11.7499695)
+scale = Vector2(7.8027334, 1163.5)
+texture = SubResource("GradientTexture1D_dtgml")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=888444365]
+z_index = 5
+position = Vector2(-1, -2)
+zoom = Vector2(3, 3)
+
+[node name="ColorRect" type="PanelContainer" parent="." unique_id=723645275]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 0
+offset_left = -282.0
+offset_top = -158.0
+offset_right = 283.0
+offset_bottom = 106.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="DescripcionGeneral" type="RichTextLabel" parent="ColorRect" unique_id=1339879691]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
+fit_content = true
+scroll_active = false
+
+[node name="Button" type="Button" parent="." unique_id=577956434]
+layout_mode = 0
+offset_left = -51.0
+offset_top = 118.0
+offset_right = 51.0
+offset_bottom = 156.0
+theme_override_font_sizes/font_size = 21
+text = "Siguiente"

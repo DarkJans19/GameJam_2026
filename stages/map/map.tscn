@@ -7,125 +7,261 @@
 [ext_resource type="PackedScene" uid="uid://6ga84j3uyeah" path="res://stages/map/boss_event.tscn" id="4_x8gmq"]
 [ext_resource type="Texture2D" uid="uid://ccn6rm8mtgs41" path="res://assets/icon.svg" id="5_wjkhs"]
 
+[sub_resource type="Gradient" id="Gradient_xghif"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.12298488, 0.12298488, 0.12298488, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_22rbi"]
+gradient = SubResource("Gradient_xghif")
+width = 64
+
 [node name="Map" type="Control" unique_id=143094939]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -954.0
+offset_bottom = -534.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xghif")
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=972101176]
+position = Vector2(6.237488, 12)
+scale = Vector2(19.023827, 689.99994)
+texture = SubResource("GradientTexture1D_22rbi")
+
 [node name="Enemy_event" parent="." unique_id=1682874225 instance=ExtResource("1_qw2a2")]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 288.0
-offset_right = 80.0
-offset_bottom = 352.0
+offset_left = -539.0
+offset_top = -29.0
+offset_right = -475.0
+offset_bottom = 35.0
 
 [node name="Random_event" parent="." unique_id=649993746 instance=ExtResource("2_x8gmq")]
 layout_mode = 0
-offset_left = 272.0
-offset_top = 288.0
-offset_right = 336.0
-offset_bottom = 352.0
+offset_left = -283.0
+offset_top = -29.0
+offset_right = -219.0
+offset_bottom = 35.0
 
 [node name="Shop_event" parent="." unique_id=1246624021 instance=ExtResource("3_wjkhs")]
 layout_mode = 0
-offset_left = 400.0
-offset_top = 288.0
-offset_right = 464.0
-offset_bottom = 352.0
+offset_left = -155.0
+offset_top = -29.0
+offset_right = -91.0
+offset_bottom = 35.0
 
 [node name="Boss_event" parent="." unique_id=598231483 instance=ExtResource("4_x8gmq")]
 layout_mode = 0
-offset_left = 1040.0
-offset_top = 288.0
-offset_right = 1104.0
-offset_bottom = 352.0
+offset_left = 485.0
+offset_top = -29.0
+offset_right = 549.0
+offset_bottom = 35.0
 
 [node name="Enemy_event2" parent="." unique_id=267478785 instance=ExtResource("1_qw2a2")]
 layout_mode = 0
-offset_left = 144.0
-offset_top = 288.0
-offset_right = 208.0
-offset_bottom = 352.0
+offset_left = -411.0
+offset_top = -29.0
+offset_right = -347.0
+offset_bottom = 35.0
 
 [node name="Random_event2" parent="." unique_id=2146633925 instance=ExtResource("2_x8gmq")]
 layout_mode = 0
-offset_left = 272.0
-offset_top = 160.0
-offset_right = 336.0
-offset_bottom = 224.0
+offset_left = -283.0
+offset_top = -157.0
+offset_right = -219.0
+offset_bottom = -93.0
 
 [node name="Random_event3" parent="." unique_id=1472071464 instance=ExtResource("2_x8gmq")]
 layout_mode = 0
-offset_left = 272.0
-offset_top = 416.0
-offset_right = 336.0
-offset_bottom = 480.0
+offset_left = -283.0
+offset_top = 99.0
+offset_right = -219.0
+offset_bottom = 163.0
 
 [node name="Enemy_event3" parent="." unique_id=1476831584 instance=ExtResource("1_qw2a2")]
 layout_mode = 0
-offset_left = 528.0
-offset_top = 288.0
-offset_right = 592.0
-offset_bottom = 352.0
+offset_left = -27.0
+offset_top = -29.0
+offset_right = 37.0
+offset_bottom = 35.0
 
 [node name="Enemy_event4" parent="." unique_id=506856272 instance=ExtResource("1_qw2a2")]
 layout_mode = 0
-offset_left = 656.0
-offset_top = 288.0
-offset_right = 720.0
-offset_bottom = 352.0
+offset_left = 101.0
+offset_top = -29.0
+offset_right = 165.0
+offset_bottom = 35.0
 
 [node name="Enemy_event5" parent="." unique_id=289420101 instance=ExtResource("1_qw2a2")]
 layout_mode = 0
-offset_left = 656.0
-offset_top = 160.0
-offset_right = 720.0
-offset_bottom = 224.0
+offset_left = 101.0
+offset_top = -157.0
+offset_right = 165.0
+offset_bottom = -93.0
 
 [node name="Enemy_event6" parent="." unique_id=364325682 instance=ExtResource("1_qw2a2")]
 layout_mode = 0
-offset_left = 656.0
-offset_top = 416.0
-offset_right = 720.0
-offset_bottom = 480.0
+offset_left = 101.0
+offset_top = 99.0
+offset_right = 165.0
+offset_bottom = 163.0
 
 [node name="Shop_event2" parent="." unique_id=648143024 instance=ExtResource("3_wjkhs")]
 layout_mode = 0
-offset_left = 784.0
-offset_top = 288.0
-offset_right = 848.0
-offset_bottom = 352.0
+offset_left = 229.0
+offset_top = -29.0
+offset_right = 293.0
+offset_bottom = 35.0
 
 [node name="Random_event4" parent="." unique_id=1835164965 instance=ExtResource("2_x8gmq")]
 layout_mode = 0
-offset_left = 912.0
-offset_top = 288.0
-offset_right = 976.0
-offset_bottom = 352.0
+offset_left = 357.0
+offset_top = -29.0
+offset_right = 421.0
+offset_bottom = 35.0
 
 [node name="Random_event5" parent="." unique_id=976991688 instance=ExtResource("2_x8gmq")]
 layout_mode = 0
-offset_left = 912.0
-offset_top = 160.0
-offset_right = 976.0
-offset_bottom = 224.0
+offset_left = 357.0
+offset_top = -157.0
+offset_right = 421.0
+offset_bottom = -93.0
 
 [node name="Random_event6" parent="." unique_id=937348148 instance=ExtResource("2_x8gmq")]
 layout_mode = 0
-offset_left = 912.0
-offset_top = 416.0
-offset_right = 976.0
-offset_bottom = 480.0
+offset_left = 357.0
+offset_top = 99.0
+offset_right = 421.0
+offset_bottom = 163.0
 
 [node name="Player" type="TextureRect" parent="." unique_id=1359655554]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 208.0
-offset_right = 144.0
-offset_bottom = 336.0
+offset_left = -539.0
+offset_top = -109.0
+offset_right = -411.0
+offset_bottom = 19.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_wjkhs")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=986689956]
+zoom = Vector2(1.7, 1.7)
+
+[node name="Line2D2" type="Line2D" parent="." unique_id=1253546555]
+points = PackedVector2Array(-407, 0, -477, 0)
+default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
+
+[node name="Line2D14" type="Line2D" parent="." unique_id=1745463512]
+position = Vector2(440, 114)
+scale = Vector2(0.35741702, 1)
+points = PackedVector2Array(-421.5149, -74, -240.61536, -5)
+default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
+
+[node name="Line2D10" type="Line2D" parent="." unique_id=981032023]
+position = Vector2(291, 117)
+scale = Vector2(0.59784365, 1)
+points = PackedVector2Array(-421.5149, -74, -314.4635, -5)
+default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
+
+[node name="Line2D12" type="Line2D" parent="." unique_id=1812177802]
+position = Vector2(316.55884, -60)
+scale = Vector2(0.16056277, 1)
+points = PackedVector2Array(245.64319, -47, -227.6919, 22)
+default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
+
+[node name="Line2D20" type="Line2D" parent="." unique_id=1039382331]
+position = Vector2(-1944, -619)
+scale = Vector2(1e-05, 1)
+points = PackedVector2Array(244400000, 659, 234900000, 730)
+default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
+
+[node name="Line2D19" type="Line2D" parent="." unique_id=1718207006]
+position = Vector2(-202.89937, -523)
+scale = Vector2(1.7134405e-05, 1)
+points = PackedVector2Array(25906900, 562, 21121208, 639)
+default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
+
+[node name="Line2D18" type="Line2D" parent="." unique_id=1823776325]
+position = Vector2(-202.95187, -397)
+scale = Vector2(0.00010671469, 1)
+points = PackedVector2Array(571166.6, 434, -225349.63, 515)
+default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
+
+[node name="Line2D17" type="Line2D" parent="." unique_id=845915245]
+position = Vector2(-203.27888, -271)
+scale = Vector2(0.0006646291, 1)
+points = PackedVector2Array(937784.56, 169, 1046115.6, 237)
+default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
+
+[node name="Line2D16" type="Line2D" parent="." unique_id=1906577018]
+position = Vector2(-205.31554, -145)
+scale = Vector2(0.0041393726, 1)
+points = PackedVector2Array(89944.92, 51, 107580.44, 118)
+default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
+
+[node name="Line2D15" type="Line2D" parent="." unique_id=885072424]
+position = Vector2(-218, -19)
+scale = Vector2(0.025780402, 1)
+points = PackedVector2Array(38.789063, -73, 2637.662, -12)
+default_color = Color(18.892002, 18.892002, 18.892002, 0.267)
+
+[node name="Line2D13" type="Line2D" parent="." unique_id=711030679]
+position = Vector2(-297, 107)
+scale = Vector2(0.16056277, 1)
+points = PackedVector2Array(-336.90802, -67, 43.596558, 3)
+default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
+
+[node name="Line2D11" type="Line2D" parent="." unique_id=1644000504]
+position = Vector2(226, -30)
+scale = Vector2(0.40070283, 1)
+points = PackedVector2Array(-336.90802, -67, -492.8826, 8)
+default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
+
+[node name="Line2D9" type="Line2D" parent="." unique_id=1668977660]
+position = Vector2(-42.99994, -29)
+scale = Vector2(0.6330109, 1)
+points = PackedVector2Array(-374.4012, -68, -492.8826, 8)
+default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
+
+[node name="Line2D8" type="Line2D" parent="." unique_id=1821145393]
+position = Vector2(747, 0)
+scale = Vector2(0.6702469, 1)
+points = PackedVector2Array(-407, 0, -420.7202, 0, -452.6119, 0, -477, 0)
+default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
+
+[node name="Line2D7" type="Line2D" parent="." unique_id=1086755767]
+position = Vector2(631.8889, 0)
+scale = Vector2(0.7096732, 1)
+points = PackedVector2Array(-407, 0, -420.7202, 0, -452.6119, 0, -477, 0)
+default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
+
+[node name="Line2D6" type="Line2D" parent="." unique_id=1234212655]
+position = Vector2(528, 0)
+scale = Vector2(0.7514187, 1)
+points = PackedVector2Array(-407, 0, -420.7202, 0, -452.6119, 0, -477, 0)
+default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
+
+[node name="Line2D5" type="Line2D" parent="." unique_id=1222815839]
+position = Vector2(418, 0)
+scale = Vector2(0.79561985, 1)
+points = PackedVector2Array(-407, 0, -420.7202, 0, -452.6119, 0, -477, 0)
+default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
+
+[node name="Line2D4" type="Line2D" parent="." unique_id=587033946]
+position = Vector2(311, 0)
+scale = Vector2(0.84242105, 1)
+points = PackedVector2Array(-407, 0, -420.7202, 0, -452.6119, 0, -477, 0)
+default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
+
+[node name="Line2D3" type="Line2D" parent="." unique_id=759119803]
+position = Vector2(205.99998, 0)
+scale = Vector2(0.8919753, 1)
+points = PackedVector2Array(-407, 0, -420.7202, 0, -477, 0)
+default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
+
+[node name="Line2D" type="Line2D" parent="." unique_id=379068526]
+position = Vector2(100, 0)
+scale = Vector2(0.9444444, 1)
+points = PackedVector2Array(-407, 0, -420.7202, 0, -477, 0)
+default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)

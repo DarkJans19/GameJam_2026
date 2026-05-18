@@ -1,13 +1,7 @@
 [gd_scene format=3 uid="uid://ms188et4yyuh"]
 
 [ext_resource type="Script" uid="uid://c0rdny8wrqdmq" path="res://stages/map/enemy_event.gd" id="1_li42m"]
-
-[sub_resource type="Gradient" id="Gradient_v0xtf"]
-colors = PackedColorArray(0, 0, 0, 1, 0.012617188, 0.012617188, 0.012617188, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_b3tbi"]
-gradient = SubResource("Gradient_v0xtf")
-width = 64
+[ext_resource type="Texture2D" uid="uid://c7y5jjgw1s47d" path="res://assets/Iconos/Icono enemigo.png" id="2_dm6jo"]
 
 [node name="Enemy_event" type="Control" unique_id=1682874225]
 layout_mode = 3
@@ -21,12 +15,4 @@ layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 pivot_offset = Vector2(32, 32)
-texture = SubResource("GradientTexture1D_b3tbi")
-
-[node name="Label" type="Label" parent="TextureRect" unique_id=1232482355]
-layout_mode = 0
-offset_top = 65.0
-offset_right = 64.0
-offset_bottom = 88.0
-text = "Enemy"
-horizontal_alignment = 1
+texture = ExtResource("2_dm6jo")

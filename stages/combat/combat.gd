@@ -77,6 +77,9 @@ var boss_formations : Array = [
 
 func _ready() -> void:
 	randomize()
+	if "etapa_combate_actual" in game_manager:
+		current_stage = game_manager.etapa_combate_actual as StageType
+		print("[CombatManager] Iniciando combate en la etapa: ", StageType.keys()[current_stage])
 	spawn_enemy_formation()
 	await get_tree().process_frame
 	enemigos = get_tree().get_nodes_in_group("enemies")
