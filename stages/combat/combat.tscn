@@ -128,6 +128,7 @@ layout_mode = 2
 mouse_filter = 2
 fit_content = true
 scroll_active = false
+horizontal_alignment = 1
 
 [node name="Health" parent="." unique_id=519478812 instance=ExtResource("13_yl2py")]
 anchors_preset = 10
