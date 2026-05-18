@@ -264,6 +264,12 @@ func change_phase(fase: LunarPhase) -> void:
 
 # Logica boton de ataque
 # Aqui iria la logica de utilizar las cartas (Osea turno del jugador)
+
+func _on_finish_turn_button_down() -> void:
+	if actual_turn == TurnState.PLAYER_TURN:
+		print("finished_player_turn")
+		start_enemy_turn()
+
 func _on_attack_button_down() -> void:
 	if actual_turn != TurnState.PLAYER_TURN:
 		print("No puedes jugar cartas, es el turno del enemigo.")
@@ -291,27 +297,21 @@ func _on_attack_button_down() -> void:
 	
 	print("Confirmando acción: Jugando ", carta_a_jugar.card_data.card_name, " contra ", objetivo.enemy_data.enemy_name)
 	
+	# El CardManager ahora se encarga de todo el proceso de limpieza internamente
 	card_manager.play_card(carta_a_jugar, objetivo)
-	
-	if deck_node and deck_node.player_hand:
-		deck_node.player_hand.remove_cards_of_hand(carta_a_jugar)
-		
 	card_manager.selected_cards.clear()
 
-func _on_finish_turn_button_down() -> void:
-	if actual_turn == TurnState.PLAYER_TURN:
-		print("finished_player_turn")
-		start_enemy_turn()
 
 func _on_sacrifice_button_down() -> void:
 	if actual_turn != TurnState.PLAYER_TURN:
 		print("No puedes realizar sacrificios fuera de tu turno.")
 		return
-		
+
 	var card_manager = get_tree().get_first_node_in_group("CardManager")
 	if not card_manager or card_manager.selected_cards.is_empty():
 		print("No tienes cartas seleccionadas para sacrificar.")
 		return
 	
-	card_manager.sacrifice_card(card_manager.selected_cards)
-	card_manager.selected_cards.clear()
+	# Llamamos al método sin enviarle argumentos adicionales y dejamos que
+	# la clase maneje sus propias responsabilidades
+	card_manager.sacrifice_card()

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://bdnp3fvh5tssq"]
+
+[ext_resource type="Script" uid="uid://d1bnksp4bjli5" path="res://entities/player/cards/card/effects/Effect.gd" id="1_3evnq"]
+[ext_resource type="Texture2D" uid="uid://rv050gwj674u" path="res://assets/Cartas/Comodin/Luna nueva.png" id="2_j7oqk"]
+[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/especific_cards/cardData.gd" id="3_3nyog"]
+
+[resource]
+script = ExtResource("3_3nyog")
+card_name = "Luna nueva"
+sacrifice_cost = 3
+image = ExtResource("2_j7oqk")
+description = "Cambia la fase actual a \"Luna nueva\""
+card_type_action = 2

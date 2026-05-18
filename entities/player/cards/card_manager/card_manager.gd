@@ -115,7 +115,7 @@ func hide_description(card):
 	if contenedor_ui:
 		contenedor_ui.hide()
 
-# Aqui habria que llamar el metodo jugar en combate o enviar una señal al combat
+
 func play_card(card: Node2D, clicked_target: Node = null) -> void:
 	print("carta jugada")
 	if not card or not card.card_data:
@@ -124,28 +124,28 @@ func play_card(card: Node2D, clicked_target: Node = null) -> void:
 	
 	if card.card_data.effects.is_empty():
 		print("La carta ", card.card_data.card_name, " no posee efectos activos.")
+		# Limpiamos de la mano ANTES de liberar
+		player_hand_reference.remove_cards_of_hand(card)
 		card.queue_free()
 		return
 	
-	# Ejecutamos la lista de efectos de la carta directamente sobre el objetivo fijado
 	for effect in card.card_data.effects:
 		if effect and effect.has_method("effect"):
 			effect.effect(clicked_target, get_tree())
 		else:
-			push_error("El efecto no es válido o no tiene implementado el método 'apply_effect'")
+			push_error("El efecto no es válido o no tiene implementado el método 'effect'")
+			
+	player_hand_reference.remove_cards_of_hand(card)
 	card.queue_free()
 
-
-func sacrifice_card(selected_cards):
-	var all_cards_are_normal = true
+func sacrifice_card() -> void:
 	for card in selected_cards:
-		if card in selected_cards and card.card_data.type == CardData.CardType.NORMAL:
-			print("Selected_card")
-		else:
-			print("The card is not normal it can't be sacrificed")
-			all_cards_are_normal = false
-	if all_cards_are_normal:
-		print("Sacrifice cards")
-		for card in selected_cards:
-			card.queue_free()
-		selected_cards.clear()
+		if card.card_data.type != CardData.CardType.NORMAL:
+			print("Una de las cartas no es normal, no se puede sacrificar.")
+			return
+	
+	print("Sacrificando cartas...")
+	for card in selected_cards:
+		player_hand_reference.remove_cards_of_hand(card)
+		card.queue_free()
+	selected_cards.clear()

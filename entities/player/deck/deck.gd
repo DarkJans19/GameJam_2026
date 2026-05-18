@@ -18,12 +18,24 @@ const CARD_SCENE = preload("res://entities/player/cards/card/card.tscn")
 	"res://entities/player/cards/card/especific_cards/ratastronauta.tres",
 ]
 
-@export var normal_cards_resources: Array[String] = []
-@export var comodin_cards_resources: Array[String] = []
+@export var normal_cards_resources: Array[String] = [
+	"res://entities/player/cards/card/normal_cards/daño.tres",
+	"res://entities/player/cards/card/normal_cards/escudo.tres",
+	"res://entities/player/cards/card/normal_cards/vida.tres",
+]
+@export var comodin_cards_resources: Array[String] = [
+	"res://entities/player/cards/card/comodin_cards/daño_sin_dinero.tres",
+	"res://entities/player/cards/card/comodin_cards/escudo_sin_dinero.tres",
+	"res://entities/player/cards/card/comodin_cards/luna_llena.tres",
+	"res://entities/player/cards/card/comodin_cards/luna_nueva.tres",
+	"res://entities/player/cards/card/comodin_cards/sacrifica_roba.tres",
+	"res://entities/player/cards/card/comodin_cards/salto_turno.tres",
+	"res://entities/player/cards/card/comodin_cards/vida_escudo.tres",
+]
 
 const INITIAL_NORMAL_CARDS_IN_DECK = 10
 const INITIAL_LUNAR_CARDS_IN_DECK = 10
-const INITIAL_COMODIN_CARDS = 0
+const INITIAL_COMODIN_CARDS = 1
 
 const INITIAL_NORMAL_CARDS_IN_HAND = 5
 const INITIAL_LUNAR_CARDS_IN_HAND = 5

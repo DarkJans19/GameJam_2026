@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://dql3jprtr38m"]
+
+[ext_resource type="Script" uid="uid://d1bnksp4bjli5" path="res://entities/player/cards/card/effects/Effect.gd" id="1_5qltv"]
+[ext_resource type="Texture2D" uid="uid://dikren7kiy804" path="res://assets/Cartas/Comodin/Daño sin dinero.png" id="2_t6de4"]
+[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/especific_cards/cardData.gd" id="3_jbd2c"]
+
+[resource]
+script = ExtResource("3_jbd2c")
+card_name = "rodolfo"
+sacrifice_cost = 1
+image = ExtResource("2_t6de4")
+description = "Esta carta inflingira 3 de daño y gastara todas las monedas"

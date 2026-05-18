@@ -78,8 +78,7 @@ action_mode = 0
 icon = ExtResource("9_h28fe")
 flat = true
 
-[node name="CardManager" parent="." unique_id=1051861820 node_paths=PackedStringArray("descripcion_general") instance=ExtResource("11_3yitc")]
-descripcion_general = NodePath("")
+[node name="CardManager" parent="." unique_id=1051861820 instance=ExtResource("11_3yitc")]
 
 [node name="PlayerHand" parent="." unique_id=1070096955 instance=ExtResource("12_p3u4l")]
 

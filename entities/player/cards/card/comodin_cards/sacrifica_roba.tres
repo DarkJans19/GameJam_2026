@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://bmg8kww0tqxk3"]
+
+[ext_resource type="Script" uid="uid://d1bnksp4bjli5" path="res://entities/player/cards/card/effects/Effect.gd" id="1_iajaa"]
+[ext_resource type="Texture2D" uid="uid://c5mdwkqa3b5lh" path="res://assets/Cartas/Comodin/Sacrifica roba.png" id="2_0lc8y"]
+[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/especific_cards/cardData.gd" id="3_mapjm"]
+
+[resource]
+script = ExtResource("3_mapjm")
+card_name = "Sacrificar"
+image = ExtResource("2_0lc8y")
+description = "Sacrifica esta carta para robar más cartas"
