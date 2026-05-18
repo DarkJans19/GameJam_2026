@@ -1,0 +1,185 @@
+[gd_scene format=3 uid="uid://ddme1kmoeqdfn"]
+
+[ext_resource type="Script" uid="uid://do1uql0fkvybh" path="res://entities/enemy/enemy.gd" id="1_im2q6"]
+[ext_resource type="Texture2D" uid="uid://ccn6rm8mtgs41" path="res://assets/icon.svg" id="3_3fvr7"]
+[ext_resource type="FontFile" uid="uid://dxkac0eideuix" path="res://assets/PixelOperator8.ttf" id="3_dt443"]
+
+[sub_resource type="Animation" id="Animation_im2q6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_3fvr7"]
+resource_name = "attack"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-30, 0), Vector2(30, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dt443"]
+resource_name = "hurt"
+length = 0.9
+step = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 15), Vector2(0, -15), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4wwj3"]
+resource_name = "idle"
+length = 1.8
+loop_mode = 1
+step = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.2, 1.8),
+"transitions": PackedFloat32Array(1, 1, 2.5, 1),
+"update": 0,
+"values": [0.0, -0.05235987755982989, 0.05235987755982989, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d50e0"]
+_data = {
+&"RESET": SubResource("Animation_im2q6"),
+&"attack": SubResource("Animation_3fvr7"),
+&"hurt": SubResource("Animation_dt443"),
+&"idle": SubResource("Animation_4wwj3")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3fvr7"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0.30980393, 0.5921569, 0.5137255)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.11764706, 0.08627451, 0.0627451, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+corner_detail = 7
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3fvr7"]
+size = Vector2(63, 74)
+
+[node name="Enemy" type="Node2D" unique_id=895145600]
+script = ExtResource("1_im2q6")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1409488724]
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=649213239]
+libraries/ = SubResource("AnimationLibrary_d50e0")
+
+[node name="SelectionCursor" type="Sprite2D" parent="." unique_id=901802733]
+position = Vector2(0, -75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_3fvr7")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1158220706]
+clip_children = 2
+offset_left = -55.0
+offset_top = -57.0
+offset_right = 55.0
+offset_bottom = -41.0
+theme_override_styles/background = SubResource("StyleBoxFlat_3fvr7")
+show_percentage = false
+
+[node name="BarText" type="Label" parent="HealthBar" unique_id=357866574]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.5
+offset_bottom = 3.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_dt443")
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="mouseDetector" type="Area2D" parent="." unique_id=166723423]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mouseDetector" unique_id=1353849014]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_3fvr7")
+metadata/_edit_lock_ = true
+
+[node name="EnemyTooltip" type="PanelContainer" parent="." unique_id=371618243]
+visible = false
+z_index = 50
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -30.0
+offset_right = -35.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TooltipText" type="RichTextLabel" parent="EnemyTooltip" unique_id=1961834238]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("3_dt443")
+scroll_active = false
+
+[connection signal="input_event" from="mouseDetector" to="." method="_on_mouse_detector_input_event"]
+[connection signal="mouse_entered" from="mouseDetector" to="." method="_on_mouse_detector_mouse_entered"]
+[connection signal="mouse_exited" from="mouseDetector" to="." method="_on_mouse_detector_mouse_exited"]

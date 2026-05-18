@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://coiml5msg4gtj"]
+
+[ext_resource type="Script" uid="uid://gj6y6titfjti" path="res://stages/ui/victory.gd" id="1_cluts"]
+[ext_resource type="FontFile" uid="uid://bp5gedngpuqlm" path="res://assets/PixelOperator8-Bold.ttf" id="2_sg6va"]
+
+[node name="Victory" type="Control" unique_id=793316884]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_cluts")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1869043612]
+layout_mode = 0
+offset_left = -46.0
+offset_top = -4.0
+offset_right = 413.0
+offset_bottom = 287.0
+color = Color(0, 0, 0, 1)
+
+[node name="LabelVictoria" type="Label" parent="." unique_id=521860081]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 83.0
+offset_right = 295.0
+offset_bottom = 128.0
+theme_override_fonts/font = ExtResource("2_sg6va")
+theme_override_font_sizes/font_size = 32
+text = "Ganaste"
+
+[node name="LabelOro" type="Label" parent="." unique_id=1816941633]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 127.0
+offset_right = 292.0
+offset_bottom = 150.0
+theme_override_fonts/font = ExtResource("2_sg6va")
+text = "Has ganado XX G"
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1178231177]
+layout_mode = 0
+offset_right = 368.0
+offset_bottom = 287.0
+metadata/_edit_lock_ = true
+
+[node name="Button" type="Button" parent="." unique_id=1403785238]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 191.0
+offset_right = 290.0
+offset_bottom = 222.0
+theme_override_fonts/font = ExtResource("2_sg6va")
+text = "Volver al mapa"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

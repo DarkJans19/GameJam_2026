@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dy0ewsimw8mem"]
+
+[ext_resource type="Script" uid="uid://67p00fugs26w" path="res://entities/player/health.gd" id="1_rm1hh"]
+[ext_resource type="Texture2D" uid="uid://be20jk6p7mptn" path="res://assets/UI/UI HP.png" id="1_vwxei"]
+[ext_resource type="FontFile" uid="uid://dxkac0eideuix" path="res://assets/PixelOperator8.ttf" id="2_uswfm"]
+
+[node name="Health" type="Control" unique_id=519478812]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rm1hh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=977975677]
+layout_mode = 0
+offset_top = 10.0
+offset_right = 102.0
+offset_bottom = 28.0
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=1311622475]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_uswfm")
+theme_override_font_sizes/font_size = 16
+text = "xx xx/xx"
+
+[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer" unique_id=1010957280]
+position = Vector2(115, 12)
+scale = Vector2(1.2284483, 1.2649999)
+texture = ExtResource("1_vwxei")

@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://4y02hes2oncj"]
+
+[ext_resource type="Script" uid="uid://duno2rcmjtnh4" path="res://stages/ui/pause.gd" id="1_jscm7"]
+[ext_resource type="FontFile" uid="uid://bp5gedngpuqlm" path="res://assets/PixelOperator8-Bold.ttf" id="2_3febs"]
+[ext_resource type="FontFile" uid="uid://dxkac0eideuix" path="res://assets/PixelOperator8.ttf" id="3_x0kll"]
+
+[node name="Pause" type="Control" unique_id=1715612470]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_jscm7")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=249186450]
+layout_mode = 0
+offset_left = -51.0
+offset_right = 435.0
+offset_bottom = 299.0
+
+[node name="Label" type="Label" parent="." unique_id=141749531]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 45.0
+offset_right = 273.0
+offset_bottom = 90.0
+theme_override_fonts/font = ExtResource("2_3febs")
+theme_override_font_sizes/font_size = 32
+text = "Pausa"
+
+[node name="resume" type="Button" parent="." unique_id=878924329]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 112.0
+offset_right = 251.0
+offset_bottom = 143.0
+theme_override_fonts/font = ExtResource("2_3febs")
+text = "Reanudar"
+
+[node name="menu" type="Button" parent="." unique_id=554801820]
+layout_mode = 0
+offset_left = 119.0
+offset_top = 203.0
+offset_right = 265.0
+offset_bottom = 234.0
+theme_override_fonts/font = ExtResource("2_3febs")
+text = "Ir al menu"
+
+[node name="verCartas" type="Button" parent="." unique_id=330472881]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 160.0
+offset_right = 272.0
+offset_bottom = 191.0
+theme_override_fonts/font = ExtResource("2_3febs")
+text = "Ver cartas"
+
+[node name="cardsContainer" type="PanelContainer" parent="." unique_id=283506824]
+visible = false
+layout_mode = 0
+offset_left = -12.0
+offset_top = 27.0
+offset_right = 379.0
+offset_bottom = 248.0
+
+[node name="ColorRect" type="ColorRect" parent="cardsContainer" unique_id=1339930607]
+layout_mode = 2
+color = Color(0, 0, 0, 0.48235294)
+metadata/_edit_lock_ = true
+
+[node name="GridContainer" type="GridContainer" parent="cardsContainer" unique_id=535151001]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+
+[node name="volver" type="Button" parent="cardsContainer" unique_id=1135258189]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_3febs")
+text = "Volver"
+
+[node name="ColorRect2" type="PanelContainer" parent="cardsContainer" unique_id=1732652680]
+visible = false
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="DescripcionCartaLunar" type="RichTextLabel" parent="cardsContainer/ColorRect2" unique_id=1783236264]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("3_x0kll")
+theme_override_fonts/bold_font = ExtResource("3_x0kll")
+theme_override_fonts/bold_italics_font = ExtResource("3_x0kll")
+theme_override_fonts/italics_font = ExtResource("3_x0kll")
+theme_override_fonts/mono_font = ExtResource("3_x0kll")
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+theme_override_font_sizes/bold_italics_font_size = 8
+theme_override_font_sizes/italics_font_size = 8
+theme_override_font_sizes/mono_font_size = 8
+fit_content = true
+scroll_active = false
+
+[connection signal="pressed" from="resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="verCartas" to="." method="_on_ver_cartas_pressed"]
+[connection signal="pressed" from="cardsContainer/volver" to="." method="_on_resume_pressed"]
