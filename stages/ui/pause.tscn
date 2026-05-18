@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://4y02hes2oncj"]
+
+[ext_resource type="Script" uid="uid://duno2rcmjtnh4" path="res://stages/ui/pause.gd" id="1_jscm7"]
+
+[node name="Pause" type="Control" unique_id=1715612470]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_jscm7")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1339930607]
+layout_mode = 0
+offset_right = 371.0
+offset_bottom = 291.0
+color = Color(0, 0, 0, 0.48235294)
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=249186450]
+layout_mode = 0
+offset_right = 368.0
+offset_bottom = 287.0
+
+[node name="Label" type="Label" parent="." unique_id=141749531]
+layout_mode = 0
+offset_left = 139.0
+offset_top = 45.0
+offset_right = 232.0
+offset_bottom = 90.0
+theme_override_font_sizes/font_size = 32
+text = "Pausa"
+
+[node name="resume3" type="Button" parent="." unique_id=554801820]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 203.0
+offset_right = 248.0
+offset_bottom = 234.0
+text = "Ir al menu"
+
+[node name="resume2" type="Button" parent="." unique_id=330472881]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 160.0
+offset_right = 249.0
+offset_bottom = 191.0
+text = "Ver cartas"
+
+[node name="resume" type="Button" parent="." unique_id=1135258189]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 115.0
+offset_right = 248.0
+offset_bottom = 146.0
+text = "Reanudar"

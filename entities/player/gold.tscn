@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://b662s4f2al1rk"]
+
+[ext_resource type="Texture2D" uid="uid://cfc18tjpqglf3" path="res://assets/UI/UI Bag.png" id="1_3v1oy"]
+[ext_resource type="Script" uid="uid://bvegcsj1xxk3g" path="res://entities/player/gold.gd" id="1_u4xwg"]
+
+[node name="Gold" type="Control" unique_id=737112638]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -16.0
+offset_right = -1830.0
+offset_bottom = -1085.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u4xwg")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1518408656]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 15.0
+offset_right = 16.0
+offset_bottom = 27.0
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=430692867]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "XX G"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer" unique_id=79151895]
+position = Vector2(81.6875, 18.3125)
+scale = Vector2(2.539062, 2.0859375)
+texture = ExtResource("1_3v1oy")

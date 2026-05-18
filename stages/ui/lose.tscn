@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cx8d0ndpjfa07"]
+
+[ext_resource type="Script" uid="uid://cl3k83se8mcdi" path="res://stages/ui/lose.gd" id="1_qkg0j"]
+
+[node name="Lose" type="Control" unique_id=803556122]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_qkg0j")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2014950103]
+layout_mode = 0
+offset_right = 371.0
+offset_bottom = 291.0
+color = Color(0, 0, 0, 0.48235294)
+
+[node name="Label" type="Label" parent="." unique_id=1301186245]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 77.0
+offset_right = 249.0
+offset_bottom = 122.0
+theme_override_font_sizes/font_size = 32
+text = "Perdiste"
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1772523875]
+layout_mode = 0
+offset_right = 368.0
+offset_bottom = 287.0
+metadata/_edit_lock_ = true
+
+[node name="Button" type="Button" parent="." unique_id=1036302388]
+layout_mode = 0
+offset_left = 139.0
+offset_top = 158.0
+offset_right = 226.0
+offset_bottom = 189.0
+text = "Ir al menu"

@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://coiml5msg4gtj"]
+
+[ext_resource type="Script" uid="uid://gj6y6titfjti" path="res://stages/ui/victory.gd" id="1_cluts"]
+
+[node name="Victory" type="Control" unique_id=793316884]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_cluts")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1869043612]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -4.0
+offset_right = 368.0
+offset_bottom = 287.0
+color = Color(0, 0, 0, 0.48235294)
+
+[node name="Label" type="Label" parent="." unique_id=521860081]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 83.0
+offset_right = 249.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 32
+text = "Ganaste"
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1178231177]
+layout_mode = 0
+offset_right = 368.0
+offset_bottom = 287.0
+metadata/_edit_lock_ = true
+
+[node name="Button" type="Button" parent="." unique_id=1403785238]
+layout_mode = 0
+offset_left = 119.0
+offset_top = 158.0
+offset_right = 242.0
+offset_bottom = 189.0
+text = "Volver al mapa"
