@@ -124,25 +124,35 @@ func play_card(card: Node2D, clicked_target: Node = null) -> void:
 	# Validamos si la carta se puede jugar en esta fase lunar
 	var combat = get_tree().get_first_node_in_group("CombatManager")
 	
-	"""
-	if combat and card.card_data.requires_specific_phase:
-		if card.card_data.required_lunar_phase != combat.lunar_phase:
-			print("No puedes jugar esta carta en la fase actual.")
-			return
-	"""
-	
-	if card.card_data.effects.is_empty():
+	if card.card_data.effects.is_empty() and card.card_data.type != CardData.CardType.NORMAL:
 		print("La carta ", card.card_data.card_name, " no posee efectos activos.")
 		player_hand_reference.remove_cards_of_hand(card)
 		card.queue_free()
 		return
 	
+	var data = card.card_data
+	
+	if data.type == CardData.CardType.NORMAL and data.effect_value > 0:
+		match data.card_type_action:
+			CardData.CardTypeAction.DAMAGE:
+				if clicked_target and clicked_target.is_in_group("enemies"):
+					clicked_target.take_damage(data.effect_value)
+			CardData.CardTypeAction.HEAL:
+				var player = get_tree().get_first_node_in_group("player")
+				if player:
+					player.heal(data.effect_value)
+			CardData.CardTypeAction.SHIELD:
+				var player = get_tree().get_first_node_in_group("player")
+				if player:
+					player.add_shield(data.effect_value)
+
 	for effect in card.card_data.effects:
 		if effect and effect.has_method("apply_effect"):
 			effect.apply_effect(clicked_target, get_tree())
 		else:
 			push_error("El efecto no es válido o no tiene implementado el método 'effect'")
-	print("carta jugada")
+			return
+	
 	player_hand_reference.remove_cards_of_hand(card)
 	card.queue_free()
 

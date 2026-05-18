@@ -76,6 +76,7 @@ var boss_formations : Array = [
 ]
 
 func _ready() -> void:
+	add_to_group("CombatManager")
 	randomize()
 	if "etapa_combate_actual" in game_manager:
 		current_stage = game_manager.etapa_combate_actual as StageType
@@ -86,12 +87,6 @@ func _ready() -> void:
 	enemigos = get_tree().get_nodes_in_group("enemies")
 	cantidad_inicial_enemigos = enemigos.size()
 	jugadores = get_tree().get_nodes_in_group("player")
-	# Pruebas
-	"""
-	var mazo = get_tree().get_first_node_in_group("deck")
-	if mazo and mazo.has_method("preparate_initial_hand"):
-		mazo.preparate_initial_hand()
-	"""
 	_actualizar_sprite_luna()
 	start_battle()
 
@@ -247,12 +242,27 @@ func _on_attack_button_down() -> void:
 	
 	var carta_a_jugar = cm.selected_cards[0]
 	var objetivo = get_current_target()
+
+	# Validar cartas comodin... para evitar que se eliminen)?
+	if carta_a_jugar.card_data.type == CardData.CardType.COMODIN:
+		var fase_correcta = true
+		
+		# Revisamos si alguno de los efectos bloquea la jugada por la fase
+		for effect in carta_a_jugar.card_data.effects:
+			if effect and "requires_specific_phase" in effect and effect.requires_specific_phase:
+				if effect.required_lunar_phase != lunar_phase:
+					fase_correcta = false
+					break
+		
+		if not fase_correcta:
+			print("Fase incorrecta: Este comodín no se puede jugar en la fase lunar actual.")
+			return
 	
 	# Validación estricta para evitar que se gasten cartas solas si se pierde el objetivo
 	if objetivo == null or not is_instance_valid(objetivo):
 		print("Por favor, selecciona un enemigo antes de presionar atacar.")
 		return
-		
+
 	print("Confirmando acción: Jugando ", carta_a_jugar.card_data.card_name)
 	
 	cm.play_card(carta_a_jugar, objetivo)

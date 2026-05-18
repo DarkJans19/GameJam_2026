@@ -16,7 +16,8 @@ var mazo_jugador : Array[String] = [
 	"res://entities/player/cards/card/normal_cards/daño.tres",
 	"res://entities/player/cards/card/normal_cards/escudo.tres",
 	"res://entities/player/cards/card/normal_cards/vida.tres",
-	
+	"res://entities/player/cards/card/comodin_cards/luna_llena.tres",
+	"res://entities/player/cards/card/comodin_cards/luna_nueva.tres",
 ]
 
 var todas_las_cartas_del_juego : Array[String] = [
@@ -28,7 +29,9 @@ var todas_las_cartas_del_juego : Array[String] = [
 	"res://entities/player/cards/card/lunar_cards/lorang.tres",
 	"res://entities/player/cards/card/lunar_cards/mago_marino.tres",
 	"res://entities/player/cards/card/lunar_cards/menguantes.tres",
-	"res://entities/player/cards/card/lunar_cards/Salomon.tres"
+	"res://entities/player/cards/card/lunar_cards/Salomon.tres",
+	"res://entities/player/cards/card/comodin_cards/luna_llena.tres",
+	"res://entities/player/cards/card/comodin_cards/luna_nueva.tres",
 ]
 
 var cartas_bloqueadas_actualmente : Array[String] = []

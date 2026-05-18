@@ -303,6 +303,7 @@ func action_defend() -> void:
 	play_idle()
 	is_busy = false
 
+# Revisar esta funcion ya que combat ya tiene esta logica
 func action_advance_moon() -> void:
 	is_busy = true
 	current_lunar_phase += 1
