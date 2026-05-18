@@ -2,6 +2,8 @@ extends Node2D
 class_name Enemy
 
 signal selected(enemy: Enemy)
+signal animacion_bloqueante_iniciada
+signal animacion_bloqueante_terminada
 
 enum LunarPhase {
 	NEW_MOON,
@@ -62,7 +64,11 @@ func _ready() -> void:
 	if selection_cursor:
 		selection_cursor.hide()
 	if enemy_tooltip:
-		enemy_tooltip.hide()
+		enemy_tooltip.hide()		
+	if enemy_tooltip:
+		enemy_tooltip.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	if tooltip_text:
+		tooltip_text.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 func setup() -> void:
 	if enemy_data == null:
@@ -93,21 +99,7 @@ func _setup_enemy() -> void:
 func set_selected(is_selected: bool) -> void:
 	if selection_cursor:
 		selection_cursor.visible = is_selected
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		if sprite and sprite.texture:
-			var local_mouse_pos = to_local(get_global_mouse_position())
-			var texture_size = sprite.texture.get_size()
-			
-			var half_width = (texture_size.x * sprite.scale.x) / 2.0
-			var half_height = (texture_size.y * sprite.scale.y) / 2.0
-			
-			if local_mouse_pos.x >= -half_width and local_mouse_pos.x <= half_width:
-				if local_mouse_pos.y >= -half_height and local_mouse_pos.y <= half_height:
-					emit_signal("selected", self)
-					get_viewport().set_input_as_handled()
-
+		
 func update_health_bar() -> void:
 	if health_bar == null or bar_text == null:
 		return
@@ -234,20 +226,53 @@ func execute_action(action_name : String) -> void:
 
 func action_attack() -> void:
 	is_busy = true
+	emit_signal("animacion_bloqueante_iniciada") # <-- BLOQUEA
 	print(enemy_data.enemy_name + " usa ATTACK")
 	play_attack()
 	await animation_player.animation_finished
 	play_idle()
 	is_busy = false
+	emit_signal("animacion_bloqueante_terminada")
 
 func action_heavy_attack() -> void:
 	is_busy = true
+	emit_signal("animacion_bloqueante_iniciada") # <-- BLOQUEA
 	print(enemy_data.enemy_name + " usa HEAVY ATTACK")
 	play_attack()
 	await animation_player.animation_finished
 	play_idle()
 	is_busy = false
+	emit_signal("animacion_bloqueante_terminada") # <-- LIBERA
 
+func take_damage(amount : int) -> void:
+	if is_busy:
+		return
+
+	if is_defending:
+		if armor > 0:
+			var damage_to_armor = min(armor, amount)
+			armor -= damage_to_armor
+			amount -= damage_to_armor
+		amount *= 0.5
+
+	health -= amount
+	if health < 0:
+		health = 0
+
+	update_health_bar()
+	print(enemy_data.enemy_name + " recibe " + str(amount) + " dany")
+
+	is_busy = true
+	emit_signal("animacion_bloqueante_iniciada") # <-- BLOQUEA BOTONES EN HURT
+	play_hurt()
+	await animation_player.animation_finished
+	play_idle()
+	is_busy = false
+	emit_signal("animacion_bloqueante_terminada") # <-- LIBERA BOTONES
+
+	if health <= 0:
+		die()
+		
 func action_heal() -> void:
 	is_busy = true
 	print(enemy_data.enemy_name + " usa HEAL")
@@ -298,33 +323,6 @@ func action_pass() -> void:
 	play_idle()
 	is_busy = false
 
-func take_damage(amount : int) -> void:
-	if is_busy:
-		return
-
-	if is_defending:
-		if armor > 0:
-			var damage_to_armor = min(armor, amount)
-			armor -= damage_to_armor
-			amount -= damage_to_armor
-		amount *= 0.5
-
-	health -= amount
-	if health < 0:
-		health = 0
-
-	update_health_bar()
-	print(enemy_data.enemy_name + " recibe " + str(amount) + " dany")
-
-	is_busy = true
-	play_hurt()
-	await animation_player.animation_finished
-	play_idle()
-	is_busy = false
-
-	if health <= 0:
-		die()
-
 func heal(amount : int) -> void:
 	health += amount
 	if health > enemy_data.max_health:
@@ -348,3 +346,9 @@ func play_attack() -> void:
 func play_hurt() -> void:
 	if animation_player and animation_player.has_animation("hurt"):
 		animation_player.play("hurt")
+
+
+func _on_mouse_detector_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		emit_signal("selected", self)
+		get_viewport().set_input_as_handled()

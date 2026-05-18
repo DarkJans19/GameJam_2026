@@ -10,13 +10,17 @@
 [ext_resource type="Texture2D" uid="uid://76wlby5jsa3g" path="res://assets/UI/UI Sacrificio.png" id="9_lfwqh"]
 [ext_resource type="PackedScene" uid="uid://bapdcwi3gl58p" path="res://entities/player/deck/Deck.tscn" id="10_lfwqh"]
 [ext_resource type="PackedScene" uid="uid://q6d27imrgt4t" path="res://entities/player/cards/card_manager/CardManager.tscn" id="11_3yitc"]
+[ext_resource type="PackedScene" uid="uid://b662s4f2al1rk" path="res://entities/player/gold.tscn" id="12_crids"]
 [ext_resource type="PackedScene" uid="uid://3xjnj3dw2lqo" path="res://entities/player/cards/player_hand/PlayerHand.tscn" id="12_p3u4l"]
+[ext_resource type="PackedScene" uid="uid://dy0ewsimw8mem" path="res://entities/player/health.tscn" id="13_yl2py"]
+[ext_resource type="Texture2D" uid="uid://dss0i0a3pdla7" path="res://assets/UI/UI Pausa.png" id="14_crids"]
 
 [node name="Combat" type="Node2D" unique_id=1594128356]
 script = ExtResource("1_cfiq8")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=370711771]
 texture = ExtResource("1_nuwwi")
+metadata/_edit_lock_ = true
 
 [node name="Foreground" type="Sprite2D" parent="." unique_id=672406251]
 z_index = 2
@@ -25,6 +29,7 @@ texture = ExtResource("2_c2hqt")
 [node name="Midground" type="Sprite2D" parent="." unique_id=1050102443]
 z_index = 1
 texture = ExtResource("3_b28yy")
+metadata/_edit_lock_ = true
 
 [node name="EnemySpawn1" type="Marker2D" parent="Midground" unique_id=1754860450]
 position = Vector2(0, 6)
@@ -36,24 +41,28 @@ position = Vector2(-82, -12)
 position = Vector2(82, -12)
 
 [node name="EnemyContainer" type="Node2D" parent="." unique_id=33894181]
+metadata/_edit_lock_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1636623617]
+[node name="moonPhases" type="Sprite2D" parent="." unique_id=1636623617]
 position = Vector2(0, -70)
 texture = ExtResource("4_b28yy")
-region_enabled = true
+hframes = 2
+vframes = 4
+frame = 3
 region_rect = Rect2(1, 1, 196, 22)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1458517472]
 z_index = 5
 position = Vector2(-1, -2)
 zoom = Vector2(6, 6)
+metadata/_edit_lock_ = true
 
 [node name="Attack" type="Button" parent="." unique_id=683817281]
 z_index = 7
-offset_left = 119.0
-offset_top = -3.0
-offset_right = 156.0
-offset_bottom = 30.0
+offset_left = 122.0
+offset_top = -2.0
+offset_right = 159.0
+offset_bottom = 31.0
 action_mode = 0
 icon = ExtResource("8_h28fe")
 flat = true
@@ -70,21 +79,37 @@ flat = true
 
 [node name="FinishTurn" type="Button" parent="." unique_id=1856369644]
 z_index = 7
-offset_left = 87.0
-offset_top = -24.0
-offset_right = 156.0
-offset_bottom = 2.0
+offset_left = 103.0
+offset_top = -18.0
+offset_right = 172.0
+offset_bottom = 8.0
+scale = Vector2(0.8, 0.8)
 action_mode = 0
 icon = ExtResource("9_h28fe")
 flat = true
 
 [node name="CardManager" parent="." unique_id=1051861820 node_paths=PackedStringArray("descripcion_general") instance=ExtResource("11_3yitc")]
 descripcion_general = NodePath("../CanvasLayer/ColorRect/DescripcionGeneral")
+metadata/_edit_lock_ = true
 
 [node name="PlayerHand" parent="." unique_id=1070096955 instance=ExtResource("12_p3u4l")]
+metadata/_edit_lock_ = true
 
 [node name="Deck" parent="." unique_id=901379245 instance=ExtResource("10_lfwqh")]
 position = Vector2(0, 3)
+metadata/_edit_lock_ = true
+
+[node name="Gold" parent="." unique_id=737112638 instance=ExtResource("12_crids")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -141.0
+offset_top = -78.0
+offset_right = -105.0
+offset_bottom = -23.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.4, 0.4)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=721112337]
 
@@ -100,6 +125,25 @@ layout_mode = 2
 mouse_filter = 2
 fit_content = true
 scroll_active = false
+
+[node name="Health" parent="." unique_id=519478812 instance=ExtResource("13_yl2py")]
+anchors_preset = 10
+anchor_bottom = 0.0
+offset_left = -155.0
+offset_top = -88.0
+offset_right = -22.5
+offset_bottom = -50.5
+grow_vertical = 1
+scale = Vector2(0.4, 0.4)
+
+[node name="pause" type="Button" parent="." unique_id=1629778950]
+offset_left = 122.0
+offset_top = -86.0
+offset_right = 159.0
+offset_bottom = -53.0
+scale = Vector2(0.8, 0.8)
+icon = ExtResource("14_crids")
+flat = true
 
 [connection signal="button_down" from="Attack" to="." method="_on_attack_button_down"]
 [connection signal="button_down" from="Sacrifice" to="." method="_on_sacrifice_button_down"]

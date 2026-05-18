@@ -6,9 +6,24 @@ signal ataque_iniciado
 
 enum StageType { EARLY, MID, LATE, BOSS }
 enum TurnState { START_BATTLE, FINISH_BATTLE, PLAYER_TURN, ENEMY_TURN }
-enum LunarPhase { NEW_MOON, WAXING_CRESCENT, FIRST_QUARTER, WAXING_GIbBOUS, FULL_MOON, WANING_GIbBOUS, LAST_QUARTER, WANING_CRESCENT }
+enum LunarPhase { NEW_MOON, WANING_CRESCENT, LAST_QUARTER, WANING_GIbBOUS, FULL_MOON, WAXING_GIbBOUS, FIRST_QUARTER, WAXING_CRESCENT}
 
-var lunar_phase = LunarPhase.NEW_MOON
+const MOON_PHASE_FRAMES = {
+	LunarPhase.NEW_MOON: 2,
+	LunarPhase.WAXING_CRESCENT: 5,
+	LunarPhase.FIRST_QUARTER: 4,
+	LunarPhase.WAXING_GIbBOUS: 1,
+	LunarPhase.FULL_MOON: 0,
+	LunarPhase.WANING_GIbBOUS: 7,
+	LunarPhase.LAST_QUARTER: 6,
+	LunarPhase.WANING_CRESCENT: 3
+}
+
+var lunar_phase = LunarPhase.NEW_MOON:
+	set(val):
+		lunar_phase = val
+		_actualizar_sprite_luna()
+
 var actual_turn: TurnState = TurnState.START_BATTLE
 
 const BATLASER = preload("res://entities/enemy/especific_enemies/batlaser.tres")
@@ -39,6 +54,9 @@ var cantidad_inicial_enemigos : int = 0
 @onready var deck_node: Node2D = $Deck
 @onready var player_hand: Node2D = $PlayerHand
 @onready var card_manager: Node2D = $CardManager
+@onready var moon_phases_sprite: Sprite2D = $moonPhases
+
+@onready var finish_turn_button = $FinishTurn
 
 var enemy_scene : PackedScene = preload("res://entities/enemy/enemy.tscn")
 
@@ -62,6 +80,7 @@ func _ready() -> void:
 	if "etapa_combate_actual" in game_manager:
 		current_stage = game_manager.etapa_combate_actual as StageType
 		print("[CombatManager] Iniciando combate en la etapa: ", StageType.keys()[current_stage])
+	
 	spawn_enemy_formation()
 	await get_tree().process_frame
 	enemigos = get_tree().get_nodes_in_group("enemies")
@@ -73,6 +92,7 @@ func _ready() -> void:
 	if mazo and mazo.has_method("preparate_initial_hand"):
 		mazo.preparate_initial_hand()
 	"""
+	_actualizar_sprite_luna()
 	start_battle()
 
 func get_stage_formations() -> Array:
@@ -113,9 +133,18 @@ func spawn_enemy_formation() -> void:
 		enemy_instance.scale = Vector2(0.8, 0.8)
 		enemy_instance.enemy_data = enemies_data[i]
 		enemy_instance.setup()
+		
 		if not enemy_instance.is_connected("selected", _on_enemy_selected):
 			enemy_instance.connect("selected", _on_enemy_selected)
-
+			
+		if not enemy_instance.is_connected("animacion_bloqueante_iniciada", func(): set_botones_bloqueados(true)):
+			enemy_instance.connect("animacion_bloqueante_iniciada", func(): set_botones_bloqueados(true))
+			
+		if not enemy_instance.is_connected("animacion_bloqueante_terminada", func(): 
+			if actual_turn == TurnState.PLAYER_TURN: set_botones_bloqueados(false)):
+				enemy_instance.connect("animacion_bloqueante_terminada", func(): 
+					if actual_turn == TurnState.PLAYER_TURN: set_botones_bloqueados(false))
+					
 func start_battle():
 	actual_turn = TurnState.START_BATTLE
 	if deck_node and deck_node.has_method("preparate_initial_hand"):
@@ -124,6 +153,8 @@ func start_battle():
 
 func start_player_turn():
 	actual_turn = TurnState.PLAYER_TURN
+	set_botones_bloqueados(false) 
+	
 	if deck_node and deck_node.has_method("draw_card_by_type"):
 		deck_node.draw_card_by_type(2, CardData.CardType.NORMAL)
 		deck_node.draw_card_by_type(2, CardData.CardType.COMODIN)
@@ -132,6 +163,13 @@ func start_player_turn():
 func start_enemy_turn():
 	actual_turn = TurnState.ENEMY_TURN
 	print("--- Enemies turn ---")
+	set_botones_bloqueados(true) # Desactivar botones en el turno enemigo
+	
+	if current_selected_enemy != null and is_instance_valid(current_selected_enemy):
+		current_selected_enemy.set_selected(false)
+	current_selected_enemy = null
+	personaje_objetivo = null
+	
 	enemigos = get_tree().get_nodes_in_group("enemies")
 	
 	var alguno_vivo = false
@@ -139,7 +177,7 @@ func start_enemy_turn():
 		if is_instance_valid(enemy) and enemy.health > 0:
 			alguno_vivo = true
 			await enemy.start_turn()
-			await get_tree().create_timer(0.5).timeout 
+			await get_tree().create_timer(0.5).timeout
 	
 	if not alguno_vivo:
 		verificar_estado_batalla()
@@ -158,6 +196,7 @@ func verificar_estado_batalla() -> void:
 	if not enemigos_vivos:
 		actual_turn = TurnState.FINISH_BATTLE
 		print("[CombatManager] Todos los enemigos derrotados.")
+		set_botones_bloqueados(true)
 		game_manager.procesar_victoria_combate(cantidad_inicial_enemigos)
 		await get_tree().create_timer(1.0).timeout
 		get_tree().change_scene_to_file("res://stages/map/map.tscn")
@@ -171,7 +210,8 @@ func _on_enemy_selected(new_enemy: Enemy) -> void:
 	establecer_objetivo(new_enemy)
 
 func get_current_target() -> Enemy:
-	if is_instance_valid(current_selected_enemy): return current_selected_enemy
+	if is_instance_valid(current_selected_enemy) and current_selected_enemy.health > 0: 
+		return current_selected_enemy
 	return null
 
 func mostrar_seleccion() -> void:
@@ -191,49 +231,46 @@ func avanzar_fase_del_juego() -> void:
 func change_phase(fase: LunarPhase) -> void:
 	lunar_phase = fase
 
+func _actualizar_sprite_luna() -> void:
+	if moon_phases_sprite and MOON_PHASE_FRAMES.has(lunar_phase):
+		moon_phases_sprite.frame = MOON_PHASE_FRAMES[lunar_phase]
+
 func _on_finish_turn_button_down() -> void:
 	if actual_turn == TurnState.PLAYER_TURN:
 		start_enemy_turn()
 
 func _on_attack_button_down() -> void:
-	if actual_turn != TurnState.PLAYER_TURN:
-		print("No puedes jugar cartas, es el turno del enemigo.")
-		return
+	if actual_turn != TurnState.PLAYER_TURN: return
 		
 	var cm = get_tree().get_first_node_in_group("CardManager")
-	if not cm or cm.selected_cards.is_empty():
-		print("Selecciona una carta de tu mano primero.")
-		return
-
-	if cm.selected_cards.size() > 1:
-		print("Solo puedes jugar una carta a la vez")
-		return
+	if not cm or cm.selected_cards.is_empty(): return
 	
 	var carta_a_jugar = cm.selected_cards[0]
 	var objetivo = get_current_target()
 	
-	var requiere_enemigo = false
-	
-	if carta_a_jugar.card_data.type == CardData.CardType.NORMAL and carta_a_jugar.card_data.card_type_action == CardData.CardTypeAction.DAMAGE:
-		requiere_enemigo = true
-	
-	for effect in carta_a_jugar.card_data.effects:
-		if effect and effect.target_type == Effect.TargetType.SINGLE_ENEMY:
-			requiere_enemigo = true
-			break
-			
-	if requiere_enemigo and not objetivo:
-		print("Selecciona un enemigo objetivo antes de presionar Jugar.")
+	# Validación estricta para evitar que se gasten cartas solas si se pierde el objetivo
+	if objetivo == null or not is_instance_valid(objetivo):
+		print("Por favor, selecciona un enemigo antes de presionar atacar.")
 		return
-	
-	# Si no requiere enemigo (como StealCards), "objetivo" pasará como null tranquilamente
+		
 	print("Confirmando acción: Jugando ", carta_a_jugar.card_data.card_name)
 	
 	cm.play_card(carta_a_jugar, objetivo)
 	cm.selected_cards.clear()
+	
+	await get_tree().process_frame
+	verificar_estado_batalla()
 	
 func _on_sacrifice_button_down() -> void:
 	if actual_turn != TurnState.PLAYER_TURN: return
 	var cm = get_tree().get_first_node_in_group("CardManager")
 	if not cm or cm.selected_cards.is_empty(): return
 	cm.sacrifice_card()
+
+func set_botones_bloqueados(bloquear: bool) -> void:
+	if is_instance_valid(attack_button) and attack_button is Button:
+		attack_button.disabled = bloquear
+	if is_instance_valid(sacrifice_button) and sacrifice_button is Button:
+		sacrifice_button.disabled = bloquear
+	if is_instance_valid(finish_turn_button) and finish_turn_button is Button:
+		finish_turn_button.disabled = bloquear

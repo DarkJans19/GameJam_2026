@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://dlxum2nam1ek4" path="res://stages/map/shop_event.tscn" id="3_wjkhs"]
 [ext_resource type="PackedScene" uid="uid://6ga84j3uyeah" path="res://stages/map/boss_event.tscn" id="4_x8gmq"]
 [ext_resource type="Texture2D" uid="uid://ccn6rm8mtgs41" path="res://assets/icon.svg" id="5_wjkhs"]
+[ext_resource type="PackedScene" uid="uid://dy0ewsimw8mem" path="res://entities/player/health.tscn" id="7_athdf"]
+[ext_resource type="PackedScene" uid="uid://b662s4f2al1rk" path="res://entities/player/gold.tscn" id="8_1oiya"]
+[ext_resource type="Texture2D" uid="uid://dss0i0a3pdla7" path="res://assets/UI/UI Pausa.png" id="9_1oiya"]
 
 [sub_resource type="Gradient" id="Gradient_xghif"]
 offsets = PackedFloat32Array(0)
@@ -265,3 +268,30 @@ position = Vector2(100, 0)
 scale = Vector2(0.9444444, 1)
 points = PackedVector2Array(-407, 0, -420.7202, 0, -477, 0)
 default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
+
+[node name="Health" parent="." unique_id=519478812 instance=ExtResource("7_athdf")]
+layout_mode = 1
+offset_left = -551.0
+offset_top = -317.0
+offset_right = -395.0
+offset_bottom = -206.0
+scale = Vector2(2, 2)
+metadata/_edit_lock_ = true
+
+[node name="Gold" parent="." unique_id=737112638 instance=ExtResource("8_1oiya")]
+layout_mode = 1
+offset_left = -216.0
+offset_top = -347.0
+offset_right = -1182.0
+offset_bottom = -893.0
+scale = Vector2(2, 2)
+
+[node name="pause" type="Button" parent="." unique_id=2015247067]
+layout_mode = 0
+offset_left = 407.0
+offset_top = -322.0
+offset_right = 444.0
+offset_bottom = -289.0
+scale = Vector2(4, 4)
+icon = ExtResource("9_1oiya")
+flat = true
