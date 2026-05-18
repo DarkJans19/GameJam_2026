@@ -8,7 +8,9 @@ enum TargetType {
 	RANDOM_ENEMIES,
 	PLAYER,
 	COMBAT,
-	DECK
+	DECK,
+	GAME_MANAGER,
+	HEALTH,
 }
 
 @export var effect_name: String
@@ -55,12 +57,25 @@ func apply_effect(clicked_target: Node, tree: SceneTree) -> void:
 			if deck:
 				effect(deck)
 				
-		TargetType.COMBAT: # <-- 2. Añadimos el caso para COMBAT
+		TargetType.COMBAT:
 			var combat = tree.get_first_node_in_group("CombatManager")
 			if combat:
 				effect(combat)
 			else:
 				push_error("No se pudo aplicar el efecto: CombatManager no encontrado en el grupo.")
+		TargetType.GAME_MANAGER:
+			var game_manager = tree.get_first_node_in_group("game_manager")
+			if game_manager:
+				effect(game_manager)
+			else:
+				push_error("No se pudo aplicar el efecto: health no encontrado en el grupo.")
+		TargetType.HEALTH:
+			var health = tree.get_first_node_in_group("health")
+			if health:
+				effect(health)
+			else:
+				push_error("No se pudo aplicar el efecto: health no encontrado en el grupo.")
+
 
 func effect(objective: Node) -> void:
 	pass

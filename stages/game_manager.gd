@@ -40,6 +40,9 @@ var etapa_combate_actual : int = 0
 var current_event : int = 0
 var last_selected_event : String = ""
 
+func _ready() -> void:
+	add_to_group("game_manager")
+
 func reset_progress() -> void:
 	vida_max_jugador = 100
 	vida_actual_jugador = 100

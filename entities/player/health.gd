@@ -13,6 +13,7 @@ const ICONO_ESCUDO = preload("res://assets/UI/UI Escudo.png")
 @onready var texto_vida: Label = $HBoxContainer/Label
 
 func _ready() -> void:
+	add_to_group("health")
 	if not game_manager.vida_cambiada.is_connected(_on_vida_cambiada_global):
 		game_manager.vida_cambiada.connect(_on_vida_cambiada_global)
 	

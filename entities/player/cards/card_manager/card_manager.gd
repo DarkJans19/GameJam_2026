@@ -138,13 +138,13 @@ func play_card(card: Node2D, clicked_target: Node = null) -> void:
 				if clicked_target and clicked_target.is_in_group("enemies"):
 					clicked_target.take_damage(data.effect_value)
 			CardData.CardTypeAction.HEAL:
-				var player = get_tree().get_first_node_in_group("player")
+				var player = get_tree().get_first_node_in_group("game_manager")
 				if player:
-					player.heal(data.effect_value)
+					player.curar_jugador(data.effect_value)
 			CardData.CardTypeAction.SHIELD:
-				var player = get_tree().get_first_node_in_group("player")
+				var player = get_tree().get_first_node_in_group("health")
 				if player:
-					player.add_shield(data.effect_value)
+					player.ganar_armadura(data.effect_value)
 
 	for effect in card.card_data.effects:
 		if effect and effect.has_method("apply_effect"):
