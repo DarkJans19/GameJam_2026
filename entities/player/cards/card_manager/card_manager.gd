@@ -116,19 +116,28 @@ func hide_description(card):
 		contenedor_ui.hide()
 
 
-func play_card(card: Node2D, clicked_target: Node = null) -> void:
+func play_card(card: Node2D, clicked_target: Node = null) -> bool:
 	if not card or not card.card_data:
 		push_error("La carta enviada no contiene información (CardData)")
-		return
+		return false
+	
+	var combat = get_tree().get_first_node_in_group("CombatManager")
+	if combat:
+		var coste = card.card_data.sacrifice_cost
+		if combat.puntos_sacrificio < coste:
+			print("No tienes suficientes puntos de sacrificio. Requerido: ", coste, " | Actual: ", combat.puntos_sacrificio)
+			return false # Cancela la ejecución sin descartar nada
+		
+		# Si el jugador puede pagarlo, deducimos los puntos inmediatamente
+		combat.puntos_sacrificio -= coste
+		print("Puntos gastados: ", coste, " | Restantes: ", combat.puntos_sacrificio)
 	
 	# Validamos si la carta se puede jugar en esta fase lunar
-	var combat = get_tree().get_first_node_in_group("CombatManager")
-	
 	if card.card_data.effects.is_empty() and card.card_data.type != CardData.CardType.NORMAL:
 		print("La carta ", card.card_data.card_name, " no posee efectos activos.")
 		player_hand_reference.remove_cards_of_hand(card)
 		card.queue_free()
-		return
+		return true
 	
 	var data = card.card_data
 	
@@ -151,10 +160,11 @@ func play_card(card: Node2D, clicked_target: Node = null) -> void:
 			effect.apply_effect(clicked_target, get_tree())
 		else:
 			push_error("El efecto no es válido o no tiene implementado el método 'effect'")
-			return
+			return false
 	
 	player_hand_reference.remove_cards_of_hand(card)
 	card.queue_free()
+	return true
 
 func sacrifice_card() -> void:
 	for card in selected_cards:

@@ -5,13 +5,14 @@
 [ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/lunar_cards/cardData.gd" id="2_k2gtg"]
 [ext_resource type="Texture2D" uid="uid://chy6lqnxojdtw" path="res://assets/Cartas/Lunares/Menguantes.png" id="2_x6018"]
 [ext_resource type="Script" uid="uid://cr1r0pvuprqr2" path="res://entities/player/cards/card/effects/lunar_effects/DefenseEffect.gd" id="3_0e60j"]
-[ext_resource type="Script" uid="uid://d2nyskljgiw4o" path="res://entities/player/cards/card/effects/comodin_effects/SkipEnemyTurn.gd" id="4_yw3vv"]
 
 [sub_resource type="Resource" id="Resource_qujcf"]
 script = ExtResource("2_d56hn")
 damage_quantity = 5
 effect_name = "Daño"
 target_type = 4
+required_lunar_phase = 1
+requires_specific_phase = true
 metadata/_custom_type_script = "uid://dbc7m5yy3bseg"
 
 [sub_resource type="Resource" id="Resource_x3qd7"]
@@ -19,18 +20,49 @@ script = ExtResource("3_0e60j")
 defense_quantity = 1
 effect_name = "Escudo"
 target_type = 4
+required_lunar_phase = 1
+requires_specific_phase = true
+metadata/_custom_type_script = "uid://cr1r0pvuprqr2"
+
+[sub_resource type="Resource" id="Resource_8sgv1"]
+script = ExtResource("2_d56hn")
+damage_quantity = 5
+effect_name = "Daño"
+target_type = 2
+required_lunar_phase = 2
+requires_specific_phase = true
+metadata/_custom_type_script = "uid://dbc7m5yy3bseg"
+
+[sub_resource type="Resource" id="Resource_yw3vv"]
+script = ExtResource("3_0e60j")
+defense_quantity = 1
+effect_name = "Curacion"
+target_type = 7
+required_lunar_phase = 2
+requires_specific_phase = true
 metadata/_custom_type_script = "uid://cr1r0pvuprqr2"
 
 [sub_resource type="Resource" id="Resource_sxcvd"]
-script = ExtResource("4_yw3vv")
-effect_name = "Saltar turno del enemigo"
-target_type = 5
-random_targets_count = 0
-metadata/_custom_type_script = "uid://d2nyskljgiw4o"
+script = ExtResource("2_d56hn")
+damage_quantity = 5
+effect_name = "Ataque aleatorio"
+target_type = 3
+required_lunar_phase = 5
+requires_specific_phase = true
+metadata/_custom_type_script = "uid://dbc7m5yy3bseg"
+
+[sub_resource type="Resource" id="Resource_j28hi"]
+script = ExtResource("3_0e60j")
+defense_quantity = 1
+effect_name = "Defensa"
+target_type = 7
+required_lunar_phase = 3
+requires_specific_phase = true
+metadata/_custom_type_script = "uid://cr1r0pvuprqr2"
 
 [resource]
 script = ExtResource("2_k2gtg")
 card_name = "menguantes"
 image = ExtResource("2_x6018")
 type = 2
-effects = Array[ExtResource("1_3ac2h")]([SubResource("Resource_qujcf"), SubResource("Resource_x3qd7"), SubResource("Resource_sxcvd")])
+effects = Array[ExtResource("1_3ac2h")]([SubResource("Resource_qujcf"), SubResource("Resource_x3qd7"), SubResource("Resource_8sgv1"), SubResource("Resource_yw3vv"), SubResource("Resource_sxcvd"), SubResource("Resource_j28hi")])

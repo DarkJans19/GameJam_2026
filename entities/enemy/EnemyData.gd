@@ -3,9 +3,9 @@ class_name EnemyData
 
 @export var enemy_name : String = "Enemy"
 
-@export var max_health : int = 100
+@export var max_health : int = 10
 
-@export var heal_amount : int = 20
+@export var heal_amount : int = 2
 
 @export var sprite : Texture2D
 

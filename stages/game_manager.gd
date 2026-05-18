@@ -11,25 +11,35 @@ var oro : int = 50
 var mazo_jugador : Array[String] = [
 	"res://entities/player/cards/card/lunar_cards/Antonio.tres",
 	"res://entities/player/cards/card/lunar_cards/glerp_y_glop.tres",
+	"res://entities/player/cards/card/lunar_cards/jimbo.tres",
+	"res://entities/player/cards/card/lunar_cards/joaquin.tres",
+	"res://entities/player/cards/card/lunar_cards/lasper.tres",
+	"res://entities/player/cards/card/lunar_cards/lorang.tres",
+	"res://entities/player/cards/card/lunar_cards/mago_dan.tres",
 	"res://entities/player/cards/card/lunar_cards/menguantes.tres",
 	"res://entities/player/cards/card/lunar_cards/Salomon.tres",
+	# Cartas normales
 	"res://entities/player/cards/card/normal_cards/daño.tres",
 	"res://entities/player/cards/card/normal_cards/escudo.tres",
 	"res://entities/player/cards/card/normal_cards/vida.tres",
-	"res://entities/player/cards/card/comodin_cards/luna_llena.tres",
-	"res://entities/player/cards/card/comodin_cards/luna_nueva.tres",
 ]
 
 var todas_las_cartas_del_juego : Array[String] = [
+	# Cartas lunares
 	"res://entities/player/cards/card/lunar_cards/Antonio.tres",
 	"res://entities/player/cards/card/lunar_cards/glerp_y_glop.tres",
 	"res://entities/player/cards/card/lunar_cards/jimbo.tres",
 	"res://entities/player/cards/card/lunar_cards/joaquin.tres",
 	"res://entities/player/cards/card/lunar_cards/lasper.tres",
 	"res://entities/player/cards/card/lunar_cards/lorang.tres",
-	"res://entities/player/cards/card/lunar_cards/mago_marino.tres",
+	"res://entities/player/cards/card/lunar_cards/mago_dan.tres",
 	"res://entities/player/cards/card/lunar_cards/menguantes.tres",
 	"res://entities/player/cards/card/lunar_cards/Salomon.tres",
+	# Cartas normales
+	"res://entities/player/cards/card/normal_cards/daño.tres",
+	"res://entities/player/cards/card/normal_cards/escudo.tres",
+	"res://entities/player/cards/card/normal_cards/vida.tres",
+	# Cartas comodin
 	"res://entities/player/cards/card/comodin_cards/luna_llena.tres",
 	"res://entities/player/cards/card/comodin_cards/luna_nueva.tres",
 ]

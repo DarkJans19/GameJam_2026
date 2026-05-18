@@ -3,6 +3,36 @@
 [ext_resource type="Texture2D" uid="uid://b4ikx3tataikx" path="res://assets/Cartas/Lunares/Joaquin.png" id="1_2nyar"]
 [ext_resource type="Script" uid="uid://d1bnksp4bjli5" path="res://entities/player/cards/card/effects/Effect.gd" id="1_l7f8y"]
 [ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/lunar_cards/cardData.gd" id="2_b1vxy"]
+[ext_resource type="Script" uid="uid://dq7ir856ygn6n" path="res://entities/player/cards/card/effects/lunar_effects/CoinsEffect.gd" id="2_elnxd"]
+[ext_resource type="Script" uid="uid://cr1r0pvuprqr2" path="res://entities/player/cards/card/effects/lunar_effects/DefenseEffect.gd" id="3_p16ro"]
+[ext_resource type="Script" uid="uid://dcd2te2eyjk85" path="res://entities/player/cards/card/effects/lunar_effects/CurationEffect.gd" id="4_gn23p"]
+
+[sub_resource type="Resource" id="Resource_ck1gf"]
+script = ExtResource("2_elnxd")
+amount_of_coins = -10
+effect_name = "Perder monedas"
+effect_description = "Esta unidad perdera monedas"
+target_type = 6
+required_lunar_phase = 3
+requires_specific_phase = true
+metadata/_custom_type_script = "uid://dq7ir856ygn6n"
+
+[sub_resource type="Resource" id="Resource_yfokl"]
+script = ExtResource("3_p16ro")
+defense_quantity = 10
+effect_name = "Escudo"
+target_type = 7
+required_lunar_phase = 3
+requires_specific_phase = true
+metadata/_custom_type_script = "uid://cr1r0pvuprqr2"
+
+[sub_resource type="Resource" id="Resource_iyj8k"]
+script = ExtResource("4_gn23p")
+heal_quantity = 10
+target_type = 6
+required_lunar_phase = 3
+requires_specific_phase = true
+metadata/_custom_type_script = "uid://dcd2te2eyjk85"
 
 [resource]
 resource_name = "joaquin"
@@ -11,3 +41,5 @@ card_name = "joaquin"
 image = ExtResource("1_2nyar")
 description = "Hara 3 de daño"
 effect_value = 3
+type = 2
+effects = Array[ExtResource("1_l7f8y")]([SubResource("Resource_ck1gf"), SubResource("Resource_yfokl"), SubResource("Resource_iyj8k")])

@@ -12,18 +12,21 @@ damage_quantity = 6
 effect_name = "Inflingir daño"
 target_type = 1
 random_targets_count = 0
+requires_specific_phase = true
 metadata/_custom_type_script = "uid://dbc7m5yy3bseg"
 
 [sub_resource type="Resource" id="Resource_5rbsl"]
 script = ExtResource("3_h3jv3")
 heal_quantity = 2
 effect_name = "Curacion"
-target_type = 4
+target_type = 6
 random_targets_count = 0
+requires_specific_phase = true
 metadata/_custom_type_script = "uid://dcd2te2eyjk85"
 
 [resource]
 script = ExtResource("5_dnwia")
 card_name = "Mago dan"
 image = ExtResource("4_g1xq8")
+type = 2
 effects = Array[ExtResource("1_df601")]([SubResource("Resource_j34a6"), SubResource("Resource_5rbsl")])
