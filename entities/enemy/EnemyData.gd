@@ -10,39 +10,39 @@ class_name EnemyData
 @export var sprite : Texture2D
 
 @export var moon_phase_turns : Dictionary = {
-	Enemy.LunarPhase.NEW_MOON : [
+	CombatManager.LunarPhase.NEW_MOON : [
 		"ATTACK"
 	],
 
-	Enemy.LunarPhase.WAXING_CRESCENT : [
+	CombatManager.LunarPhase.WAXING_CRESCENT : [
 		"ATTACK",
 		"DEFEND"
 	],
 
-	Enemy.LunarPhase.FIRST_QUARTER : [
+	CombatManager.LunarPhase.FIRST_QUARTER : [
 		"HEAVY ATTACK"
 	],
 
-	Enemy.LunarPhase.WAXING_GIBBOUS : [
+	CombatManager.LunarPhase.WAXING_GIBBOUS : [
 		"ATTACK",
 		"HEAL"
 	],
 
-	Enemy.LunarPhase.FULL_MOON : [
+	CombatManager.LunarPhase.FULL_MOON : [
 		"HEAVY ATTACK",
 		"HEAVY ATTACK"
 	],
 
-	Enemy.LunarPhase.WANING_GIBBOUS : [
+	CombatManager.LunarPhase.WANING_GIBBOUS : [
 		"HEAL"
 	],
 
-	Enemy.LunarPhase.LAST_QUARTER : [
+	CombatManager.LunarPhase.LAST_QUARTER : [
 		"DEFEND",
 		"ATTACK"
 	],
 
-	Enemy.LunarPhase.WANING_CRESCENT : [
+	CombatManager.LunarPhase.WANING_CRESCENT : [
 		"ADVANCE MOON"
 	]
 }

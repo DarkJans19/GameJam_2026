@@ -5,18 +5,7 @@ signal selected(enemy: Enemy)
 signal animacion_bloqueante_iniciada
 signal animacion_bloqueante_terminada
 
-enum LunarPhase {
-	NEW_MOON,
-	WAXING_CRESCENT,
-	FIRST_QUARTER,
-	WAXING_GIBBOUS,
-	FULL_MOON,
-	WANING_GIBBOUS,
-	LAST_QUARTER,
-	WANING_CRESCENT
-}
-
-var current_lunar_phase : LunarPhase = LunarPhase.NEW_MOON
+var current_lunar_phase : CombatManager.LunarPhase = CombatManager.LunarPhase.NEW_MOON
 
 @export var enemy_data : EnemyData
 
@@ -176,6 +165,10 @@ func start_turn() -> void:
 	is_my_turn = true
 	is_defending = false
 	armor = 0 
+	
+	var combat = get_tree().get_first_node_in_group("CombatManager")
+	if combat:
+		current_lunar_phase = combat.lunar_phase
 
 	print(enemy_data.enemy_name + " inicia turno")
 	print("Fase lunar actual: " + str(current_lunar_phase))
@@ -308,8 +301,8 @@ func action_advance_moon() -> void:
 	is_busy = true
 	current_lunar_phase += 1
 
-	if current_lunar_phase > LunarPhase.WANING_CRESCENT:
-		current_lunar_phase = LunarPhase.NEW_MOON
+	if current_lunar_phase > CombatManager.LunarPhase.WANING_CRESCENT:
+		current_lunar_phase = CombatManager.LunarPhase.NEW_MOON
 
 	print(enemy_data.enemy_name + " adelanta la fase lunar a: " + str(current_lunar_phase))
 	play_attack()

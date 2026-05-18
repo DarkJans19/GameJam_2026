@@ -6,15 +6,25 @@ signal ataque_iniciado
 
 enum StageType { EARLY, MID, LATE, BOSS }
 enum TurnState { START_BATTLE, FINISH_BATTLE, PLAYER_TURN, ENEMY_TURN }
-enum LunarPhase { NEW_MOON, WANING_CRESCENT, LAST_QUARTER, WANING_GIbBOUS, FULL_MOON, WAXING_GIbBOUS, FIRST_QUARTER, WAXING_CRESCENT}
+
+enum LunarPhase { 
+	NEW_MOON, 
+	WANING_CRESCENT, 
+	LAST_QUARTER,
+	WANING_GIBBOUS, 
+	FULL_MOON, 
+	WAXING_GIBBOUS, 
+	FIRST_QUARTER, 
+	WAXING_CRESCENT
+}
 
 const MOON_PHASE_FRAMES = {
 	LunarPhase.NEW_MOON: 2,
 	LunarPhase.WAXING_CRESCENT: 5,
 	LunarPhase.FIRST_QUARTER: 4,
-	LunarPhase.WAXING_GIbBOUS: 1,
+	LunarPhase.WAXING_GIBBOUS: 1,
 	LunarPhase.FULL_MOON: 0,
-	LunarPhase.WANING_GIbBOUS: 7,
+	LunarPhase.WANING_GIBBOUS: 7,
 	LunarPhase.LAST_QUARTER: 6,
 	LunarPhase.WANING_CRESCENT: 3
 }
@@ -43,6 +53,8 @@ var jugadores : Array = []
 var turno_enemigo : int = 0
 var current_selected_enemy : Enemy = null
 var cantidad_inicial_enemigos : int = 0
+
+var skip_next_enemy_turn : bool = false
 
 @onready var midground : Node2D = $Midground
 @onready var enemy_container : Node2D = $EnemyContainer
@@ -158,7 +170,15 @@ func start_player_turn():
 func start_enemy_turn():
 	actual_turn = TurnState.ENEMY_TURN
 	print("--- Enemies turn ---")
-	set_botones_bloqueados(true) # Desactivar botones en el turno enemigo
+	set_botones_bloqueados(true)
+	
+	if skip_next_enemy_turn:
+		print("[CombatManager] ¡Efecto activado! Saltando el turno de los enemigos.")
+		skip_next_enemy_turn = false
+		
+		avanzar_fase_del_juego() 
+		start_player_turn() 
+		return
 	
 	if current_selected_enemy != null and is_instance_valid(current_selected_enemy):
 		current_selected_enemy.set_selected(false)
