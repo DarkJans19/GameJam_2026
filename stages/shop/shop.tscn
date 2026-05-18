@@ -3,13 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://cgh8itya8jdjf" path="res://entities/player/cards/assets/Balatro.jpg" id="1_if3u5"]
 [ext_resource type="Script" uid="uid://b3ap5f216vjks" path="res://stages/shop/shop.gd" id="1_w58nr"]
 [ext_resource type="AudioStream" uid="uid://dq1rps3yfgg3s" path="res://assets/Audios/Shop Theme.mp3" id="3_as8v6"]
-
-[sub_resource type="Gradient" id="Gradient_if3u5"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_w58nr"]
-gradient = SubResource("Gradient_if3u5")
-width = 25
+[ext_resource type="Texture2D" uid="uid://cxh82feibry64" path="res://assets/Escenario/Store Midground.png" id="2_as8v6"]
+[ext_resource type="Texture2D" uid="uid://jsuiejuy5f5j" path="res://assets/UI/UI HP - Copy.png" id="4_dujof"]
 
 [node name="Shop" type="Control" unique_id=589026888]
 layout_mode = 3
@@ -18,9 +13,9 @@ script = ExtResource("1_w58nr")
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1937438849]
-position = Vector2(5.00679e-06, 1.9999986)
-scale = Vector2(14.079999, 210.00002)
-texture = SubResource("GradientTexture1D_w58nr")
+position = Vector2(-1.2124834, -1.0000014)
+scale = Vector2(1.051328, 1.0222222)
+texture = ExtResource("2_as8v6")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1571825055]
 z_index = 5
@@ -36,78 +31,53 @@ offset_right = -45.0
 offset_bottom = -2.0
 
 [node name="cartaLunar" type="Sprite2D" parent="ObjetoCartaLunar" unique_id=1718713195]
-position = Vector2(50, 40.000004)
-scale = Vector2(0.32294846, 0.24038461)
+position = Vector2(39.000004, 43.000004)
+scale = Vector2(0.25425774, 0.21634616)
 texture = ExtResource("1_if3u5")
-
-[node name="mejora" type="Sprite2D" parent="." unique_id=329146328]
-position = Vector2(-2.9999998, -35.5)
-scale = Vector2(0.311, 0.25)
-texture = ExtResource("1_if3u5")
-
-[node name="Label" type="Label" parent="mejora" unique_id=841236949]
-offset_left = -68.04143
-offset_top = 146.38023
-offset_right = 81.95857
-offset_bottom = 185.38023
-theme_override_font_sizes/font_size = 28
-text = "Mejora 35g"
-metadata/_edit_use_anchors_ = true
-
-[node name="comprarMejora" type="Button" parent="mejora" unique_id=1629335636]
-offset_left = -60.0
-offset_top = 200.0
-offset_right = 65.0
-offset_bottom = 260.0
-theme_override_font_sizes/font_size = 20
-text = "Comprar"
-metadata/_edit_use_anchors_ = true
 
 [node name="vida" type="Sprite2D" parent="." unique_id=1999037954]
-position = Vector2(97, -35.5)
-scale = Vector2(0.329, 0.25)
-texture = ExtResource("1_if3u5")
+position = Vector2(98.99999, -31.999996)
+scale = Vector2(0.293366, 0.24807692)
+texture = ExtResource("4_dujof")
 
 [node name="Label" type="Label" parent="vida" unique_id=1315266365]
-offset_left = -104.239655
-offset_top = 146.38023
-offset_right = 111.760345
-offset_bottom = 185.38023
+offset_left = -105.67004
+offset_top = 124.96123
+offset_right = 110.32996
+offset_bottom = 163.96123
 theme_override_font_sizes/font_size = 28
 text = "Vida (25 HP) 30g"
-metadata/_edit_use_anchors_ = true
 
 [node name="comprarVida" type="Button" parent="vida" unique_id=280964922]
-offset_left = -60.0
-offset_top = 200.0
-offset_right = 65.0
-offset_bottom = 260.0
+offset_left = -57.948074
+offset_top = 165.2713
+offset_right = 60.234505
+offset_bottom = 217.67441
 theme_override_font_sizes/font_size = 20
 text = "Comprar"
-metadata/_edit_use_anchors_ = true
 
 [node name="labelLuna" type="Label" parent="vida" unique_id=1689528023]
-offset_left = -668.69305
-offset_top = 146.0
-offset_right = -454.69305
-offset_bottom = 187.6
-theme_override_font_sizes/font_size = 28
+offset_left = -787.4123
+offset_top = 128.99225
+offset_right = -603.4123
+offset_bottom = 167.99225
+theme_override_font_sizes/font_size = 24
 text = "Carta Lunar 50g"
 
 [node name="comprarLuna" type="Button" parent="vida" unique_id=832953891]
-offset_left = -617.02136
-offset_top = 206.0
-offset_right = -505.50372
-offset_bottom = 260.08002
+offset_left = -739.69037
+offset_top = 169.30232
+offset_right = -628.1727
+offset_bottom = 223.38234
 theme_override_font_sizes/font_size = 20
 text = "Comprar"
 
 [node name="ColorRect2" type="PanelContainer" parent="vida" unique_id=1377136717]
 custom_minimum_size = Vector2(70, 0)
-offset_left = -680.8511
-offset_top = -161.99997
-offset_right = -445.5194
-offset_bottom = 141.67996
+offset_left = -777.1862
+offset_top = -153.17831
+offset_right = -579.481
+offset_bottom = 124.96121
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
@@ -126,10 +96,10 @@ scroll_active = false
 
 [node name="ColorRect" type="PanelContainer" parent="vida" unique_id=502598602]
 custom_minimum_size = Vector2(150, 0)
-offset_left = -756.839
-offset_top = 299.99994
-offset_right = 38.953613
-offset_bottom = 468.47998
+offset_left = -869.2214
+offset_top = 274.10852
+offset_right = 34.885925
+offset_bottom = 464.69766
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
@@ -147,10 +117,10 @@ fit_content = true
 scroll_active = false
 
 [node name="salir" type="Button" parent="vida" unique_id=1867527717]
-offset_left = 60.790253
-offset_top = 342.0
-offset_right = 140.79025
-offset_bottom = 397.0
+offset_left = 64.76555
+offset_top = 366.82172
+offset_right = 184.07047
+offset_bottom = 423.25583
 theme_override_font_sizes/font_size = 34
 text = "Salir"
 

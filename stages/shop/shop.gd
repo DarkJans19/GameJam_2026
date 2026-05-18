@@ -68,7 +68,7 @@ func _inicializar_tienda() -> void:
 		card_data_ofertada = load(ruta_carta_ofertada)
 		if card_data_ofertada and sprite_luna:
 			sprite_luna.texture = card_data_ofertada.image
-			sprite_luna.scale = Vector2(2.5, 2.5)
+			sprite_luna.scale = Vector2(0.95, 0.95)
 	else:
 		if btn_luna: btn_luna.disabled = true
 		if label_luna: label_luna.text = "Agotado"
@@ -136,16 +136,16 @@ func _show_card_description() -> void:
 func _mostrar_estado_actual() -> void:
 	if descripcion_general:
 		descripcion_general.clear()
-		var estado_texto = "[center][b]TIENDA ESTELAR[/b]\n"
+		var estado_texto = "[center][b]Tienda de Alirio[/b]\n"
 		estado_texto += "Oro: [color=yellow]" + str(game_manager.oro) + "[/color] | "
 		estado_texto += "HP: [color=green]" + str(game_manager.vida_actual_jugador) + "/" + str(game_manager.vida_max_jugador) + "[/color]\n\n"
-		estado_texto += "\"Inspecciona la mercancía pasando el cursor.\"[/center]"
+		estado_texto += "\"Bienvenido viajero, inspecciona la mercancia pasando el cursor.\"[/center]"
 		descripcion_general.append_text(estado_texto)
 
 func _mostrar_feedback(texto: String) -> void:
 	if descripcion_general:
 		descripcion_general.clear()
-		var estado_texto = "[center][b]TIENDA ESTELAR[/b]\n"
+		var estado_texto = "[center][b]Tienda de Alirio[/b]\n"
 		estado_texto += "Oro: [color=yellow]" + str(game_manager.oro) + "[/color] | "
 		estado_texto += "HP: [color=green]" + str(game_manager.vida_actual_jugador) + "/" + str(game_manager.vida_max_jugador) + "[/color]\n\n"
 		estado_texto += texto + "[/center]"

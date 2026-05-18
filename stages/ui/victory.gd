@@ -10,11 +10,13 @@ func _ready() -> void:
 
 func _actualizar_texto_recompensa() -> void:
 	if label_oro:
-		# Mostramos el oro actual que posee el jugador reflejado en el GameManager global
 		label_oro.text = "Oro acumulado actual: " + str(game_manager.oro) + "g"
 
-func _on_continuar_pressed() -> void:
+
+func _on_button_pressed() -> void:
 	print("[VictoryScreen] El jugador continúa su camino hacia el mapa.")
-	# Despausamos el árbol en caso de que el CombatManager lo haya congelado
 	get_tree().paused = false
+	hide()
+	await get_tree().process_frame
+	game_manager.reset_progress()
 	get_tree().change_scene_to_file("res://stages/map/map.tscn")

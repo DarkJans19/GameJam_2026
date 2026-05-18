@@ -57,10 +57,11 @@ offset_bottom = 248.0
 
 [node name="ColorRect" type="ColorRect" parent="cardsContainer" unique_id=1339930607]
 layout_mode = 2
-color = Color(0, 0, 0, 0.48235294)
+color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
 [node name="GridContainer" type="GridContainer" parent="cardsContainer" unique_id=535151001]
+custom_minimum_size = Vector2(390, 200)
 layout_mode = 2
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
@@ -72,8 +73,7 @@ size_flags_vertical = 8
 text = "Volver"
 
 [node name="ColorRect2" type="PanelContainer" parent="cardsContainer" unique_id=1732652680]
-visible = false
-custom_minimum_size = Vector2(70, 0)
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
@@ -83,15 +83,15 @@ mouse_filter = 2
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 8
-theme_override_font_sizes/bold_font_size = 8
-theme_override_font_sizes/bold_italics_font_size = 8
-theme_override_font_sizes/italics_font_size = 8
-theme_override_font_sizes/mono_font_size = 8
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
+theme_override_font_sizes/bold_italics_font_size = 12
+theme_override_font_sizes/italics_font_size = 12
+theme_override_font_sizes/mono_font_size = 12
 fit_content = true
 scroll_active = false
 
 [connection signal="pressed" from="resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="menu" to="." method="_on_menu_pressed"]
 [connection signal="pressed" from="verCartas" to="." method="_on_ver_cartas_pressed"]
-[connection signal="pressed" from="cardsContainer/volver" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="cardsContainer/volver" to="." method="_on_volver_pressed"]
