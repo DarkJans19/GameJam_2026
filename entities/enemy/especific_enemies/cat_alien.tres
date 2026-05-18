@@ -1,9 +1,20 @@
-[gd_resource type="Resource" script_class="enemyData" format=3 uid="uid://cbrryjbn2c4ou"]
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://cbrryjbn2c4ou"]
 
-[ext_resource type="Script" uid="uid://b3q4jk3aickui" path="res://entities/enemy/enemyData.gd" id="1_8vvpt"]
+[ext_resource type="Script" uid="uid://b3q4jk3aickui" path="res://entities/enemy/EnemyData.gd" id="1_8vvpt"]
 [ext_resource type="Texture2D" uid="uid://b86utgti1oo4e" path="res://assets/Enemies/GatoAlien.png" id="2_0t1mu"]
 
 [resource]
 script = ExtResource("1_8vvpt")
+max_health = 20
 sprite = ExtResource("2_0t1mu")
+moon_phase_turns = {
+0: ["SHIELD", "SHIELD", "SHIELD"],
+1: ["ATTACK"],
+2: ["ATTACK", "ATTACK"],
+3: ["ATTACK", "ATTACK", "ATTACK"],
+4: ["PASS"],
+5: ["SHIELD", "SHIELD"],
+6: ["ATTACK"],
+7: ["PASS"]
+}
 metadata/_custom_type_script = "uid://b3q4jk3aickui"

@@ -81,17 +81,19 @@ const DEFEAT_SCREEN_SCENE = preload("res://stages/ui/lose.tscn")
 
 var early_formations : Array = [
 	{"weight": 50, "enemies": [BATLASER]},
-	{"weight": 35, "enemies": [BATLASER, BEE]},
-	{"weight": 15, "enemies": [BEE, BEE, BATLASER]}
+	{"weight": 40, "enemies": [BEE]},
+	{"weight": 10, "enemies": [BEE, BATLASER]}
 ]
 var mid_formations : Array = [
-	{"weight": 50, "enemies": [CAT_ALIEN, BEE]},
-	{"weight": 50, "enemies": [BEE, BATLASER]}
+	{"weight": 50, "enemies": [CAT_ALIEN]},
+	{"weight": 50, "enemies": [BEE, BEE, BEE]}
 ]
-var late_formations : Array = []
-var boss_formations : Array = [
-	{"weight": 90, "enemies": [CARISTAN]},
+var late_formations : Array = [
+	{"weight": 90, "enemies": [CAT_ALIEN, BATLASER, BEE]},
 	{"weight": 10, "enemies": [HEZEQUIAH]}
+]
+var boss_formations : Array = [
+	{"weight": 100, "enemies": [CARISTAN]}
 ]
 
 func _ready() -> void:

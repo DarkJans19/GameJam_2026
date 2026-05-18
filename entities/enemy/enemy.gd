@@ -206,11 +206,9 @@ func execute_action(action_name : String) -> void:
 			await action_heavy_attack()
 		"HEAL":
 			await action_heal()
-		"FULL HEAL":
-			await action_full_heal()
 		"DEFEND":
 			await action_defend()
-		"ADVANCE MOON":
+		"SKIP ONE PHASE":
 			await action_advance_moon()
 		"PASS":
 			await action_pass()
@@ -296,15 +294,19 @@ func action_defend() -> void:
 	play_idle()
 	is_busy = false
 
-# Revisar esta funcion ya que combat ya tiene esta logica
 func action_advance_moon() -> void:
 	is_busy = true
-	current_lunar_phase += 1
+	var combat_manager = get_tree().get_first_node_in_group("CombatManager")
+	if combat_manager:
+		combat_manager.lunar_phase += 1
+		if combat_manager.lunar_phase > CombatManager.LunarPhase.WANING_CRESCENT:
+			combat_manager.lunar_phase = CombatManager.LunarPhase.NEW_MOON
 
-	if current_lunar_phase > CombatManager.LunarPhase.WANING_CRESCENT:
-		current_lunar_phase = CombatManager.LunarPhase.NEW_MOON
-
-	print(enemy_data.enemy_name + " adelanta la fase lunar a: " + str(current_lunar_phase))
+		print(
+			enemy_data.enemy_name +
+			" adelanta la fase lunar a: " +
+			str(combat_manager.lunar_phase)
+		)
 	play_attack()
 	await animation_player.animation_finished
 	play_idle()

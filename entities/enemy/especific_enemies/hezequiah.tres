@@ -1,9 +1,21 @@
-[gd_resource type="Resource" script_class="enemyData" format=3 uid="uid://cc3xah2tnlmcu"]
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://cc3xah2tnlmcu"]
 
-[ext_resource type="Script" uid="uid://b3q4jk3aickui" path="res://entities/enemy/enemyData.gd" id="1_8cmv6"]
+[ext_resource type="Script" uid="uid://b3q4jk3aickui" path="res://entities/enemy/EnemyData.gd" id="1_8cmv6"]
 [ext_resource type="Texture2D" uid="uid://b8ivc06y3lk4x" path="res://assets/Enemies/Hezequiah.png" id="2_ku1ia"]
 
 [resource]
 script = ExtResource("1_8cmv6")
+max_health = 200
+heal_amount = 40
 sprite = ExtResource("2_ku1ia")
+moon_phase_turns = {
+0: ["HEAL"],
+1: ["HEAL", "HEAL"],
+2: ["PASS"],
+3: ["ATTACK"],
+4: ["ATTACK", "ATTACK", "ATTACK", "ATTACK"],
+5: ["PASS"],
+6: ["HEAL", "HEAL"],
+7: ["PASS"]
+}
 metadata/_custom_type_script = "uid://b3q4jk3aickui"
