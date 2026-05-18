@@ -106,7 +106,10 @@ func show_description(card):
 		var texto_completo = data.card_name.to_upper() + "\n"
 		texto_completo += "Costo: " + str(data.sacrifice_cost) + "\n"
 		texto_completo += "Fase: " + moon_phase_str + "\n"
-		texto_completo += data.description
+		
+		# --- MODIFICACIÓN AQUÍ ---
+		# Invocamos al formateador dinámico que creamos en CardData
+		texto_completo += data.get_full_description()
 		
 		descripcion_general.add_text(texto_completo)
 		contenedor_ui.show()
@@ -166,14 +169,32 @@ func play_card(card: Node2D, clicked_target: Node = null) -> bool:
 	card.queue_free()
 	return true
 
+	for effect in card.card_data.effects:
+		if effect and effect.has_method("apply_effect"):
+			effect.apply_effect(clicked_target, get_tree())
+		else:
+			push_error("El efecto no es válido o no tiene implementado el método 'effect'")
+			return false
+	
+	player_hand_reference.remove_cards_of_hand(card)
+	card.queue_free()
+	return true
+
 func sacrifice_card() -> void:
 	for card in selected_cards:
 		if card.card_data.type != CardData.CardType.NORMAL:
 			print("Una de las cartas no es normal, no se puede sacrificar.")
 			return
 	
+	var combat = get_tree().get_first_node_in_group("CombatManager")
+	
 	print("Sacrificando cartas...")
 	for card in selected_cards:
+		if combat:
+			# Aquí defines cuántos puntos otorga cada carta normal (por ejemplo, 1 punto)
+			combat.puntos_sacrificio += 1
+			print("Carta sacrificada. Puntos totales disponibles: ", combat.puntos_sacrificio)
+			
 		player_hand_reference.remove_cards_of_hand(card)
 		card.queue_free()
 	selected_cards.clear()

@@ -319,6 +319,7 @@ func _on_sacrifice_button_down() -> void:
 	var cm = get_tree().get_first_node_in_group("CardManager")
 	if not cm or cm.selected_cards.is_empty(): return
 	cm.sacrifice_card()
+	print(puntos_sacrificio)
 
 func set_botones_bloqueados(bloquear: bool) -> void:
 	if is_instance_valid(attack_button) and attack_button is Button:

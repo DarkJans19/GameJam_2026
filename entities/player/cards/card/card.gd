@@ -12,6 +12,7 @@ signal hide_description
 @onready var timer = $Timer
 @onready var collision_shape: CollisionShape2D = $Area2D/CollisionShape2D
 
+
 func _ready() -> void:
 	timer.wait_time = 0.4
 	timer.one_shot = true

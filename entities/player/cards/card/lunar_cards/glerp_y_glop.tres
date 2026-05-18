@@ -9,7 +9,6 @@
 [sub_resource type="Resource" id="Resource_lbjel"]
 script = ExtResource("2_ro2u8")
 damage_quantity = 3
-effect_name = "Inflingir daño"
 target_type = 1
 requires_specific_phase = true
 metadata/_custom_type_script = "uid://dbc7m5yy3bseg"
@@ -17,7 +16,6 @@ metadata/_custom_type_script = "uid://dbc7m5yy3bseg"
 [sub_resource type="Resource" id="Resource_pp6gl"]
 script = ExtResource("3_u1tip")
 amount_of_coins = 4
-effect_name = "Robar monedas"
 target_type = 6
 requires_specific_phase = true
 metadata/_custom_type_script = "uid://dq7ir856ygn6n"
@@ -25,7 +23,6 @@ metadata/_custom_type_script = "uid://dq7ir856ygn6n"
 [sub_resource type="Resource" id="Resource_ro2u8"]
 script = ExtResource("2_ro2u8")
 damage_quantity = 4
-effect_name = "Inflingir daño"
 target_type = 1
 required_lunar_phase = 4
 requires_specific_phase = true
@@ -34,7 +31,6 @@ metadata/_custom_type_script = "uid://dbc7m5yy3bseg"
 [sub_resource type="Resource" id="Resource_u1tip"]
 script = ExtResource("3_u1tip")
 amount_of_coins = 3
-effect_name = "Robar monedas"
 target_type = 6
 required_lunar_phase = 4
 requires_specific_phase = true

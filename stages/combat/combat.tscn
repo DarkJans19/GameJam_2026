@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://4y02hes2oncj" path="res://stages/ui/pause.tscn" id="15_7oxte"]
 [ext_resource type="PackedScene" uid="uid://cx8d0ndpjfa07" path="res://stages/ui/lose.tscn" id="16_t7ues"]
 [ext_resource type="PackedScene" uid="uid://coiml5msg4gtj" path="res://stages/ui/victory.tscn" id="17_c7lf3"]
+[ext_resource type="AudioStream" uid="uid://cqkanf00cmyqi" path="res://assets/Audios/Battle Theme.mp3" id="18_t7ues"]
 
 [node name="Combat" type="Node2D" unique_id=1594128356]
 script = ExtResource("1_cfiq8")
@@ -172,6 +173,12 @@ offset_top = -139.0
 offset_right = -150.0
 offset_bottom = -139.0
 scale = Vector2(0.8, 0.8)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=871918831]
+stream = ExtResource("18_t7ues")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
 
 [connection signal="button_down" from="Attack" to="." method="_on_attack_button_down"]
 [connection signal="button_down" from="Sacrifice" to="." method="_on_sacrifice_button_down"]
