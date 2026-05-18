@@ -75,6 +75,10 @@ var skip_next_enemy_turn : bool = false
 @onready var victory_screen : VictoryScreen = $Victory
 @onready var defeat_screen : LoseScreen = $Lose
 
+# Audio
+@onready var button_effect = $button_effect
+@onready var enemy_select_effect = $enemy_select
+
 var enemy_scene : PackedScene = preload("res://entities/enemy/enemy.tscn")
 const PAUSE_MENU_SCENE = preload("res://stages/ui/pause.tscn")
 const VICTORY_SCREEN_SCENE = preload("res://stages/ui/victory.tscn")
@@ -260,7 +264,11 @@ func mostrar_seleccion() -> void:
 	emit_signal("jugador_selecciona_enemigo")
 
 func establecer_personaje(personaje) -> void: personaje_seleccionado = personaje
-func establecer_objetivo(personaje) -> void: personaje_objetivo = personaje
+
+func establecer_objetivo(personaje) -> void: 
+	personaje_objetivo = personaje
+	enemy_select_effect.play()
+
 func iniciar_ataque() -> void:
 	emit_signal("ataque_iniciado")
 	personaje_seleccionado.atacar_personaje(personaje_objetivo)
@@ -277,10 +285,12 @@ func _actualizar_sprite_luna() -> void:
 		moon_phases_sprite.frame = MOON_PHASE_FRAMES[lunar_phase]
 
 func _on_finish_turn_button_down() -> void:
+	button_effect.play()
 	if actual_turn == TurnState.PLAYER_TURN:
 		start_enemy_turn()
 
 func _on_attack_button_down() -> void:
+	button_effect.play()
 	if actual_turn != TurnState.PLAYER_TURN: return
 		
 	var cm = get_tree().get_first_node_in_group("CardManager")
@@ -315,6 +325,7 @@ func _on_attack_button_down() -> void:
 		verificar_estado_batalla()
 	
 func _on_sacrifice_button_down() -> void:
+	button_effect.play()
 	if actual_turn != TurnState.PLAYER_TURN: return
 	var cm = get_tree().get_first_node_in_group("CardManager")
 	if not cm or cm.selected_cards.is_empty(): return
@@ -337,6 +348,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		if pause_menu:
 			pause_menu.toggle_pause()
 
-
 func _on_pause_pressed() -> void:
+	button_effect.play()
 	pause_menu.toggle_pause()

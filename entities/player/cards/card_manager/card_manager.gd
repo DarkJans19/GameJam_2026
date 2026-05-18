@@ -11,6 +11,11 @@ var player_hand_reference
 var active_hover_card = null
 var contenedor_ui: Control
 
+# Audio
+@onready var make_damage_audio = $"hacer_daño"
+@onready var heal_audio = $curar
+@onready var defense_audio = $defensa
+
 func _ready() -> void:
 	add_to_group("CardManager")
 	player_hand_reference = get_node("../PlayerHand")
@@ -148,18 +153,22 @@ func play_card(card: Node2D, clicked_target: Node = null) -> bool:
 		match data.card_type_action:
 			CardData.CardTypeAction.DAMAGE:
 				if clicked_target and clicked_target.is_in_group("enemies"):
+					make_damage_audio.play()
 					clicked_target.take_damage(data.effect_value)
 			CardData.CardTypeAction.HEAL:
 				var player = get_tree().get_first_node_in_group("game_manager")
 				if player:
+					heal_audio.play()
 					player.curar_jugador(data.effect_value)
 			CardData.CardTypeAction.SHIELD:
 				var player = get_tree().get_first_node_in_group("health")
 				if player:
+					defense_audio.play()
 					player.ganar_armadura(data.effect_value)
 
 	for effect in card.card_data.effects:
 		if effect and effect.has_method("apply_effect"):
+			
 			effect.apply_effect(clicked_target, get_tree())
 		else:
 			push_error("El efecto no es válido o no tiene implementado el método 'effect'")
@@ -190,6 +199,7 @@ func sacrifice_card() -> void:
 	
 	print("Sacrificando cartas...")
 	for card in selected_cards:
+		$sacrifice_cards.play()
 		if combat:
 			# Aquí defines cuántos puntos otorga cada carta normal (por ejemplo, 1 punto)
 			combat.puntos_sacrificio += 1

@@ -1,6 +1,21 @@
 [gd_scene format=3 uid="uid://q6d27imrgt4t"]
 
 [ext_resource type="Script" uid="uid://cq3p8ynenpav8" path="res://entities/player/cards/card_manager/card_manager.gd" id="1_mynes"]
+[ext_resource type="AudioStream" uid="uid://ov4kt41lrpq" path="res://assets/Audios/select_card.mp3" id="2_f88k1"]
+[ext_resource type="AudioStream" uid="uid://1mchy6ku00kt" path="res://assets/Audios/make_damage.mp3" id="3_7s7xp"]
+[ext_resource type="AudioStream" uid="uid://bya02ywa77xhm" path="res://assets/Audios/sacrifice_cards.mp3" id="4_xl346"]
 
 [node name="CardManager" type="Node2D" unique_id=1051861820]
 script = ExtResource("1_mynes")
+
+[node name="hacer_daño" type="AudioStreamPlayer2D" parent="." unique_id=1754370114]
+stream = ExtResource("3_7s7xp")
+
+[node name="curar" type="AudioStreamPlayer2D" parent="." unique_id=97048161]
+stream = ExtResource("2_f88k1")
+
+[node name="defensa" type="AudioStreamPlayer2D" parent="." unique_id=454323499]
+stream = ExtResource("3_7s7xp")
+
+[node name="sacrifice_cards" type="AudioStreamPlayer2D" parent="." unique_id=1292728677]
+stream = ExtResource("4_xl346")

@@ -17,7 +17,6 @@ enum TargetType {
 @export var target_type: TargetType
 @export var random_targets_count: int = 1
 
-# --- NUEVAS VARIABLES PARA AUTOMATIZAR EL TEXTO DEFAULT ---
 @export var effect_value: int = 0
 @export var card_type_tag: String = ""
 

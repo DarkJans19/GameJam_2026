@@ -18,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://cx8d0ndpjfa07" path="res://stages/ui/lose.tscn" id="16_t7ues"]
 [ext_resource type="PackedScene" uid="uid://coiml5msg4gtj" path="res://stages/ui/victory.tscn" id="17_c7lf3"]
 [ext_resource type="AudioStream" uid="uid://cqkanf00cmyqi" path="res://assets/Audios/Battle Theme.mp3" id="18_t7ues"]
+[ext_resource type="AudioStream" uid="uid://e2snkhaco4jl" path="res://assets/Audios/button_effect.mp3" id="19_c7lf3"]
+[ext_resource type="AudioStream" uid="uid://co70x1hcbnhl" path="res://assets/Audios/enemy_select.mp3" id="20_etoid"]
 
 [node name="Combat" type="Node2D" unique_id=1594128356]
 script = ExtResource("1_cfiq8")
@@ -150,6 +152,7 @@ icon = ExtResource("14_crids")
 flat = true
 
 [node name="Pause" parent="." unique_id=1715612470 instance=ExtResource("15_7oxte")]
+visible = false
 z_index = 200
 offset_left = -149.0
 offset_top = -121.0
@@ -175,11 +178,19 @@ offset_right = -150.0
 offset_bottom = -139.0
 scale = Vector2(0.8, 0.8)
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=871918831]
+[node name="music" type="AudioStreamPlayer2D" parent="." unique_id=1103142237]
 stream = ExtResource("18_t7ues")
 autoplay = true
 bus = &"Music"
 parameters/looping = true
+
+[node name="button_effect" type="AudioStreamPlayer2D" parent="." unique_id=1992856609]
+stream = ExtResource("19_c7lf3")
+bus = &"SFX"
+
+[node name="enemy_select" type="AudioStreamPlayer2D" parent="." unique_id=1530357842]
+stream = ExtResource("20_etoid")
+bus = &"SFX"
 
 [connection signal="button_down" from="Attack" to="." method="_on_attack_button_down"]
 [connection signal="button_down" from="Sacrifice" to="." method="_on_sacrifice_button_down"]
