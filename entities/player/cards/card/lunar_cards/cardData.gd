@@ -14,6 +14,10 @@ enum CardType {COMODIN, NORMAL, LUNAR}
 @export var effect_value: int
 @export var type: CardType
 
+
+@export var required_lunar_phase: CombatManager.LunarPhase = CombatManager.LunarPhase.NEW_MOON
+@export var requires_specific_phase: bool = false 
+
 @export var effects: Array[Effect]
 
 func effect(final_target: Node) -> void:

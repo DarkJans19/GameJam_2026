@@ -1,13 +1,23 @@
 [gd_resource type="Resource" script_class="CardData" format=3 uid="uid://bptrn5akgew4n"]
 
 [ext_resource type="Script" uid="uid://d1bnksp4bjli5" path="res://entities/player/cards/card/effects/Effect.gd" id="1_cuwq6"]
+[ext_resource type="Script" uid="uid://dcd2te2eyjk85" path="res://entities/player/cards/card/effects/lunar_effects/CurationEffect.gd" id="2_0j0ti"]
 [ext_resource type="Texture2D" uid="uid://dlf3rs8f5qi6d" path="res://assets/Cartas/Uno vida.png" id="2_cuwq6"]
 [ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/lunar_cards/cardData.gd" id="3_s535g"]
+
+[sub_resource type="Resource" id="Resource_s535g"]
+script = ExtResource("2_0j0ti")
+heal_quantity = 1
+effect_name = "Curation"
+target_type = 4
+metadata/_custom_type_script = "uid://dcd2te2eyjk85"
 
 [resource]
 script = ExtResource("3_s535g")
 card_name = "vida"
 image = ExtResource("2_cuwq6")
 description = "Esta carta curara"
+card_type_action = 1
 effect_value = 1
 type = 1
+effects = Array[ExtResource("1_cuwq6")]([SubResource("Resource_s535g")])

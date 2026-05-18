@@ -117,14 +117,22 @@ func hide_description(card):
 
 
 func play_card(card: Node2D, clicked_target: Node = null) -> void:
-	print("carta jugada")
 	if not card or not card.card_data:
 		push_error("La carta enviada no contiene información (CardData)")
 		return
 	
+	# Validamos si la carta se puede jugar en esta fase lunar
+	var combat = get_tree().get_first_node_in_group("CombatManager")
+	
+	"""
+	if combat and card.card_data.requires_specific_phase:
+		if card.card_data.required_lunar_phase != combat.lunar_phase:
+			print("No puedes jugar esta carta en la fase actual.")
+			return
+	"""
+	
 	if card.card_data.effects.is_empty():
 		print("La carta ", card.card_data.card_name, " no posee efectos activos.")
-		# Limpiamos de la mano ANTES de liberar
 		player_hand_reference.remove_cards_of_hand(card)
 		card.queue_free()
 		return
@@ -134,7 +142,7 @@ func play_card(card: Node2D, clicked_target: Node = null) -> void:
 			effect.apply_effect(clicked_target, get_tree())
 		else:
 			push_error("El efecto no es válido o no tiene implementado el método 'effect'")
-			
+	print("carta jugada")
 	player_hand_reference.remove_cards_of_hand(card)
 	card.queue_free()
 

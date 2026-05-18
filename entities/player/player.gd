@@ -6,6 +6,8 @@ class_name Player
 
 var health : int
 var shield: int
+var coins: int
+var sacrifice_points: int
 var is_busy : bool = false
 
 @onready var health_bar : ProgressBar = $HealthBar
@@ -13,7 +15,7 @@ var is_busy : bool = false
 @onready var animation_state = animation_tree["parameters/playback"]
 
 func _ready():
-
+	add_to_group("player")
 	health = max_health
 
 	health_bar.max_value = max_health
@@ -40,6 +42,12 @@ func take_damage(amount : int):
 	health -= damage_final
 	if health <= 0:
 		die()
+
+func get_coins(amount: int):
+	coins += amount
+
+func get_sacrifice_points(sacrifice_points_to_get: int):
+	sacrifice_points += sacrifice_points
 
 func heal(amount : int):
 

@@ -67,7 +67,12 @@ func _ready() -> void:
 	enemigos = get_tree().get_nodes_in_group("enemies")
 	cantidad_inicial_enemigos = enemigos.size()
 	jugadores = get_tree().get_nodes_in_group("player")
-	
+	# Pruebas
+	"""
+	var mazo = get_tree().get_first_node_in_group("deck")
+	if mazo and mazo.has_method("preparate_initial_hand"):
+		mazo.preparate_initial_hand()
+	"""
 	start_battle()
 
 func get_stage_formations() -> Array:
@@ -190,23 +195,6 @@ func _on_finish_turn_button_down() -> void:
 	if actual_turn == TurnState.PLAYER_TURN:
 		start_enemy_turn()
 
-"""
-func _on_attack_button_down() -> void:
-	if actual_turn != TurnState.PLAYER_TURN: return
-	var cm = get_tree().get_first_node_in_group("CardManager")
-	if not cm or cm.selected_cards.is_empty(): return
-	var objetivo = get_current_target()
-	if not objetivo: return
-	if cm.selected_cards.size() > 1: return
-	
-	var carta_a_jugar = cm.selected_cards[0]
-	cm.play_card(carta_a_jugar, objetivo)
-	cm.selected_cards.clear()
-	
-	await get_tree().process_frame
-	verificar_estado_batalla()
-"""
-
 func _on_attack_button_down() -> void:
 	if actual_turn != TurnState.PLAYER_TURN:
 		print("No puedes jugar cartas, es el turno del enemigo.")
@@ -224,22 +212,16 @@ func _on_attack_button_down() -> void:
 	var carta_a_jugar = cm.selected_cards[0]
 	var objetivo = get_current_target()
 	
-	# =================================================================
-	# VALIDACIÓN INTELIGENTE DE OBJETIVO
-	# =================================================================
 	var requiere_enemigo = false
 	
-	# 1. Comprobar si es una carta Normal de daño directo
 	if carta_a_jugar.card_data.type == CardData.CardType.NORMAL and carta_a_jugar.card_data.card_type_action == CardData.CardTypeAction.DAMAGE:
 		requiere_enemigo = true
 	
-	# 2. Comprobar si alguno de sus efectos especializados apunta a un enemigo
 	for effect in carta_a_jugar.card_data.effects:
 		if effect and effect.target_type == Effect.TargetType.SINGLE_ENEMY:
 			requiere_enemigo = true
 			break
 			
-	# Si la carta exige un enemigo pero el jugador no hizo clic en ninguno, frenamos la ejecución
 	if requiere_enemigo and not objetivo:
 		print("Selecciona un enemigo objetivo antes de presionar Jugar.")
 		return
@@ -249,7 +231,6 @@ func _on_attack_button_down() -> void:
 	
 	cm.play_card(carta_a_jugar, objetivo)
 	cm.selected_cards.clear()
-	
 	
 func _on_sacrifice_button_down() -> void:
 	if actual_turn != TurnState.PLAYER_TURN: return

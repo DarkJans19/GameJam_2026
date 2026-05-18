@@ -43,7 +43,7 @@ func apply_effect(clicked_target: Node, tree: SceneTree) -> void:
 				effect(player)
 		
 		TargetType.DECK:
-			var deck = tree.get_first_node_in_group("Deck")
+			var deck = tree.get_first_node_in_group("deck")
 			if deck:
 				effect(deck)
 
