@@ -14,14 +14,12 @@ enum LunarPhase {
 	WANING_CRESCENT
 }
 
-static var current_lunar_phase : LunarPhase = (
-	LunarPhase.NEW_MOON
-)
+var current_lunar_phase : LunarPhase = LunarPhase.NEW_MOON
 
-@export var enemy_data : enemyData
+@export var enemy_data : EnemyData
 
 var health : int = 0
-var armor : int = 0  # Escudo/armadura actual del enemigo
+var armor : int = 0 
 
 var is_my_turn : bool = false
 var is_busy : bool = false
@@ -64,7 +62,7 @@ func _ready() -> void:
 	if selection_cursor:
 		selection_cursor.hide()
 	if enemy_tooltip:
-		enemy_tooltip.hide() # Nos aseguramos de que empiece oculto
+		enemy_tooltip.hide()
 
 func setup() -> void:
 	if enemy_data == null:
@@ -193,9 +191,11 @@ func start_turn() -> void:
 	await execute_turn()
 	end_turn()
 
+
 func end_turn() -> void:
 	is_my_turn = false
 	print(enemy_data.enemy_name + " termina turno")
+
 
 func execute_turn() -> void:
 	var actions : Array = (

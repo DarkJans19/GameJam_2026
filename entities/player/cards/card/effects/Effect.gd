@@ -1,20 +1,51 @@
 extends Resource
 class_name Effect
 
-enum LunarPhases { QUARTER_MOON, HALF_MOON, THREE_QUARTER_MOON, FULL_MOON, NO_MOON, NO_LUNAR_PHASE}
+enum TargetType {
+	NONE,
+	SINGLE_ENEMY,
+	ALL_ENEMIES,
+	RANDOM_ENEMIES,
+	PLAYER,
+	DECK
+}
 
 @export var effect_name: String
 @export_multiline var effect_description: String
-@export var lunar_phase: LunarPhases
-
-enum TargetType {
-	NONE,               # No necesita objetivo (ej. Ganar monedas)
-	SINGLE_ENEMY,       # El enemigo que el jugador seleccionó
-	ALL_ENEMIES,        # Todos los enemigos en pantalla
-	PLAYER,             # El jugador (ej. Curar, dar escudo)
-	DECK                # El gestor de cartas (ej. Robar cartas)
-}
-
 @export var target_type: TargetType
-func effect(objetivo: Node) -> void:
+
+@export var random_targets_count: int = 1
+
+func apply_effect(clicked_target: Node, tree: SceneTree) -> void:
+	match target_type:
+		
+		TargetType.SINGLE_ENEMY:
+			if clicked_target and clicked_target.is_in_group("Enemies"):
+				effect(clicked_target)
+				
+		TargetType.ALL_ENEMIES:
+			var all_enemies = tree.get_nodes_in_group("Enemies")
+			for enemy in all_enemies:
+				effect(enemy)
+				
+		TargetType.RANDOM_ENEMIES:
+			var all_enemies = tree.get_nodes_in_group("Enemies")
+			all_enemies.shuffle() 
+			
+			var targets_to_hit = min(random_targets_count, all_enemies.size())
+			
+			for i in range(targets_to_hit):
+				effect(all_enemies[i])
+				
+		TargetType.PLAYER:
+			var player = tree.get_first_node_in_group("Player")
+			if player:
+				effect(player)
+		
+		TargetType.DECK:
+			var deck = tree.get_first_node_in_group("Deck")
+			if deck:
+				effect(deck)
+
+func effect(objective: Node) -> void:
 	pass

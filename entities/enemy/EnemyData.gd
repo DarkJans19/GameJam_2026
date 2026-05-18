@@ -1,5 +1,5 @@
 extends Resource
-class_name enemyData
+class_name EnemyData
 
 @export var enemy_name : String = "Enemy"
 

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://bptrn5akgew4n"]
+
+[ext_resource type="Script" uid="uid://d1bnksp4bjli5" path="res://entities/player/cards/card/effects/Effect.gd" id="1_cuwq6"]
+[ext_resource type="Texture2D" uid="uid://dlf3rs8f5qi6d" path="res://assets/Cartas/Uno vida.png" id="2_cuwq6"]
+[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/especific_cards/cardData.gd" id="3_s535g"]
+
+[resource]
+script = ExtResource("3_s535g")
+card_name = "vida"
+image = ExtResource("2_cuwq6")
+description = "Esta carta curara"
+effect_value = 1
+type = 1

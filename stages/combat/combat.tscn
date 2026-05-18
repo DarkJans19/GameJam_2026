@@ -4,9 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://x3jbl3bnl2c5" path="res://assets/Escenario/Background.png" id="1_nuwwi"]
 [ext_resource type="Texture2D" uid="uid://cxb2ewynql2xm" path="res://assets/Escenario/Foreground.png" id="2_c2hqt"]
 [ext_resource type="Texture2D" uid="uid://bbopromy71yp3" path="res://assets/Escenario/Midground.png" id="3_b28yy"]
-[ext_resource type="Script" uid="uid://7b8slrvn35gr" path="res://MaquinaStatus/state_machine.gd" id="4_558st"]
 [ext_resource type="Texture2D" uid="uid://iejk1x6x22be" path="res://assets/UI/UI Lunas Sheet.png" id="4_b28yy"]
-[ext_resource type="PackedScene" uid="uid://16ps72bj144" path="res://entities/main.tscn" id="6_3yhi6"]
+[ext_resource type="Texture2D" uid="uid://dv3ksljt1b8la" path="res://assets/UI/UI Ataque.png" id="8_h28fe"]
+[ext_resource type="Texture2D" uid="uid://iu36y3uavtar" path="res://assets/UI/UI Nosepaque.png" id="9_h28fe"]
+[ext_resource type="Texture2D" uid="uid://76wlby5jsa3g" path="res://assets/UI/UI Sacrificio.png" id="9_lfwqh"]
+[ext_resource type="PackedScene" uid="uid://bapdcwi3gl58p" path="res://entities/player/deck/Deck.tscn" id="10_lfwqh"]
+[ext_resource type="PackedScene" uid="uid://q6d27imrgt4t" path="res://entities/player/cards/card_manager/CardManager.tscn" id="11_3yitc"]
+[ext_resource type="PackedScene" uid="uid://3xjnj3dw2lqo" path="res://entities/player/cards/player_hand/PlayerHand.tscn" id="12_p3u4l"]
 
 [node name="Combat" type="Node2D" unique_id=1594128356]
 script = ExtResource("1_cfiq8")
@@ -21,9 +25,6 @@ texture = ExtResource("2_c2hqt")
 [node name="Midground" type="Sprite2D" parent="." unique_id=1050102443]
 z_index = 1
 texture = ExtResource("3_b28yy")
-
-[node name="StateMachine" type="Node" parent="Midground" unique_id=2017115348]
-script = ExtResource("4_558st")
 
 [node name="EnemySpawn1" type="Marker2D" parent="Midground" unique_id=1754860450]
 position = Vector2(0, 6)
@@ -47,5 +48,58 @@ z_index = 5
 position = Vector2(-1, -2)
 zoom = Vector2(6, 6)
 
-[node name="Main" parent="Camera2D" unique_id=1905538197 instance=ExtResource("6_3yhi6")]
-z_index = 6
+[node name="Attack" type="Button" parent="." unique_id=683817281]
+z_index = 7
+offset_left = 119.0
+offset_top = -3.0
+offset_right = 156.0
+offset_bottom = 30.0
+action_mode = 0
+icon = ExtResource("8_h28fe")
+flat = true
+
+[node name="Sacrifice" type="Button" parent="." unique_id=1469212393]
+z_index = 7
+offset_left = -161.0
+offset_top = -2.0
+offset_right = -124.0
+offset_bottom = 31.0
+action_mode = 0
+icon = ExtResource("9_lfwqh")
+flat = true
+
+[node name="FinishTurn" type="Button" parent="." unique_id=1856369644]
+z_index = 7
+offset_left = 87.0
+offset_top = -24.0
+offset_right = 156.0
+offset_bottom = 2.0
+action_mode = 0
+icon = ExtResource("9_h28fe")
+flat = true
+
+[node name="CardManager" parent="." unique_id=1051861820 instance=ExtResource("11_3yitc")]
+
+[node name="PlayerHand" parent="." unique_id=1070096955 instance=ExtResource("12_p3u4l")]
+
+[node name="Deck" parent="." unique_id=901379245 instance=ExtResource("10_lfwqh")]
+position = Vector2(0, 3)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=721112337]
+
+[node name="ColorRect" type="PanelContainer" parent="CanvasLayer" unique_id=213947833]
+custom_minimum_size = Vector2(150, 0)
+offset_right = 150.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="DescripcionGeneral" type="RichTextLabel" parent="CanvasLayer/ColorRect" unique_id=1428278025]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+scroll_active = false
+
+[connection signal="button_down" from="Attack" to="." method="_on_attack_button_down"]
+[connection signal="button_down" from="Sacrifice" to="." method="_on_sacrifice_button_down"]
+[connection signal="button_down" from="FinishTurn" to="." method="_on_finish_turn_button_down"]

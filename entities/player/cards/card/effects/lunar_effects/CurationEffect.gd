@@ -1,9 +1,9 @@
 extends Effect 
 class_name CurationEffect
 
-@export var curation_quantity: int
+@export var heal_quantity: int
 
-func effect(objetivo: Node):
-	if objetivo.has_method("curate"):
-		objetivo.curate(curation_quantity)
-		print("Se aplico", effect_name, "Con curacion: ", curation_quantity)
+func effect(objective: Node):
+	if objective.has_method("heal"):
+		objective.heal(heal_quantity)
+		print("Se aplico", effect_name, "Con curacion: ", heal_quantity)

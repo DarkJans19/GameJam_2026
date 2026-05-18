@@ -5,6 +5,7 @@ class_name Player
 @export var max_health : int = 100
 
 var health : int
+var shield: int
 var is_busy : bool = false
 
 @onready var health_bar : ProgressBar = $HealthBar
@@ -23,29 +24,20 @@ func _ready():
 	play_idle()
 
 func take_damage(amount : int):
-
 	if is_busy:
 		return
-
 	is_busy = true
-
-	health -= amount
-
-	if health < 0:
-		health = 0
-
-	update_health_bar()
-
-	play_hurt()
-
-	print(player_name + " recibe ", amount, " daño")
-
-	await get_tree().create_timer(1.0).timeout
-
-	play_idle()
-
-	is_busy = false
-
+	
+	var damage_final = amount
+	if shield > 0:
+		if shield >= amount:
+			shield -= amount
+			damage_final = 0
+		else:
+			damage_final = amount - shield
+			shield = 0
+	
+	health -= damage_final
 	if health <= 0:
 		die()
 

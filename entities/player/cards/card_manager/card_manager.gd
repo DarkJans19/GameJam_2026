@@ -12,9 +12,11 @@ var active_hover_card = null
 var contenedor_ui: Control
 
 func _ready() -> void:
+	add_to_group("CardManager")
 	player_hand_reference = get_node("../PlayerHand")
 	if descripcion_general:
 		contenedor_ui = descripcion_general.get_parent()
+
 
 func _process(delta: float) -> void:
 	if active_hover_card and contenedor_ui and is_instance_valid(active_hover_card):
@@ -90,6 +92,8 @@ func select_card(card):
 		high_light_selected_cards(card, false)
 	else:
 		selected_cards.append(card)
+		for cards in selected_cards:
+			print(selected_cards, cards.card_data.card_name)
 		high_light_selected_cards(card, true)
 
 func show_description(card):
@@ -110,3 +114,38 @@ func show_description(card):
 func hide_description(card):
 	if contenedor_ui:
 		contenedor_ui.hide()
+
+
+func play_card(card: Node2D, clicked_target: Node = null) -> void:
+	print("carta jugada")
+	if not card or not card.card_data:
+		push_error("La carta enviada no contiene información (CardData)")
+		return
+	
+	if card.card_data.effects.is_empty():
+		print("La carta ", card.card_data.card_name, " no posee efectos activos.")
+		# Limpiamos de la mano ANTES de liberar
+		player_hand_reference.remove_cards_of_hand(card)
+		card.queue_free()
+		return
+	
+	for effect in card.card_data.effects:
+		if effect and effect.has_method("effect"):
+			effect.effect(clicked_target, get_tree())
+		else:
+			push_error("El efecto no es válido o no tiene implementado el método 'effect'")
+			
+	player_hand_reference.remove_cards_of_hand(card)
+	card.queue_free()
+
+func sacrifice_card() -> void:
+	for card in selected_cards:
+		if card.card_data.type != CardData.CardType.NORMAL:
+			print("Una de las cartas no es normal, no se puede sacrificar.")
+			return
+	
+	print("Sacrificando cartas...")
+	for card in selected_cards:
+		player_hand_reference.remove_cards_of_hand(card)
+		card.queue_free()
+	selected_cards.clear()

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://b5j2qwcwlyjvq"]
+
+[ext_resource type="Script" uid="uid://d1bnksp4bjli5" path="res://entities/player/cards/card/effects/Effect.gd" id="1_84rtd"]
+[ext_resource type="Texture2D" uid="uid://dccsam6jgqxmn" path="res://assets/Cartas/Comodin/Escudo sin dinero.png" id="2_n17a1"]
+[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/especific_cards/cardData.gd" id="3_u1h7b"]
+
+[resource]
+script = ExtResource("3_u1h7b")
+card_name = "Escudo sin dinero"
+sacrifice_cost = 3
+image = ExtResource("2_n17a1")
+card_type_action = 2
+effect_value = 3
