@@ -3,7 +3,7 @@ class_name AttackEffect
 
 @export var damage_quantity: int
 
-func effect(objetivo: Node):
-	if objetivo.has_method("recibir_daño"):
-		objetivo.recibir_daño(damage_quantity)
-		print("Se aplico", effect_name, "Con daño", damage_quantity)
+func effect(final_target: Node):
+	if final_target.has_method("recibir_daño"):
+		final_target.recibir_daño(damage_quantity)
+		print("El objetivo", final_target, "Recibio", damage_quantity)

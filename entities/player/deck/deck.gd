@@ -21,9 +21,12 @@ const CARD_SCENE = preload("res://entities/player/cards/card/card.tscn")
 @export var normal_cards_resources: Array[String] = []
 @export var comodin_cards_resources: Array[String] = []
 
-const INITIAL_NORMAL_CARDS = 5
-const INITIAL_LUNAR_CARDS = 10
+const INITIAL_NORMAL_CARDS_IN_DECK = 10
+const INITIAL_LUNAR_CARDS_IN_DECK = 10
 const INITIAL_COMODIN_CARDS = 0
+
+const INITIAL_NORMAL_CARDS_IN_HAND = 5
+const INITIAL_LUNAR_CARDS_IN_HAND = 5
 
 var player_deck = []
 var game_deck = []
@@ -32,16 +35,19 @@ var lunar_cards: Array[String] = []
 var normal_cards: Array[String] = []
 var comodin_cards: Array[String] = []
 
-
 func _ready() -> void:
-	lunar_cards = initialize_deck(INITIAL_LUNAR_CARDS, lunar_cards_resources)
-	normal_cards = initialize_deck(INITIAL_NORMAL_CARDS, normal_cards_resources)
+	pass
+
+func preparate_initial_hand() -> void:
+	lunar_cards = initialize_deck(INITIAL_LUNAR_CARDS_IN_DECK, lunar_cards_resources)
+	normal_cards = initialize_deck(INITIAL_NORMAL_CARDS_IN_DECK, normal_cards_resources)
 	comodin_cards = initialize_deck(INITIAL_COMODIN_CARDS, comodin_cards_resources)
-
-	draw_card(INITIAL_NORMAL_CARDS, normal_cards)
-	draw_card(INITIAL_LUNAR_CARDS, lunar_cards)
+	
+	draw_card(INITIAL_NORMAL_CARDS_IN_HAND, normal_cards)
+	draw_card(INITIAL_LUNAR_CARDS_IN_HAND, lunar_cards)
 	draw_card(INITIAL_COMODIN_CARDS, comodin_cards)
-
+	print(lunar_cards)
+	print("[Deck] Mano inicial repartida con éxito.")
 
 func initialize_deck(amount_cards_of_deck: int, available_resources: Array) -> Array:
 	var new_deck: Array[String] = []
@@ -51,7 +57,6 @@ func initialize_deck(amount_cards_of_deck: int, available_resources: Array) -> A
 
 	for i in range(amount_cards_of_deck):
 		new_deck.append(available_resources.pick_random())
-
 	return new_deck
 
 

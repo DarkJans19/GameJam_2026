@@ -11,6 +11,28 @@ enum StageType {
 	BOSS
 }
 
+enum TurnState{
+	START_BATTLE,
+	FINISH_BATTLE,
+	PLAYER_TURN,
+	ENEMY_TURN
+}
+
+enum LunarPhase {
+	NEW_MOON,
+	WAXING_CRESCENT,
+	FIRST_QUARTER,
+	WAXING_GIBBOUS,
+	FULL_MOON,
+	WANING_GIBBOUS,
+	LAST_QUARTER,
+	WANING_CRESCENT
+}
+
+var lunar_phase = LunarPhase.NEW_MOON
+
+var actual_turn: TurnState = TurnState.START_BATTLE
+
 const BATLASER = preload("res://entities/enemy/especific_enemies/batlaser.tres")
 const BEE = preload("res://entities/enemy/especific_enemies/bee.tres")
 const CAT_ALIEN = preload("res://entities/enemy/especific_enemies/cat_alien.tres")
@@ -36,9 +58,15 @@ var current_selected_enemy : Enemy = null
 @onready var enemy_spawn_1 : Marker2D = $Midground/EnemySpawn1
 @onready var enemy_spawn_2 : Marker2D = $Midground/EnemySpawn2
 @onready var enemy_spawn_3 : Marker2D = $Midground/EnemySpawn3
-@onready var main_scene = $Camera2D/Main
+
+@onready var attack_button = $Attack
+@onready var sacrifice_button = $Sacrifice
 
 var enemy_scene : PackedScene = preload("res://entities/enemy/enemy.tscn")
+
+@onready var deck_node: Node2D = $Deck
+@onready var player_hand: Node2D = $PlayerHand
+@onready var card_manager: Node2D = $CardManager
 
 var early_formations : Array = [
 	{
@@ -62,7 +90,7 @@ var mid_formations : Array = [
 	},
 	{
 		"weight": 50,
-		"enemies": [CARISTAN, BEE, BATLASER]
+		"enemies": [BEE, BATLASER]
 	}
 ]
 
@@ -70,7 +98,11 @@ var late_formations : Array = []
 
 var boss_formations : Array = [
 	{
-		"weight": 100,
+		"weight": 90,
+		"enemies": [CARISTAN]
+	},
+	{
+		"weight": 10,
 		"enemies": [HEZEQUIAH]
 	}
 ]
@@ -81,7 +113,14 @@ func _ready() -> void:
 	await get_tree().process_frame
 	enemigos = get_tree().get_nodes_in_group("enemies")
 	jugadores = get_tree().get_nodes_in_group("player")
+	
+	# Cards connection
+	# Prepare initial hand
+	if deck_node and deck_node.has_method("preparate_initial_hand"):
+		deck_node.preparate_initial_hand()
+	start_battle()
 
+# GENERACION DE ENEMIGOS
 func get_stage_formations() -> Array:
 	match current_stage:
 		StageType.EARLY:
@@ -141,6 +180,43 @@ func spawn_enemy_formation() -> void:
 		if not enemy_instance.is_connected("selected", _on_enemy_selected):
 			enemy_instance.connect("selected", _on_enemy_selected)
 
+# LOGICA DE TURNOS
+func start_battle():
+	actual_turn = TurnState.START_BATTLE
+	# Aqui iria la reparticion de cartas
+	start_player_turn()
+
+
+func start_player_turn():
+	actual_turn = TurnState.PLAYER_TURN
+	
+	# Logica para sacar cartas
+	# ¿Como uno el jugador y las cartas aqui?
+	deck_node.draw_card_by_type(2, CardData.CardType.NORMAL)
+	deck_node.draw_card_by_type(2, CardData.CardType.COMODIN)
+	deck_node.draw_card_by_type(2, CardData.CardType.LUNAR)
+
+
+func start_enemy_turn():
+	actual_turn = TurnState.ENEMY_TURN
+	
+	# Logica para que los enemigos puedan atacar
+	actual_turn = TurnState.ENEMY_TURN
+	print("--- Enemies turn ---")
+	
+	# Refrescamos la lista de enemigos por si alguno murió
+	enemigos = get_tree().get_nodes_in_group("enemies")
+	
+	for enemy in enemigos:
+		if is_instance_valid(enemy) and enemy.health > 0:
+			await enemy.start_turn()
+			# enemy.current_lunar_phase = LunarPhase.next
+			await get_tree().create_timer(0.5).timeout 
+	# Cuando todos los enemigos han terminado, le devolvemos el turno al jugador
+	avanzar_fase_del_juego()
+	start_player_turn()
+
+# LOGICA PARA SELECCIONAR ENEMIGOS
 func _on_enemy_selected(new_enemy: Enemy) -> void:
 	if current_selected_enemy == new_enemy:
 		return
@@ -158,9 +234,6 @@ func get_current_target() -> Enemy:
 		return current_selected_enemy
 	return null
 
-func cambiar_turno() -> void:
-	turno_jugador = !turno_jugador
-
 func mostrar_seleccion() -> void:
 	puede_abrir_menu = false
 	emit_signal("jugador_selecciona_enemigo")
@@ -175,19 +248,70 @@ func iniciar_ataque() -> void:
 	emit_signal("ataque_iniciado")
 	personaje_seleccionado.atacar_personaje(personaje_objetivo)
 
-func iniciar_turno_enemigo() -> void:
-	if enemigos.is_empty():
+# Logica cambio de fases
+func avanzar_fase_del_juego() -> void:
+	lunar_phase = (lunar_phase + 1) % 7 as LunarPhase
+	print("La nueva fase del juego es la número: ", lunar_phase)
+	# Aplicar los efectos de fase que tenga cada luna
+	#_aplicar_efectos_de_fase()
+
+func change_phase(fase: LunarPhase) -> void:
+	lunar_phase = fase
+	print("La nueva fase del juego es la número: ", lunar_phase)
+	
+	# Aplicar los efectos de fase que tenga cada luna
+	#_aplicar_efectos_de_fase()
+
+# Logica boton de ataque
+# Aqui iria la logica de utilizar las cartas (Osea turno del jugador)
+func _on_attack_button_down() -> void:
+	if actual_turn != TurnState.PLAYER_TURN:
+		print("No puedes jugar cartas, es el turno del enemigo.")
+		return
+		
+	var card_manager = get_tree().get_first_node_in_group("CardManager")
+	if not card_manager:
+		push_error("No se encontró el CardManager en la escena.")
+		return
+		
+	if card_manager.selected_cards.is_empty():
+		print("Selecciona una carta de tu mano primero.")
 		return
 
-	if turno_enemigo >= enemigos.size():
-		turno_enemigo = 0
-
-	var enemigo_actual : Enemy = enemigos[turno_enemigo]
-
-	if enemigo_actual == null:
-		turno_enemigo += 1
+	var objetivo = get_current_target()
+	if not objetivo:
+		print("Selecciona un enemigo objetivo antes de presionar Jugar.")
 		return
 
-	print("Inicia turno de: " + enemigo_actual.enemy_data.enemy_name)
-	await enemigo_actual.start_turn()
-	turno_enemigo += 1
+	if card_manager.selected_cards.size() > 1:
+		print("Solo puedes jugar una carta a la vez")
+		return
+	
+	var carta_a_jugar = card_manager.selected_cards[0]
+	
+	print("Confirmando acción: Jugando ", carta_a_jugar.card_data.card_name, " contra ", objetivo.enemy_data.enemy_name)
+	
+	card_manager.play_card(carta_a_jugar, objetivo)
+	
+	if deck_node and deck_node.player_hand:
+		deck_node.player_hand.remove_cards_of_hand(carta_a_jugar)
+		
+	card_manager.selected_cards.clear()
+
+func _on_finish_turn_button_down() -> void:
+	if actual_turn == TurnState.PLAYER_TURN:
+		print("finished_player_turn")
+		start_enemy_turn()
+
+func _on_sacrifice_button_down() -> void:
+	if actual_turn != TurnState.PLAYER_TURN:
+		print("No puedes realizar sacrificios fuera de tu turno.")
+		return
+		
+	var card_manager = get_tree().get_first_node_in_group("CardManager")
+	if not card_manager or card_manager.selected_cards.is_empty():
+		print("No tienes cartas seleccionadas para sacrificar.")
+		return
+	
+	card_manager.sacrifice_card(card_manager.selected_cards)
+	card_manager.selected_cards.clear()
