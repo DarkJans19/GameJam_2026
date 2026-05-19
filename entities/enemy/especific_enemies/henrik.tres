@@ -7,6 +7,7 @@
 
 [resource]
 script = ExtResource("3_7v2k1")
+enemy_name = "Henrik"
 max_health = 1
 damage = 1
 heavy_damage = 1

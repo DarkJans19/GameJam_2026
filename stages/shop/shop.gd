@@ -145,6 +145,5 @@ func _mostrar_feedback(texto: String) -> void:
 		descripcion_general.append_text(estado_texto)
 
 func _on_salir_pressed() -> void:
-	if salir_btn: salir_btn.disabled = true
-	await get_tree().process_frame
+	game_manager.current_event += 1
 	get_tree().change_scene_to_file("res://stages/map/map.tscn")

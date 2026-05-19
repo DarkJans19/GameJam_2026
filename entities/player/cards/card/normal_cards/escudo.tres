@@ -10,5 +10,5 @@ card_name = "Escudo"
 image = ExtResource("2_48noa")
 description = "Esta carta escudara"
 card_type_action = 2
-effect_value = 2
+effect_value = 5
 type = 1

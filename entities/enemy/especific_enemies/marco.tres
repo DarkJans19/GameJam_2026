@@ -8,7 +8,7 @@
 [resource]
 script = ExtResource("3_acbdc")
 enemy_name = "Marco"
-max_health = 10
+max_health = 20
 heal_amount = 5
 damage = 15
 heavy_damage = 20

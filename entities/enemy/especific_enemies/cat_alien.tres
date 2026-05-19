@@ -10,6 +10,7 @@ script = ExtResource("1_8vvpt")
 enemy_name = "Cat alien"
 max_health = 20
 damage = 8
+heavy_damage = 10
 sprite = ExtResource("2_0t1mu")
 hurt_audio = ExtResource("2_k4sp6")
 attack_audio = ExtResource("1_ryihw")

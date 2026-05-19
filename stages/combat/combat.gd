@@ -303,7 +303,10 @@ func verificar_estado_batalla() -> void:
 		actual_turn = TurnState.FINISH_BATTLE
 		set_botones_bloqueados(true)
 
-		game_manager.procesar_victoria_combate(cantidad_inicial_enemigos)
+		# 1. Sumamos las recompensas de la victoria
+		game_manager.procesar_victory_combate(cantidad_inicial_enemigos)
+		# 2. AVANCE CLAVE: Indicamos que este nodo del mapa ya se completó con éxito
+		game_manager.current_event += 1
 
 		mostrar_victoria()
 

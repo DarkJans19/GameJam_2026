@@ -77,6 +77,7 @@ func _mostrar_evento_inicial() -> void:
 
 func _on_button_pressed() -> void:
 	if fase_resultado:
+		game_manager.current_event += 1
 		get_tree().change_scene_to_file("res://stages/map/map.tscn")
 		return
 

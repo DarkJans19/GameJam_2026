@@ -205,7 +205,7 @@ func modificar_oro(cantidad: int) -> void:
 	oro_cambiado.emit(oro)
 	print("[GameManager] Balance de oro actualizado: ", oro, "g (Cambio: ", cantidad, ")")
 
-func procesar_victoria_combate(cantidad_enemigos: int) -> void:
+func procesar_victory_combate(cantidad_enemigos: int) -> void:
 	var oro_base : int = 0
 	match etapa_combate_actual:
 		0: oro_base = randi_range(10, 20)

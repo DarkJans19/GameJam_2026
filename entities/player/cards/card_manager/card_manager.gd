@@ -217,7 +217,7 @@ func sacrifice_card() -> void:
 		$sacrifice_cards.play()
 		if combat:
 			# Aquí defines cuántos puntos otorga cada carta normal (por ejemplo, 1 punto)
-			combat.puntos_sacrificio += 1
+			combat.puntos_sacrificio += 2
 			print("Carta sacrificada. Puntos totales disponibles: ", combat.puntos_sacrificio)
 			
 		player_hand_reference.remove_cards_of_hand(card)

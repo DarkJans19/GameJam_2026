@@ -42,6 +42,9 @@ const EVENT_STEPS: Array = [
 func _ready() -> void:
 	randomize()
 
+	# SOLUCIÓN CRÍTICA: Reanudamos el motor del juego por si venimos de un combate pausado
+	get_tree().paused = false
+
 	player.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	player.z_index = 10
 	pause_menu.z_index = 11
@@ -53,36 +56,30 @@ func _unhandled_input(event: InputEvent) -> void:
 		pause_menu.toggle_pause()
 
 func _refresh_map() -> void:
+	# 1. Apagamos visual y lógicamente todos los nodos del mapa
 	for event_name in event_nodes.keys():
-		_set_event_enabled(
-			event_nodes[event_name],
-			false
-		)
+		_set_event_enabled(event_nodes[event_name], false)
 
+	# 2. Habilitamos únicamente los eventos correspondientes al paso actual guardado en game_manager
 	if game_manager.current_event < EVENT_STEPS.size():
 		for event_name in EVENT_STEPS[game_manager.current_event]:
-			_set_event_enabled(
-				event_nodes[event_name],
-				true
-			)
+			_set_event_enabled(event_nodes[event_name], true)
 
+	# 3. Posicionamos al jugador según lo que registra el game_manager
 	if game_manager.last_selected_event == "":
 		var first_event := EVENT_STEPS[0][0]
-
-		_position_player_initial(
-			event_nodes[first_event]
-		)
+		_position_player_initial(event_nodes[first_event])
 	else:
-		_position_player_completed(
-			event_nodes[game_manager.last_selected_event]
-		)
+		# El jugador se posiciona de forma fija sobre el ÚLTIMO evento que superó con éxito
+		var nodo_completado = event_nodes.get(game_manager.last_selected_event)
+		if nodo_completado:
+			_position_player_completed(nodo_completado)
+		else:
+			var first_event := EVENT_STEPS[0][0]
+			_position_player_initial(event_nodes[first_event])
 
 func _position_player_initial(target_node: Control) -> void:
-	var target_center := (
-		target_node.global_position +
-		(target_node.size * 0.5)
-	)
-
+	var target_center := target_node.global_position + (target_node.size * 0.5)
 	var player_size := player.size
 
 	player.global_position = Vector2(
@@ -91,11 +88,7 @@ func _position_player_initial(target_node: Control) -> void:
 	)
 
 func _position_player_completed(target_node: Control) -> void:
-	var target_center := (
-		target_node.global_position +
-		(target_node.size * 0.5)
-	)
-
+	var target_center := target_node.global_position + (target_node.size * 0.5)
 	var player_size := player.size
 
 	player.global_position = Vector2(
@@ -103,38 +96,23 @@ func _position_player_completed(target_node: Control) -> void:
 		target_node.global_position.y
 	)
 
-func _on_event_gui_input(
-	event: InputEvent,
-	event_name: String
-) -> void:
-
-	print("RECIBIDO:", event_name)
-	print("CURRENT EVENT:", game_manager.current_event)
-
+func _on_event_gui_input(event: InputEvent, event_name: String) -> void:
 	if not _is_event_selectable(event_name):
-		print("NO SELECCIONABLE")
 		return
 
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			print("CAMBIANDO ESCENA")
 			_select_event(event_name)
 
 func _is_event_selectable(event_name: String) -> bool:
 	if game_manager.current_event >= EVENT_STEPS.size():
 		return false
-
-	return (
-		event_name in EVENT_STEPS[game_manager.current_event]
-	)
+	return event_name in EVENT_STEPS[game_manager.current_event]
 
 func _select_event(event_name: String) -> void:
 	var scene_path := ""
 
-	if event_name in [
-		"Enemy_event",
-		"Enemy_event2"
-	]:
+	if event_name in ["Enemy_event", "Enemy_event2"]:
 		game_manager.etapa_combate_actual = 0
 		scene_path = "res://stages/combat/combat.tscn"
 
@@ -142,11 +120,7 @@ func _select_event(event_name: String) -> void:
 		game_manager.etapa_combate_actual = 1
 		scene_path = "res://stages/combat/combat.tscn"
 
-	elif event_name in [
-		"Enemy_event4",
-		"Enemy_event5",
-		"Enemy_event6"
-	]:
+	elif event_name in ["Enemy_event4", "Enemy_event5", "Enemy_event6"]:
 		game_manager.etapa_combate_actual = 2
 		scene_path = "res://stages/combat/combat.tscn"
 
@@ -161,35 +135,18 @@ func _select_event(event_name: String) -> void:
 		scene_path = "res://stages/random/random.tscn"
 
 	if scene_path == "":
-		push_error(
-			"No se asignó escena para: " +
-			event_name
-		)
+		push_error("No se asignó escena para: " + event_name)
 		return
 
+	# GUARDAMOS en el manager qué evento se está jugando JUSTO AHORA.
 	game_manager.last_selected_event = event_name
-	game_manager.current_event += 1
 
-	print("CARGANDO:", scene_path)
-
+	print("CARGANDO EVENTO DESDE EL MAPA:", event_name)
 	get_tree().change_scene_to_file(scene_path)
 
-func _set_event_enabled(
-	event_node: Control,
-	enabled: bool
-) -> void:
-
-	event_node.mouse_filter = (
-		Control.MOUSE_FILTER_STOP
-		if enabled
-		else Control.MOUSE_FILTER_IGNORE
-	)
-
-	event_node.modulate = (
-		Color(1, 1, 1, 1)
-		if enabled
-		else Color(1, 1, 1, 0.35)
-	)
+func _set_event_enabled(event_node: Control, enabled: bool) -> void:
+	event_node.mouse_filter = Control.MOUSE_FILTER_STOP if enabled else Control.MOUSE_FILTER_IGNORE
+	event_node.modulate = Color(1, 1, 1, 1) if enabled else Color(1, 1, 1, 0.35)
 
 func _on_pause_pressed() -> void:
 	pause_menu.toggle_pause()
