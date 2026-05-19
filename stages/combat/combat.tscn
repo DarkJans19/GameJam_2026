@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://q6d27imrgt4t" path="res://entities/player/cards/card_manager/CardManager.tscn" id="11_3yitc"]
 [ext_resource type="PackedScene" uid="uid://b662s4f2al1rk" path="res://entities/player/gold.tscn" id="12_crids"]
 [ext_resource type="PackedScene" uid="uid://3xjnj3dw2lqo" path="res://entities/player/cards/player_hand/PlayerHand.tscn" id="12_p3u4l"]
+[ext_resource type="PackedScene" uid="uid://8rqppus5c82y" path="res://entities/player/sacrifice_count.tscn" id="13_jlhlv"]
 [ext_resource type="PackedScene" uid="uid://dy0ewsimw8mem" path="res://entities/player/health.tscn" id="13_yl2py"]
 [ext_resource type="Texture2D" uid="uid://dss0i0a3pdla7" path="res://assets/UI/UI Pausa.png" id="14_crids"]
 [ext_resource type="PackedScene" uid="uid://4y02hes2oncj" path="res://stages/ui/pause.tscn" id="15_7oxte"]
@@ -116,23 +117,22 @@ grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(0.4, 0.4)
 
-[node name="sacrificeCount" parent="." unique_id=550723547 instance=ExtResource("18_t7ues")]
-z_index = 3
-offset_left = -131.0
-offset_top = -59.999996
-offset_right = -131.0
-offset_bottom = -59.999996
-scale = Vector2(0.4, 0.4)
+[node name="Sacrifice2" parent="." unique_id=550723547 instance=ExtResource("13_jlhlv")]
+z_index = 4
+offset_left = -137.0
+offset_top = -63.0
+offset_right = -137.0
+offset_bottom = -63.0
+scale = Vector2(0.5, 0.5)
 
-[node name="faseLunarLabel" type="Label" parent="sacrificeCount" unique_id=1796216407]
-z_index = 3
+[node name="faseLunarLabel" type="Label" parent="Sacrifice2" unique_id=1658044291]
 layout_mode = 0
-offset_left = 577.5
-offset_top = -32.500015
-offset_right = 675.5
-offset_bottom = -17.500015
+offset_left = 476.0
+offset_top = -22.0
+offset_right = 604.0
+offset_bottom = -6.0
 theme_override_font_sizes/font_size = 11
-text = "Fase lunar"
+text = "fase lunar"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=721112337]
 
