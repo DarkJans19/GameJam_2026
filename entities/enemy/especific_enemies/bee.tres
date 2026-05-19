@@ -8,14 +8,14 @@
 [resource]
 script = ExtResource("1_fpjrd")
 enemy_name = "Bee"
-max_health = 25
-heal_amount = 10
-damage = 7
+max_health = 12
+heal_amount = 4
+damage = 6
 sprite = ExtResource("2_bl4ls")
 hurt_audio = ExtResource("2_jlf4e")
 attack_audio = ExtResource("1_5tnqf")
 moon_phase_turns = {
-0: ["ATTACK", "ATTACK", "ATTACK"],
+0: ["ATTACK", "ATTACK"],
 1: ["ATTACK"],
 2: ["PASS"],
 3: ["HEAL", "DEFEND"],

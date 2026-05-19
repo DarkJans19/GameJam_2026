@@ -41,6 +41,26 @@ var mazo_jugador : Array[String] = [
 	"res://entities/player/cards/card/normal_cards/escudo.tres",
 	"res://entities/player/cards/card/normal_cards/vida.tres",
 	
+	"res://entities/player/cards/card/normal_cards/daño.tres",
+	"res://entities/player/cards/card/normal_cards/escudo.tres",
+	"res://entities/player/cards/card/normal_cards/vida.tres",
+	
+	"res://entities/player/cards/card/normal_cards/daño.tres",
+	"res://entities/player/cards/card/normal_cards/escudo.tres",
+	"res://entities/player/cards/card/normal_cards/vida.tres",
+	
+	"res://entities/player/cards/card/normal_cards/daño.tres",
+	"res://entities/player/cards/card/normal_cards/escudo.tres",
+	"res://entities/player/cards/card/normal_cards/vida.tres",
+	
+	"res://entities/player/cards/card/normal_cards/daño.tres",
+	"res://entities/player/cards/card/normal_cards/escudo.tres",
+	"res://entities/player/cards/card/normal_cards/vida.tres",
+	
+	"res://entities/player/cards/card/normal_cards/daño.tres",
+	"res://entities/player/cards/card/normal_cards/escudo.tres",
+	"res://entities/player/cards/card/normal_cards/vida.tres",
+	
 	# Cartas de comodin
 	"res://entities/player/cards/card/comodin_cards/dante.tres",
 	"res://entities/player/cards/card/comodin_cards/fortune.tres",
@@ -109,6 +129,26 @@ func reset_progress() -> void:
 	"res://entities/player/cards/card/lunar_cards/Salomon.tres",
 	
 	# Cartas normales
+	"res://entities/player/cards/card/normal_cards/daño.tres",
+	"res://entities/player/cards/card/normal_cards/escudo.tres",
+	"res://entities/player/cards/card/normal_cards/vida.tres",
+	
+	"res://entities/player/cards/card/normal_cards/daño.tres",
+	"res://entities/player/cards/card/normal_cards/escudo.tres",
+	"res://entities/player/cards/card/normal_cards/vida.tres",
+	
+	"res://entities/player/cards/card/normal_cards/daño.tres",
+	"res://entities/player/cards/card/normal_cards/escudo.tres",
+	"res://entities/player/cards/card/normal_cards/vida.tres",
+	
+	"res://entities/player/cards/card/normal_cards/daño.tres",
+	"res://entities/player/cards/card/normal_cards/escudo.tres",
+	"res://entities/player/cards/card/normal_cards/vida.tres",
+	
+	"res://entities/player/cards/card/normal_cards/daño.tres",
+	"res://entities/player/cards/card/normal_cards/escudo.tres",
+	"res://entities/player/cards/card/normal_cards/vida.tres",
+	
 	"res://entities/player/cards/card/normal_cards/daño.tres",
 	"res://entities/player/cards/card/normal_cards/escudo.tres",
 	"res://entities/player/cards/card/normal_cards/vida.tres",

@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c2ksg8r0nnrps" path="res://assets/UI/UI Energia.png" id="1_n13jj"]
 [ext_resource type="Script" uid="uid://y3q45g1vtjyu" path="res://entities/player/sacrifice_count.gd" id="1_ryodp"]
+[ext_resource type="FontFile" uid="uid://ebt2bvxsrvd2" path="res://assets/PixelOperator8_health.ttf" id="2_j5eqo"]
 
 [node name="Sacrifice" type="Control" unique_id=550723547]
 layout_mode = 3
@@ -26,6 +27,7 @@ offset_bottom = 27.0
 [node name="Label" type="Label" parent="HBoxContainer" unique_id=1651538398]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_j5eqo")
 theme_override_font_sizes/font_size = 18
 text = "X"
 horizontal_alignment = 1

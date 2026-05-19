@@ -19,6 +19,30 @@ enum LunarPhase {
 	WANING_CRESCENT,  # Cuadro 8: Luna Menguante
 }
 
+
+const MOON_PHASE_FRAMESr = {
+	LunarPhase.NEW_MOON: 3,
+	LunarPhase.WAXING_CRESCENT: 2,
+	LunarPhase.FIRST_QUARTER: 5,
+	LunarPhase.WAXING_GIBBOUS: 4,
+	LunarPhase.FULL_MOON: 1,
+	LunarPhase.WANING_GIBBOUS: 0,
+	LunarPhase.LAST_QUARTER: 7,
+	LunarPhase.WANING_CRESCENT: 6
+}
+
+
+const MOON_PHASE_FRAMESl = {
+	LunarPhase.NEW_MOON: 5,
+	LunarPhase.WAXING_CRESCENT: 4,
+	LunarPhase.FIRST_QUARTER: 1,
+	LunarPhase.WAXING_GIBBOUS: 0,
+	LunarPhase.FULL_MOON: 7,
+	LunarPhase.WANING_GIBBOUS: 6,
+	LunarPhase.LAST_QUARTER: 3,
+	LunarPhase.WANING_CRESCENT: 2
+}
+
 # Ya no necesitas MOON_PHASE_FRAMES porque el Enum coincide con el cuadro (0 al 7)
 
 const MOON_PHASE_NAMES_ES = {
@@ -85,6 +109,9 @@ var skip_next_enemy_turn : bool = false
 
 @onready var faseLunarLabel: Label = $SacrificeCount/faseLunarLabel
 @onready var finish_turn_button = $FinishTurn
+@onready var uppermoon: Sprite2D = $Uppermoon
+@onready var leftmoon: Sprite2D = $leftmoon
+@onready var rigthmoon: Sprite2D = $rightmoon
 
 @onready var pause_menu : PauseMenu = $Pause
 @onready var victory_screen : VictoryScreen = $Victory
@@ -144,7 +171,7 @@ func _on_player_life_changed(actual: int, maxima: int) -> void:
 
 func get_stage_formations() -> Array:
 	match current_stage:
-		StageType.EARLY: return boss_formations
+		StageType.EARLY: return early_formations
 		StageType.MID: return mid_formations
 		StageType.LATE: return late_formations
 		StageType.BOSS: return boss_formations
@@ -327,7 +354,13 @@ func change_phase(fase: LunarPhase) -> void:
 func _actualizar_sprite_luna() -> void:
 	if moon_phases_sprite:
 		moon_phases_sprite.frame = lunar_phase
-
+	if uppermoon:
+		uppermoon.frame = lunar_phase
+	if leftmoon and MOON_PHASE_FRAMESl.has(lunar_phase):
+		leftmoon.frame = MOON_PHASE_FRAMESl[lunar_phase] 
+	if rigthmoon and MOON_PHASE_FRAMESr.has(lunar_phase):
+		rigthmoon.frame = MOON_PHASE_FRAMESr[lunar_phase] 
+			
 func _actualizar_texto_luna() -> void:
 	if faseLunarLabel and MOON_PHASE_NAMES_ES.has(lunar_phase):
 		faseLunarLabel.text = MOON_PHASE_NAMES_ES[lunar_phase]
