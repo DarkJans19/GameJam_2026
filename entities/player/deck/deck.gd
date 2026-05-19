@@ -25,7 +25,6 @@ func preparate_initial_hand() -> void:
 		if not ResourceLoader.exists(card_path):
 			push_error("No se pudo encontrar el recurso: " + card_path)
 			continue
-
 		var resource = load(card_path)
 
 		if resource is CardData:
@@ -59,6 +58,7 @@ func draw_card_by_type(amount: int, type: CardData.CardType) -> void:
 			draw_card(amount, comodin_deck)
 
 func draw_card(amount_cards_to_drawn: int, deck: Array) -> void:
+	$robar_cartas.play()
 	for i in range(amount_cards_to_drawn):
 		if deck.is_empty():
 			break

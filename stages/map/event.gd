@@ -1,7 +1,7 @@
 extends Control
 
 @export var world_index:int = 0
-
+@onready var audio = $"../click_effect"
 func _ready() -> void:
 	size = Vector2(64, 64)
 	custom_minimum_size = Vector2(64, 64)
@@ -25,4 +25,6 @@ func _gui_input(event: InputEvent) -> void:
 			print("CLICK:", name)
 
 			if get_parent() and get_parent().has_method("_on_event_gui_input"):
+				audio.play()
+				await audio.finished
 				get_parent()._on_event_gui_input(event, name)

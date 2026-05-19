@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://b662s4f2al1rk" path="res://entities/player/gold.tscn" id="8_1oiya"]
 [ext_resource type="Texture2D" uid="uid://dss0i0a3pdla7" path="res://assets/UI/UI Pausa.png" id="9_1oiya"]
 [ext_resource type="PackedScene" uid="uid://4y02hes2oncj" path="res://stages/ui/pause.tscn" id="10_2afta"]
+[ext_resource type="AudioStream" uid="uid://cxhx4l1fijbel" path="res://assets/Audios/click_effect.mp3" id="12_buyr3"]
+[ext_resource type="AudioStream" uid="uid://bdtk42d0bee20" path="res://assets/Audios/Title Theme.mp3" id="12_nar4y"]
 
 [sub_resource type="Gradient" id="Gradient_xghif"]
 offsets = PackedFloat32Array(0)
@@ -368,5 +370,16 @@ scale = Vector2(2.5, 2.5)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=986689956]
 position = Vector2(1016.5249, 418)
 zoom = Vector2(1.1, 1.1)
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="." unique_id=330372152]
+stream = ExtResource("12_nar4y")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="click_effect" type="AudioStreamPlayer2D" parent="." unique_id=195496804]
+stream = ExtResource("12_buyr3")
+volume_db = 24.0
+bus = &"SFX"
 
 [connection signal="pressed" from="pause" to="." method="_on_pause_pressed"]

@@ -11,6 +11,8 @@ signal hide_description
 @onready var sprite_visual: Sprite2D = $Sprite2D 
 @onready var timer = $Timer
 @onready var collision_shape: CollisionShape2D = $Area2D/CollisionShape2D
+@onready var audio = $AudioStreamPlayer2D
+@onready var audio_selected_card = $select_card
 
 func _ready() -> void:
 	timer.wait_time = 0.4
@@ -34,6 +36,7 @@ func ajustar_colision_al_sprite():
 		collision_shape.shape.size = texture_size
 
 func _on_area_2d_mouse_entered() -> void:
+	audio.play()
 	emit_signal("hovered", self)
 	timer.start()
 	
@@ -44,6 +47,7 @@ func _on_area_2d_mouse_exited() -> void:
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		audio_selected_card.play()
 		emit_signal("selected", self)
 
 func _on_timer_timeout() -> void:

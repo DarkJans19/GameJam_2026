@@ -13,6 +13,12 @@ class_name EnemyData
 
 @export var sprite : Texture2D
 
+@export var hurt_audio: AudioStream
+
+@export var attack_audio: AudioStream
+
+@export var intro_audio: AudioStream
+
 @export var moon_phase_turns : Dictionary = {
 	CombatManager.LunarPhase.NEW_MOON : [
 		"ATTACK"

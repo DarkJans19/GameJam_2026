@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cgh8itya8jdjf" path="res://entities/player/cards/assets/Balatro.jpg" id="1_if3u5"]
 [ext_resource type="Script" uid="uid://b3ap5f216vjks" path="res://stages/shop/shop.gd" id="1_w58nr"]
+[ext_resource type="AudioStream" uid="uid://dq1rps3yfgg3s" path="res://assets/Audios/Shop Theme.mp3" id="3_as8v6"]
 [ext_resource type="Texture2D" uid="uid://cxh82feibry64" path="res://assets/Escenario/Store Midground.png" id="2_as8v6"]
 [ext_resource type="Texture2D" uid="uid://jsuiejuy5f5j" path="res://assets/UI/UI HP - Copy.png" id="4_dujof"]
 
@@ -123,3 +124,9 @@ offset_right = 184.07047
 offset_bottom = 423.25583
 theme_override_font_sizes/font_size = 34
 text = "Salir"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=832958005]
+stream = ExtResource("3_as8v6")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
