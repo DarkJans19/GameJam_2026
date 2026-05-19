@@ -18,5 +18,5 @@ func _on_button_pressed() -> void:
 	get_tree().paused = false
 	hide()
 	await get_tree().process_frame
-	game_manager.reset_progress()
+	
 	get_tree().change_scene_to_file("res://stages/map/map.tscn")

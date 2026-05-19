@@ -109,9 +109,9 @@ var skip_next_enemy_turn : bool = false
 
 @onready var faseLunarLabel: Label = $SacrificeCount/faseLunarLabel
 @onready var finish_turn_button = $FinishTurn
-@onready var uppermoon: Sprite2D = $Uppermoon
-@onready var leftmoon: Sprite2D = $leftmoon
-@onready var rigthmoon: Sprite2D = $rightmoon
+@onready var uppermoon: AnimatedSprite2D = $Uppermoon
+@onready var leftmoon: AnimatedSprite2D = $Leftmoon
+@onready var rigthmoon: AnimatedSprite2D = $Rightmoon
 
 @onready var pause_menu : PauseMenu = $Pause
 @onready var victory_screen : VictoryScreen = $Victory
@@ -356,10 +356,10 @@ func _actualizar_sprite_luna() -> void:
 		moon_phases_sprite.frame = lunar_phase
 	if uppermoon:
 		uppermoon.frame = lunar_phase
-	if leftmoon and MOON_PHASE_FRAMESl.has(lunar_phase):
-		leftmoon.frame = MOON_PHASE_FRAMESl[lunar_phase] 
-	if rigthmoon and MOON_PHASE_FRAMESr.has(lunar_phase):
-		rigthmoon.frame = MOON_PHASE_FRAMESr[lunar_phase] 
+	if leftmoon:
+		leftmoon.frame = lunar_phase	
+	if rigthmoon:
+		rigthmoon.frame = lunar_phase
 			
 func _actualizar_texto_luna() -> void:
 	if faseLunarLabel and MOON_PHASE_NAMES_ES.has(lunar_phase):
