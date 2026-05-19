@@ -4,6 +4,7 @@ signal vida_cambiada(actual: int, maxima: int)
 signal oro_cambiado(nuevo_total: int)
 signal mazo_actualizado(nuevo_tamano: int)
 
+
 var vida_max_jugador : int = 100
 var vida_actual_jugador : int = 100
 var oro : int = 50
@@ -106,6 +107,7 @@ var current_event : int = 0
 var last_selected_event : String = ""
 
 func _ready() -> void:
+	DisplayServer.window_set_size(Vector2i(1280, 720))
 	add_to_group("game_manager")
 
 func reset_progress() -> void:

@@ -69,7 +69,7 @@ func _cargar_cartas() -> void:
 	for child in grid_container.get_children():
 		child.queue_free()
 
-	grid_container.columns = 10
+	grid_container.columns = 12
 
 	for ruta_carta in game_manager.mazo_jugador:
 		if not ResourceLoader.exists(ruta_carta):
