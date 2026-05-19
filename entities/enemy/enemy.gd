@@ -39,7 +39,6 @@ var is_defending : bool = false:
 	$SelectionCursor
 )
 
-# --- NUEVAS REFERENCIAS PARA EL TOOLTIP AUTÓNOMO ---
 @onready var enemy_tooltip : PanelContainer = (
 	$EnemyTooltip
 )
@@ -209,6 +208,8 @@ func execute_action(action_name : String) -> void:
 			await action_defend()
 		"SKIP ONE PHASE":
 			await action_advance_moon()
+		"KILL":
+			await kill()
 		"PASS":
 			await action_pass()
 		_:
@@ -216,7 +217,7 @@ func execute_action(action_name : String) -> void:
 
 func action_attack() -> void:
 	is_busy = true
-	emit_signal("animacion_bloqueante_iniciada") # <-- BLOQUEA
+	emit_signal("animacion_bloqueante_iniciada")
 	print(enemy_data.enemy_name + " usa ATTACK")
 	play_attack()
 	await animation_player.animation_finished
@@ -227,6 +228,20 @@ func action_attack() -> void:
 		health_node.recibir_damage(enemy_data.damage)
 	
 	emit_signal("animacion_bloqueante_terminada")
+
+func kill() -> void:
+	is_busy = true
+	emit_signal("animacion_bloqueante_iniciada")
+	print(enemy_data.enemy_name + " usa KILL")
+	play_attack()
+	await animation_player.animation_finished
+	play_idle()
+	is_busy = false
+	var health_node = get_tree().get_first_node_in_group("health")
+	if health_node:
+		health_node.recibir_damage(9999999)
+	
+	emit_signal("animacion_bloqueante_terminada") 
 
 func action_heavy_attack() -> void:
 	is_busy = true

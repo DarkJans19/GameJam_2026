@@ -16,35 +16,35 @@ offset_bottom = 299.0
 
 [node name="Label" type="Label" parent="." unique_id=141749531]
 layout_mode = 0
-offset_left = 139.0
-offset_top = 45.0
-offset_right = 232.0
-offset_bottom = 90.0
+offset_left = 122.0
+offset_top = 52.0
+offset_right = 262.0
+offset_bottom = 97.0
 theme_override_font_sizes/font_size = 32
 text = "Pausa"
 
 [node name="resume" type="Button" parent="." unique_id=878924329]
 layout_mode = 0
-offset_left = 128.0
-offset_top = 112.0
-offset_right = 251.0
-offset_bottom = 143.0
+offset_left = 133.0
+offset_top = 111.0
+offset_right = 256.0
+offset_bottom = 142.0
 text = "Reanudar"
 
 [node name="menu" type="Button" parent="." unique_id=554801820]
 layout_mode = 0
-offset_left = 125.0
-offset_top = 203.0
-offset_right = 248.0
-offset_bottom = 234.0
+offset_left = 129.0
+offset_top = 202.0
+offset_right = 261.0
+offset_bottom = 233.0
 text = "Ir al menu"
 
 [node name="verCartas" type="Button" parent="." unique_id=330472881]
 layout_mode = 0
-offset_left = 126.0
-offset_top = 160.0
-offset_right = 249.0
-offset_bottom = 191.0
+offset_left = 124.0
+offset_top = 156.0
+offset_right = 264.0
+offset_bottom = 187.0
 text = "Ver cartas"
 
 [node name="cardsContainer" type="PanelContainer" parent="." unique_id=283506824]

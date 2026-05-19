@@ -19,10 +19,10 @@ offset_bottom = 18.0
 
 [node name="Label" type="Label" parent="HBoxContainer" unique_id=1311622475]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 16
 text = "xx xx/xx"
 
 [node name="Sprite2D" type="Sprite2D" parent="HBoxContainer" unique_id=1010957280]
-position = Vector2(115.00001, 18)
+position = Vector2(119, 10)
 scale = Vector2(1.2284483, 1.2649999)
 texture = ExtResource("1_vwxei")

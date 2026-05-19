@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://0s3j7dkyhc4u" path="res://stages/map/random_event.tscn" id="2_x8gmq"]
 [ext_resource type="PackedScene" uid="uid://dlxum2nam1ek4" path="res://stages/map/shop_event.tscn" id="3_wjkhs"]
 [ext_resource type="PackedScene" uid="uid://6ga84j3uyeah" path="res://stages/map/boss_event.tscn" id="4_x8gmq"]
-[ext_resource type="Texture2D" uid="uid://ccn6rm8mtgs41" path="res://assets/icon.svg" id="5_wjkhs"]
+[ext_resource type="Texture2D" uid="uid://dwpxkhedgbqyb" path="res://assets/UI/UI Cursor.png" id="6_2afta"]
 [ext_resource type="PackedScene" uid="uid://dy0ewsimw8mem" path="res://entities/player/health.tscn" id="7_athdf"]
 [ext_resource type="PackedScene" uid="uid://b662s4f2al1rk" path="res://entities/player/gold.tscn" id="8_1oiya"]
 [ext_resource type="Texture2D" uid="uid://dss0i0a3pdla7" path="res://assets/UI/UI Pausa.png" id="9_1oiya"]
@@ -86,6 +86,7 @@ z_index = -7
 position = Vector2(1022.7623, 430.00003)
 scale = Vector2(19.023825, 689.99994)
 texture = SubResource("GradientTexture1D_22rbi")
+metadata/_edit_lock_ = true
 
 [node name="Enemy_event" parent="." unique_id=1682874225 instance=ExtResource("1_qw2a2")]
 layout_mode = 0
@@ -209,7 +210,7 @@ offset_top = 309.0
 offset_right = 605.5249
 offset_bottom = 437.0
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("5_wjkhs")
+texture = ExtResource("6_2afta")
 
 [node name="Line2D2" type="Line2D" parent="." unique_id=1253546555]
 position = Vector2(1016.5249, 418)
@@ -332,18 +333,18 @@ default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
 
 [node name="Health" parent="." unique_id=519478812 instance=ExtResource("7_athdf")]
 layout_mode = 1
-offset_left = 465.5249
-offset_top = 101.0
-offset_right = -631.4751
-offset_bottom = -556.5
+offset_left = 456.0
+offset_top = 108.0
+offset_right = -153.0
+offset_bottom = -249.0
 scale = Vector2(2, 2)
 
 [node name="Gold" parent="." unique_id=737112638 instance=ExtResource("8_1oiya")]
 layout_mode = 1
-offset_left = 800.5249
-offset_top = 71.0
-offset_right = -165.4751
-offset_bottom = -475.0
+offset_left = 893.0
+offset_top = 81.0
+offset_right = 284.0
+offset_bottom = -276.0
 scale = Vector2(2, 2)
 
 [node name="pause" type="Button" parent="." unique_id=2015247067]
@@ -366,6 +367,6 @@ scale = Vector2(2.5, 2.5)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=986689956]
 position = Vector2(1016.5249, 418)
-zoom = Vector2(1.7, 1.7)
+zoom = Vector2(1.1, 1.1)
 
 [connection signal="pressed" from="pause" to="." method="_on_pause_pressed"]

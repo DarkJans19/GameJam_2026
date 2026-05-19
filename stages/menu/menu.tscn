@@ -2,6 +2,12 @@
 
 [ext_resource type="Script" uid="uid://cbm04l5a4eu1a" path="res://stages/menu/menu.gd" id="1_xh5sh"]
 
+[sub_resource type="Gradient" id="Gradient_7oj33"]
+colors = PackedColorArray(0.21960784, 0.21960784, 0.21960784, 1, 0.22094142, 0.22094142, 0.22094142, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xh5sh"]
+gradient = SubResource("Gradient_7oj33")
+
 [node name="Control" type="Control" unique_id=1665532082]
 layout_mode = 3
 anchors_preset = 15
@@ -10,6 +16,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xh5sh")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1397902456]
+position = Vector2(637.5, 385.4375)
+scale = Vector2(5.3789063, 887.125)
+texture = SubResource("GradientTexture1D_xh5sh")
+metadata/_edit_lock_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2078726476]
 layout_mode = 1
@@ -25,20 +37,23 @@ offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=854115027]
 layout_mode = 2
+theme_override_font_sizes/font_size = 72
 text = "Alien Project"
 horizontal_alignment = 1
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer" unique_id=2013334845]
-custom_minimum_size = Vector2(0, 175)
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
 [node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=1264154441]
 custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
-text = "Play"
+theme_override_font_sizes/font_size = 24
+text = "Jugar"
 
 [node name="AspectRatioContainer2" type="AspectRatioContainer" parent="VBoxContainer" unique_id=418435786]
 custom_minimum_size = Vector2(0, 25)
@@ -46,7 +61,8 @@ layout_mode = 2
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer" unique_id=1973838228]
 layout_mode = 2
-text = "Settings"
+theme_override_font_sizes/font_size = 24
+text = "Opciones"
 
 [node name="AspectRatioContainer3" type="AspectRatioContainer" parent="VBoxContainer" unique_id=2122239066]
 custom_minimum_size = Vector2(0, 25)
@@ -54,7 +70,12 @@ layout_mode = 2
 
 [node name="ExitButton" type="Button" parent="VBoxContainer" unique_id=1587185978]
 layout_mode = 2
-text = "Exit"
+theme_override_font_sizes/font_size = 24
+text = "Salir"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1285733788]
+position = Vector2(653, 365)
+zoom = Vector2(1.2, 1.2)
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]

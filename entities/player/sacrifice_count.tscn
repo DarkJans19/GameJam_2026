@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://8rqppus5c82y"]
+
+[ext_resource type="Texture2D" uid="uid://c2ksg8r0nnrps" path="res://assets/UI/UI Energia.png" id="1_n13jj"]
+[ext_resource type="Script" uid="uid://y3q45g1vtjyu" path="res://entities/player/sacrifice_count.gd" id="1_ryodp"]
+
+[node name="Sacrifice" type="Control" unique_id=550723547]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -2.0
+offset_right = 3.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ryodp")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1787517982]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 15.0
+offset_right = 16.0
+offset_bottom = 27.0
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=1651538398]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 18
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer" unique_id=600535889]
+position = Vector2(56.000004, 8)
+scale = Vector2(1.4472656, 1.2402344)
+texture = ExtResource("1_n13jj")

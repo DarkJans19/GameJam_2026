@@ -26,12 +26,12 @@ offset_bottom = 27.0
 [node name="Label" type="Label" parent="HBoxContainer" unique_id=430692867]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 16
 text = "XX G"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="HBoxContainer" unique_id=79151895]
-position = Vector2(81.6875, 18.3125)
+position = Vector2(74.5, 6.5)
 scale = Vector2(2.539062, 2.0859375)
 texture = ExtResource("1_3v1oy")
