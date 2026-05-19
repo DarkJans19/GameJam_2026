@@ -3,6 +3,7 @@ class_name CombatManager
 
 signal jugador_selecciona_enemigo
 signal ataque_iniciado
+signal puntos_sacrificio_cambiados(nuevos_puntos: int)
 
 enum StageType { EARLY, MID, LATE, BOSS }
 enum TurnState { START_BATTLE, FINISH_BATTLE, PLAYER_TURN, ENEMY_TURN }
@@ -29,10 +30,23 @@ const MOON_PHASE_FRAMES = {
 	LunarPhase.WANING_CRESCENT: 3
 }
 
+# Diccionario para traducir los nombres de las fases lunares a español
+const MOON_PHASE_NAMES_ES = {
+	LunarPhase.NEW_MOON: "Luna Nueva",
+	LunarPhase.WAXING_CRESCENT: "Luna Creciente",
+	LunarPhase.FIRST_QUARTER: "Cuarto Creciente",
+	LunarPhase.WAXING_GIBBOUS: "Gibosa Creciente",
+	LunarPhase.FULL_MOON: "Luna Llena",
+	LunarPhase.WANING_GIBBOUS: "Gibosa Menguante",
+	LunarPhase.LAST_QUARTER: "Cuarto Menguante",
+	LunarPhase.WANING_CRESCENT: "Luna Menguante"
+}
+
 var lunar_phase = LunarPhase.NEW_MOON:
 	set(val):
 		lunar_phase = val
 		_actualizar_sprite_luna()
+		_actualizar_texto_luna() # <-- Llama a la actualización de texto aquí
 
 var actual_turn: TurnState = TurnState.START_BATTLE
 
@@ -60,7 +74,10 @@ var jugadores : Array = []
 var turno_enemigo : int = 0
 var current_selected_enemy : Enemy = null
 var cantidad_inicial_enemigos : int = 0
-var puntos_sacrificio : int = 0
+var puntos_sacrificio : int = 0:
+	set(val):
+		puntos_sacrificio = val
+		emit_signal("puntos_sacrificio_cambiados", puntos_sacrificio)
 
 var skip_next_enemy_turn : bool = false
 
@@ -75,7 +92,7 @@ var skip_next_enemy_turn : bool = false
 @onready var player_hand: Node2D = $PlayerHand
 @onready var card_manager: Node2D = $CardManager
 @onready var moon_phases_sprite: Sprite2D = $moonPhases
-
+@onready var faseLunarLabel: Label = $sacrificeCount/faseLunarLabel
 @onready var finish_turn_button = $FinishTurn
 
 @onready var pause_menu : PauseMenu = $Pause
@@ -127,6 +144,7 @@ func _ready() -> void:
 	game_manager.vida_cambiada.connect(_on_player_life_changed)
 	
 	_actualizar_sprite_luna()
+	_actualizar_texto_luna() # <-- Inicializa el texto al empezar la batalla
 	start_battle()
 
 func _on_player_life_changed(actual: int, maxima: int) -> void:
@@ -319,6 +337,11 @@ func _actualizar_sprite_luna() -> void:
 	if moon_phases_sprite and MOON_PHASE_FRAMES.has(lunar_phase):
 		moon_phases_sprite.frame = MOON_PHASE_FRAMES[lunar_phase]
 
+# NUEVA FUNCIÓN: Traduce y actualiza el texto del Label
+func _actualizar_texto_luna() -> void:
+	if faseLunarLabel and MOON_PHASE_NAMES_ES.has(lunar_phase):
+		faseLunarLabel.text = MOON_PHASE_NAMES_ES[lunar_phase]
+
 func _on_finish_turn_button_down() -> void:
 	button_effect.play()
 	if actual_turn == TurnState.PLAYER_TURN:
@@ -351,7 +374,6 @@ func _on_attack_button_down() -> void:
 
 	print("Confirmando acción: Intentando jugar ", carta_a_jugar.card_data.card_name)
 	
-	# Cambiamos esto para validar el resultado del coste
 	var se_pudo_jugar = cm.play_card(carta_a_jugar, objetivo)
 	
 	if se_pudo_jugar:
@@ -364,8 +386,14 @@ func _on_sacrifice_button_down() -> void:
 	if actual_turn != TurnState.PLAYER_TURN: return
 	var cm = get_tree().get_first_node_in_group("CardManager")
 	if not cm or cm.selected_cards.is_empty(): return
+	
+	var cantidad_a_sacrificar = cm.selected_cards.size()
+	
 	cm.sacrifice_card()
 	print(puntos_sacrificio)
+	
+	puntos_sacrificio += cantidad_a_sacrificar
+	print("[Combat] Cartas sacrificadas. Puntos actuales: ", puntos_sacrificio)
 
 func set_botones_bloqueados(bloquear: bool) -> void:
 	if is_instance_valid(attack_button) and attack_button is Button:

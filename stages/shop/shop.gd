@@ -8,8 +8,6 @@ class_name shop
 @onready var btn_luna: Button = $vida/comprarLuna
 @onready var label_luna: Label = $vida/labelLuna
 @onready var descripcion_carta: RichTextLabel = $vida/ColorRect2/DescripcionCartaLunar
-@onready var label_mejora: Label = $mejora/Label
-@onready var btn_mejora: Button = $mejora/comprarMejora
 @onready var label_vida: Label = $vida/Label
 @onready var btn_vida: Button = $vida/comprarVida
 
@@ -47,8 +45,6 @@ func _conectar_seniales() -> void:
 		salir_btn.pressed.connect(_on_salir_pressed)
 	if btn_luna and not btn_luna.pressed.is_connected(_on_comprar_luna_pressed):
 		btn_luna.pressed.connect(_on_comprar_luna_pressed)
-	if btn_mejora and not btn_mejora.pressed.is_connected(_on_comprar_mejora_pressed):
-		btn_mejora.pressed.connect(_on_comprar_mejora_pressed)
 	if btn_vida and not btn_vida.pressed.is_connected(_on_comprar_vida_pressed):
 		btn_vida.pressed.connect(_on_comprar_vida_pressed)
 	if objeto_carta_lunar:
@@ -76,7 +72,6 @@ func _inicializar_tienda() -> void:
 func _actualizar_interfaz_precios() -> void:
 	if btn_luna: btn_luna.text = "Comprar"
 	if label_luna: label_luna.text = "Carta Lunar " + str(precio_luna) + "g"
-	if label_mejora: label_mejora.text = "Mejora " + str(precio_mejora) + "g"
 	if label_vida: label_vida.text = "Vida (25 HP) " + str(precio_vida) + "g"
 
 func _on_comprar_luna_pressed() -> void:
@@ -98,8 +93,6 @@ func _on_comprar_mejora_pressed() -> void:
 		game_manager.modificar_oro(-precio_mejora)
 		game_manager.vida_max_jugador += 20
 		game_manager.curar_jugador(20)
-		if btn_mejora: btn_mejora.disabled = true
-		if label_mejora: label_mejora.text = "Vendido"
 	else:
 		_mostrar_feedback("[color=red]Oro insuficiente.[/color]")
 

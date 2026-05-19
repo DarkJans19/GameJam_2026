@@ -2,16 +2,37 @@
 
 [ext_resource type="Script" uid="uid://ctega7nwhjdbe" path="res://stages/options/config.gd" id="1_7oj33"]
 
+[sub_resource type="Gradient" id="Gradient_7oj33"]
+colors = PackedColorArray(0.21960784, 0.21960784, 0.21960784, 1, 0.22094142, 0.22094142, 0.22094142, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_55cwt"]
+gradient = SubResource("Gradient_7oj33")
+
 [node name="Config" type="Control" unique_id=722845075]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 75.0
+offset_top = -33.0
+offset_right = 127.0
+offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_7oj33")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=982984028]
+z_index = 5
+position = Vector2(560, 392)
+zoom = Vector2(1.2, 1.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=898872432]
+position = Vector2(568.00006, 423)
+scale = Vector2(5.6562495, 909.125)
+texture = SubResource("GradientTexture1D_55cwt")
+metadata/_edit_lock_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=546286001]
 layout_mode = 1
@@ -20,17 +41,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -430.5
-offset_top = -228.0
-offset_right = 430.5
-offset_bottom = 228.0
+offset_left = -518.0
+offset_top = -199.0
+offset_right = 343.0
+offset_bottom = 257.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="OptionsLabel" type="Label" parent="VBoxContainer" unique_id=1895601820]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Options
+theme_override_font_sizes/font_size = 48
+text = "Opciones
 "
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=103706622]
@@ -39,57 +61,16 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
 
-[node name="MasterVolumeLabel" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1846866165]
+[node name="VolumenLabel" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1846866165]
 layout_mode = 2
-text = "Master Volume"
+text = "Volumen"
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer/HBoxContainer" unique_id=619059305]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 ratio = 1.485
 
-[node name="MasterVolume" type="HSlider" parent="VBoxContainer/HBoxContainer" unique_id=271706529]
-custom_minimum_size = Vector2(200, 15)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=592739729]
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 2
-
-[node name="MusicVolumeLabel" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1518333069]
-layout_mode = 2
-text = "Music Volume"
-
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer/HBoxContainer2" unique_id=1022834866]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-ratio = 1.485
-
-[node name="MusicVolume" type="HSlider" parent="VBoxContainer/HBoxContainer2" unique_id=1607594009]
-custom_minimum_size = Vector2(200, 15)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer" unique_id=1376241181]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 2
-
-[node name="SFXVolumeLabel" type="Label" parent="VBoxContainer/HBoxContainer3" unique_id=857751831]
-layout_mode = 2
-text = "SFX Volume"
-
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer/HBoxContainer3" unique_id=1618169538]
-custom_minimum_size = Vector2(120, 0)
-layout_mode = 2
-ratio = 1.485
-
-[node name="SFXVolume" type="HSlider" parent="VBoxContainer/HBoxContainer3" unique_id=806337383]
+[node name="Volumen" type="HSlider" parent="VBoxContainer/HBoxContainer" unique_id=271706529]
 custom_minimum_size = Vector2(200, 15)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -102,7 +83,7 @@ size_flags_vertical = 2
 
 [node name="FullScreenLabel" type="Label" parent="VBoxContainer/HBoxContainer4" unique_id=1216842734]
 layout_mode = 2
-text = "FullScreen"
+text = "Pantalla completa"
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer/HBoxContainer4" unique_id=1710196304]
 custom_minimum_size = Vector2(100, 0)
@@ -119,7 +100,7 @@ size_flags_vertical = 2
 
 [node name="ResolutionLabel" type="Label" parent="VBoxContainer/HBoxContainer5" unique_id=260715122]
 layout_mode = 2
-text = "Resolution"
+text = "Resolucion"
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer/HBoxContainer5" unique_id=1966149959]
 custom_minimum_size = Vector2(100, 0)
@@ -130,7 +111,7 @@ ratio = 1.485
 layout_mode = 2
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer" unique_id=1053255877]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 ratio = 1.485
 
@@ -141,6 +122,6 @@ size_flags_vertical = 2
 
 [node name="BackButton" type="Button" parent="VBoxContainer/HBoxContainer6" unique_id=1716434624]
 layout_mode = 2
-text = "Back"
+text = "Volver"
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer6/BackButton" to="." method="_on_back_button_pressed"]

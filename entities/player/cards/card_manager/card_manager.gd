@@ -104,6 +104,10 @@ func select_card(card):
 func show_description(card):
 	if descripcion_general and card.card_data and contenedor_ui:
 		descripcion_general.clear()
+		contenedor_ui.custom_minimum_size = Vector2.ZERO
+		contenedor_ui.size = Vector2.ZERO
+		descripcion_general.custom_minimum_size = Vector2.ZERO
+		descripcion_general.size = Vector2.ZERO
 		
 		var data = card.card_data
 		var moon_phase_str = CardData.CardType.keys()[data.type]
@@ -116,7 +120,18 @@ func show_description(card):
 		# Invocamos al formateador dinámico que creamos en CardData
 		texto_completo += data.get_full_description()
 		
+		var ancho_maximo = 350 
+		descripcion_general.custom_minimum_size.x = ancho_maximo
+		descripcion_general.add_theme_font_size_override("normal_font_size", 20)
+		
 		descripcion_general.add_text(texto_completo)
+		
+		descripcion_general.reset_size()
+		contenedor_ui.reset_size()
+		
+		contenedor_ui.custom_minimum_size = descripcion_general.size
+		contenedor_ui.size = descripcion_general.size
+		
 		contenedor_ui.show()
 
 func hide_description(card):

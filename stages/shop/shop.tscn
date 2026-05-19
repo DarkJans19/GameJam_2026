@@ -10,18 +10,17 @@
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_w58nr")
-metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1937438849]
 position = Vector2(-1.2124834, -1.0000014)
 scale = Vector2(1.051328, 1.0222222)
 texture = ExtResource("2_as8v6")
+metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1571825055]
 z_index = 5
-position = Vector2(-1, -2)
-zoom = Vector2(6, 6)
-metadata/_edit_lock_ = true
+position = Vector2(1, 0)
+zoom = Vector2(4, 4)
 
 [node name="ObjetoCartaLunar" type="Control" parent="." unique_id=556617409]
 anchors_preset = 0
@@ -29,6 +28,7 @@ offset_left = -139.0
 offset_top = -76.0
 offset_right = -45.0
 offset_bottom = -2.0
+metadata/_edit_lock_ = true
 
 [node name="cartaLunar" type="Sprite2D" parent="ObjetoCartaLunar" unique_id=1718713195]
 position = Vector2(39.000004, 43.000004)
@@ -39,6 +39,7 @@ texture = ExtResource("1_if3u5")
 position = Vector2(98.99999, -31.999996)
 scale = Vector2(0.293366, 0.24807692)
 texture = ExtResource("4_dujof")
+metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="vida" unique_id=1315266365]
 offset_left = -105.67004
