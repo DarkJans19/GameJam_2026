@@ -8,8 +8,9 @@
 [resource]
 script = ExtResource("1_k3i0p")
 enemy_name = "Batlaser"
-max_health = 30
-damage = 5
+max_health = 15
+heal_amount = 2
+damage = 3
 heavy_damage = 10
 sprite = ExtResource("2_he4h5")
 hurt_audio = ExtResource("2_ebqah")

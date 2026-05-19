@@ -8,7 +8,7 @@ var vida_max_jugador : int = 100
 var vida_actual_jugador : int = 100
 var oro : int = 50
 
-"""
+
 var mazo_jugador : Array[String] = [
 	"res://entities/player/cards/card/lunar_cards/Antonio.tres",
 	"res://entities/player/cards/card/lunar_cards/glerp_y_glop.tres",
@@ -19,12 +19,38 @@ var mazo_jugador : Array[String] = [
 	"res://entities/player/cards/card/lunar_cards/mago_dan.tres",
 	"res://entities/player/cards/card/lunar_cards/menguantes.tres",
 	"res://entities/player/cards/card/lunar_cards/Salomon.tres",
+	
 	# Cartas normales
 	"res://entities/player/cards/card/normal_cards/daño.tres",
 	"res://entities/player/cards/card/normal_cards/escudo.tres",
 	"res://entities/player/cards/card/normal_cards/vida.tres",
+	
+	"res://entities/player/cards/card/normal_cards/daño.tres",
+	"res://entities/player/cards/card/normal_cards/escudo.tres",
+	"res://entities/player/cards/card/normal_cards/vida.tres",
+	
+	"res://entities/player/cards/card/normal_cards/daño.tres",
+	"res://entities/player/cards/card/normal_cards/escudo.tres",
+	"res://entities/player/cards/card/normal_cards/vida.tres",
+	
+	"res://entities/player/cards/card/normal_cards/daño.tres",
+	"res://entities/player/cards/card/normal_cards/escudo.tres",
+	"res://entities/player/cards/card/normal_cards/vida.tres",
+	
+	"res://entities/player/cards/card/normal_cards/daño.tres",
+	"res://entities/player/cards/card/normal_cards/escudo.tres",
+	"res://entities/player/cards/card/normal_cards/vida.tres",
+	
+	# Cartas de comodin
+	"res://entities/player/cards/card/comodin_cards/dante.tres",
+	"res://entities/player/cards/card/comodin_cards/fortune.tres",
+	"res://entities/player/cards/card/comodin_cards/gildedboy.tres",
+	"res://entities/player/cards/card/comodin_cards/luna_llena.tres",
+	"res://entities/player/cards/card/comodin_cards/luna_nueva.tres",
+	"res://entities/player/cards/card/comodin_cards/saltancio.tres",
+	"res://entities/player/cards/card/comodin_cards/vida_escudo.tres",
 ]
-""" 
+
 
 var todas_las_cartas_del_juego : Array[String] = [
 	# Cartas lunares
@@ -55,8 +81,6 @@ var cartas_bloqueadas_actualmente : Array[String] = [
 	
 ]
 
-var mazo_jugador = todas_las_cartas_del_juego
-
 var etapa_combate_actual : int = 0
 var current_event : int = 0
 var last_selected_event : String = ""
@@ -72,23 +96,50 @@ func reset_progress() -> void:
 	last_selected_event = ""
 	etapa_combate_actual = 0
 	
-	"""
+
 	var mazo_jugador : Array[String] = [
-		"res://entities/player/cards/card/lunar_cards/Antonio.tres",
-		"res://entities/player/cards/card/lunar_cards/glerp_y_glop.tres",
-		"res://entities/player/cards/card/lunar_cards/jimbo.tres",
-		"res://entities/player/cards/card/lunar_cards/joaquin.tres",
-		"res://entities/player/cards/card/lunar_cards/lasper.tres",
-		"res://entities/player/cards/card/lunar_cards/lorang.tres",
-		"res://entities/player/cards/card/lunar_cards/mago_dan.tres",
-		"res://entities/player/cards/card/lunar_cards/menguantes.tres",
-		"res://entities/player/cards/card/lunar_cards/Salomon.tres",
-		# Cartas normales
-		"res://entities/player/cards/card/normal_cards/daño.tres",
-		"res://entities/player/cards/card/normal_cards/escudo.tres",
-		"res://entities/player/cards/card/normal_cards/vida.tres",
-	]
-	"""
+	"res://entities/player/cards/card/lunar_cards/Antonio.tres",
+	"res://entities/player/cards/card/lunar_cards/glerp_y_glop.tres",
+	"res://entities/player/cards/card/lunar_cards/jimbo.tres",
+	"res://entities/player/cards/card/lunar_cards/joaquin.tres",
+	"res://entities/player/cards/card/lunar_cards/lasper.tres",
+	"res://entities/player/cards/card/lunar_cards/lorang.tres",
+	"res://entities/player/cards/card/lunar_cards/mago_dan.tres",
+	"res://entities/player/cards/card/lunar_cards/menguantes.tres",
+	"res://entities/player/cards/card/lunar_cards/Salomon.tres",
+	
+	# Cartas normales
+	"res://entities/player/cards/card/normal_cards/daño.tres",
+	"res://entities/player/cards/card/normal_cards/escudo.tres",
+	"res://entities/player/cards/card/normal_cards/vida.tres",
+	
+	"res://entities/player/cards/card/normal_cards/daño.tres",
+	"res://entities/player/cards/card/normal_cards/escudo.tres",
+	"res://entities/player/cards/card/normal_cards/vida.tres",
+	
+	"res://entities/player/cards/card/normal_cards/daño.tres",
+	"res://entities/player/cards/card/normal_cards/escudo.tres",
+	"res://entities/player/cards/card/normal_cards/vida.tres",
+	
+	"res://entities/player/cards/card/normal_cards/daño.tres",
+	"res://entities/player/cards/card/normal_cards/escudo.tres",
+	"res://entities/player/cards/card/normal_cards/vida.tres",
+	
+	"res://entities/player/cards/card/normal_cards/daño.tres",
+	"res://entities/player/cards/card/normal_cards/escudo.tres",
+	"res://entities/player/cards/card/normal_cards/vida.tres",
+	
+	# Cartas de comodin
+	"res://entities/player/cards/card/comodin_cards/dante.tres",
+	"res://entities/player/cards/card/comodin_cards/fortune.tres",
+	"res://entities/player/cards/card/comodin_cards/gildedboy.tres",
+	"res://entities/player/cards/card/comodin_cards/luna_llena.tres",
+	"res://entities/player/cards/card/comodin_cards/luna_nueva.tres",
+	"res://entities/player/cards/card/comodin_cards/saltancio.tres",
+	"res://entities/player/cards/card/comodin_cards/vida_escudo.tres",
+]
+
+
 	
 	mazo_jugador = todas_las_cartas_del_juego
 	

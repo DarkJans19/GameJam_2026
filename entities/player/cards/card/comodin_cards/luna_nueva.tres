@@ -9,8 +9,7 @@
 [sub_resource type="Resource" id="Resource_weetp"]
 script = ExtResource("2_3nyog")
 effect_name = "No moon"
-effect_description = " "
-target_type = 5
+target_type = 4
 required_lunar_phase = 1
 metadata/_custom_type_script = "uid://died6fq2dhv1m"
 

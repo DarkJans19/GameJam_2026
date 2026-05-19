@@ -40,15 +40,15 @@ func _inicializar_pool_eventos() -> void:
 
 	pool_de_eventos.append(EventoConfig.new(
 		"Carne alienigena",
-		"Un mercader interestelar te ofrece una sustancia viscosa que cura heridas.",
-		"Comer",
+		"Encuentras un extraño ser en el suelo.",
+		"Comer?",
 		"CURAR_JUGADOR",
 		30
 	))
 
 	pool_de_eventos.append(EventoConfig.new(
-		"TORMENTA SOLAR",
-		"Una radiacion golpea tus sistemas de almacenamiento de cartas.",
+		"TORMENTA RADIOACTIVA",
+		"Una tormenta de radiacion te golpea.",
 		"Resistir",
 		"PERDER_CARTA",
 		30
@@ -95,16 +95,16 @@ func _procesar_efecto_evento() -> void:
 		"CURAR_JUGADOR":
 			var cantidad = _obtener_multiplo_de_5(20, 40)
 			game_manager.curar_jugador(cantidad)
-			texto_resultado = "Tus nanocitos reparan parte del chasis dañado.\n\n[color=green](+ " + str(cantidad) + " de HP)[/color]"
+			texto_resultado = "La carne no estuvo tan mal.\n\n[color=green](+ " + str(cantidad) + " de HP)[/color]"
 
 		"PERDER_CARTA":
 			if not game_manager.mazo_jugador.is_empty():
 				var carta_perdida = game_manager.mazo_jugador.pick_random()
 				var nombre_carta = carta_perdida.get_file().get_basename().capitalize()
 				game_manager.remover_carta_del_mazo(carta_perdida)
-				texto_resultado = "El intenso calor solar evapora una de tus posesiones del mazo.\n\n[color=magenta](Perdiste la carta: " + nombre_carta + ")[/color]"
+				texto_resultado = "La radiacion derrite una de tus posesiones.\n\n[color=magenta](Perdiste la carta: " + nombre_carta + ")[/color]"
 			else:
-				texto_resultado = "El sol brilla con fuerza pero tu mazo estaba vacio, no perdiste nada."
+				texto_resultado = "La radiacion era fuerte pero no tenias nada."
 
 	descripcion_general.clear()
 	var texto_final = "[center][b]" + evento_actual.titulo + "[/b]\n\n" + texto_resultado + "[/center]"

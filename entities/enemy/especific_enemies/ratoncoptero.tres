@@ -10,8 +10,18 @@ script = ExtResource("3_5y3ph")
 enemy_name = "Ratoncoptero"
 max_health = 20
 heal_amount = 10
-damage = 2
-heavy_damage = 3
+damage = 4
+heavy_damage = 6
 sprite = ExtResource("4_htn1u")
 hurt_audio = ExtResource("2_ath71")
 attack_audio = ExtResource("1_hjrqs")
+moon_phase_turns = {
+0: ["ATTACK", "ATTACK"],
+1: ["PASS"],
+2: ["HEAL", "ATTACK"],
+3: ["DEFEND", "HEAL"],
+4: ["HEAVY ATTACK", "HEAVY ATTACK"],
+5: ["PASS"],
+6: ["PASS"],
+7: ["HEAVY ATTACK", "HEAL"]
+}

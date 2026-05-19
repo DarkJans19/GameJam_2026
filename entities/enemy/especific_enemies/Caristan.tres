@@ -9,7 +9,7 @@
 [resource]
 script = ExtResource("1_ule3u")
 enemy_name = "Caristan"
-max_health = 60
+max_health = 50
 damage = 10
 heavy_damage = 20
 sprite = ExtResource("2_f4xk0")
@@ -18,11 +18,11 @@ attack_audio = ExtResource("1_mva7h")
 intro_audio = ExtResource("3_63di5")
 moon_phase_turns = {
 0: ["HEAVY ATTACK"],
-1: ["ATTACK", "ATTACK", "ATTACK"],
+1: ["ATTACK", "ATTACK"],
 2: ["SKIP ONE PHASE"],
 3: ["PASS"],
 4: ["KILL"],
-5: ["KILL"],
+5: ["ATTACK"],
 6: ["ATTACK"],
 7: ["ATTACK", "ATTACK"]
 }

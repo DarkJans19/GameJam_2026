@@ -2,12 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cbm04l5a4eu1a" path="res://stages/menu/menu.gd" id="1_xh5sh"]
 [ext_resource type="AudioStream" uid="uid://bdtk42d0bee20" path="res://assets/Audios/Title Theme.mp3" id="2_5n37s"]
-
-[sub_resource type="Gradient" id="Gradient_7oj33"]
-colors = PackedColorArray(0.21960784, 0.21960784, 0.21960784, 1, 0.22094142, 0.22094142, 0.22094142, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_xh5sh"]
-gradient = SubResource("Gradient_7oj33")
+[ext_resource type="Texture2D" uid="uid://cnva866826god" path="res://assets/Escenario/Portada.png" id="2_58ejv"]
 
 [node name="Control" type="Control" unique_id=1665532082]
 layout_mode = 3
@@ -19,32 +14,21 @@ grow_vertical = 2
 script = ExtResource("1_xh5sh")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1397902456]
-position = Vector2(637.5, 385.4375)
-scale = Vector2(5.3789063, 887.125)
-texture = SubResource("GradientTexture1D_xh5sh")
-metadata/_edit_lock_ = true
+position = Vector2(657.50006, 368)
+scale = Vector2(3.4531255, 3.388889)
+texture = ExtResource("2_58ejv")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2078726476]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -49.0
-offset_top = -64.0
-offset_right = 49.0
-offset_bottom = 64.0
+offset_left = -140.0
+offset_right = 140.0
+offset_bottom = 266.0
 grow_horizontal = 2
-grow_vertical = 2
 alignment = 1
 metadata/_edit_lock_ = true
-
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=854115027]
-layout_mode = 2
-theme_override_font_sizes/font_size = 72
-text = "Alien Project"
-horizontal_alignment = 1
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer" unique_id=2013334845]
 custom_minimum_size = Vector2(0, 100)

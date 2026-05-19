@@ -8,6 +8,19 @@
 [resource]
 script = ExtResource("3_dab7e")
 enemy_name = "Galapagus"
+max_health = 25
+damage = 5
+heavy_damage = 10
 sprite = ExtResource("4_yrxjc")
 hurt_audio = ExtResource("2_dhhyc")
 attack_audio = ExtResource("1_mkcpi")
+moon_phase_turns = {
+0: ["ATTACK"],
+1: ["DEFEND", "DEFEND"],
+2: ["DEFEND", "ATTACK"],
+3: ["HEAVY_ATTACK"],
+4: ["HEAVY ATTACK", "HEAVY ATTACK"],
+5: ["ATTACK", "HEAL"],
+6: ["DEFEND", "HEAL"],
+7: ["ATTACK", "ATTACK"]
+}

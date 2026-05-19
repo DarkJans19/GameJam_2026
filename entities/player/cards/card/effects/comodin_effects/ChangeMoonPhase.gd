@@ -5,9 +5,7 @@ class_name ChangeMoonPhase
 
 func effect(combate: Node):
 	if combate.has_method("change_phase"):
-		print("cambiada la fase")
 		combate.change_phase(lunar_phase_to_change)
-		print("changed to", lunar_phase_to_change)
 
 func get_dynamic_description() -> String:
 	# Si se escribió algo a mano, se respeta

@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ms188et4yyuh" path="res://stages/map/enemy_event.tscn" id="1_qw2a2"]
 [ext_resource type="Script" uid="uid://trn12008a6js" path="res://stages/map/map.gd" id="1_xghif"]
+[ext_resource type="Texture2D" uid="uid://d0rq5d4yiansd" path="res://assets/Escenario/Map Background.png" id="2_buyr3"]
 [ext_resource type="PackedScene" uid="uid://0s3j7dkyhc4u" path="res://stages/map/random_event.tscn" id="2_x8gmq"]
 [ext_resource type="PackedScene" uid="uid://dlxum2nam1ek4" path="res://stages/map/shop_event.tscn" id="3_wjkhs"]
 [ext_resource type="PackedScene" uid="uid://6ga84j3uyeah" path="res://stages/map/boss_event.tscn" id="4_x8gmq"]
@@ -12,14 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://4y02hes2oncj" path="res://stages/ui/pause.tscn" id="10_2afta"]
 [ext_resource type="AudioStream" uid="uid://cxhx4l1fijbel" path="res://assets/Audios/click_effect.mp3" id="12_buyr3"]
 [ext_resource type="AudioStream" uid="uid://bdtk42d0bee20" path="res://assets/Audios/Title Theme.mp3" id="12_nar4y"]
-
-[sub_resource type="Gradient" id="Gradient_xghif"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.12298488, 0.12298488, 0.12298488, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_22rbi"]
-gradient = SubResource("Gradient_xghif")
-width = 64
 
 [sub_resource type="GDScript" id="GDScript_2afta"]
 script/source = "extends Control
@@ -85,10 +78,9 @@ script = ExtResource("1_xghif")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=972101176]
 z_index = -7
-position = Vector2(1022.7623, 430.00003)
-scale = Vector2(19.023825, 689.99994)
-texture = SubResource("GradientTexture1D_22rbi")
-metadata/_edit_lock_ = true
+position = Vector2(1019.8032, 412)
+scale = Vector2(3.7262301, 3.8222227)
+texture = ExtResource("2_buyr3")
 
 [node name="Enemy_event" parent="." unique_id=1682874225 instance=ExtResource("1_qw2a2")]
 layout_mode = 0
@@ -262,7 +254,7 @@ points = PackedVector2Array(937784.56, 169, 1046115.6, 237)
 default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)
 
 [node name="Line2D16" type="Line2D" parent="." unique_id=1906577018]
-position = Vector2(811.20935, 273)
+position = Vector2(5163, 1169)
 scale = Vector2(0.0041393726, 1)
 points = PackedVector2Array(89944.92, 51, 107580.44, 118)
 default_color = Color(18.892157, 18.892157, 18.892157, 0.26666668)

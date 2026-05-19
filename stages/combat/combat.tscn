@@ -22,6 +22,70 @@
 [ext_resource type="AudioStream" uid="uid://e2snkhaco4jl" path="res://assets/Audios/button_effect.mp3" id="19_c7lf3"]
 [ext_resource type="AudioStream" uid="uid://co70x1hcbnhl" path="res://assets/Audios/enemy_select.mp3" id="20_etoid"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlhlv"]
+atlas = ExtResource("4_b28yy")
+region = Rect2(0, 24, 198, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y48dw"]
+atlas = ExtResource("4_b28yy")
+region = Rect2(198, 24, 198, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxryf"]
+atlas = ExtResource("4_b28yy")
+region = Rect2(0, 72, 198, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sb2ak"]
+atlas = ExtResource("4_b28yy")
+region = Rect2(198, 72, 198, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rlj53"]
+atlas = ExtResource("4_b28yy")
+region = Rect2(0, 0, 198, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cfao"]
+atlas = ExtResource("4_b28yy")
+region = Rect2(198, 0, 198, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pn70t"]
+atlas = ExtResource("4_b28yy")
+region = Rect2(0, 48, 198, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekr56"]
+atlas = ExtResource("4_b28yy")
+region = Rect2(198, 48, 198, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ewudq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlhlv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y48dw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxryf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sb2ak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rlj53")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cfao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pn70t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekr56")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
 [node name="Combat" type="Node2D" unique_id=1594128356]
 script = ExtResource("1_cfiq8")
 
@@ -36,6 +100,7 @@ texture = ExtResource("2_c2hqt")
 [node name="Midground" type="Sprite2D" parent="." unique_id=1050102443]
 z_index = 1
 position = Vector2(0, 12)
+rotation = -6.2831855
 texture = ExtResource("3_b28yy")
 
 [node name="EnemySpawn1" type="Marker2D" parent="Midground" unique_id=1754860450]
@@ -47,16 +112,15 @@ position = Vector2(-82, -12)
 [node name="EnemySpawn2" type="Marker2D" parent="Midground" unique_id=1513129003]
 position = Vector2(82, -12)
 
+[node name="Fases_lunares" type="AnimatedSprite2D" parent="." unique_id=1054050840]
+z_index = 1
+position = Vector2(0, -71)
+sprite_frames = SubResource("SpriteFrames_ewudq")
+animation = &"new_animation"
+speed_scale = 0.0
+
 [node name="EnemyContainer" type="Node2D" parent="." unique_id=33894181]
 metadata/_edit_lock_ = true
-
-[node name="moonPhases" type="Sprite2D" parent="." unique_id=1636623617]
-position = Vector2(0, -70)
-texture = ExtResource("4_b28yy")
-hframes = 2
-vframes = 4
-frame = 3
-region_rect = Rect2(1, 1, 196, 22)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1458517472]
 z_index = 5
@@ -117,21 +181,26 @@ grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(0.4, 0.4)
 
-[node name="Sacrifice2" parent="." unique_id=550723547 instance=ExtResource("13_jlhlv")]
+[node name="SacrificeCount" parent="." unique_id=550723547 instance=ExtResource("13_jlhlv")]
 z_index = 4
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 offset_left = -137.0
 offset_top = -63.0
 offset_right = -137.0
 offset_bottom = -63.0
-scale = Vector2(0.5, 0.5)
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.46, 0.46)
 
-[node name="faseLunarLabel" type="Label" parent="Sacrifice2" unique_id=1658044291]
+[node name="faseLunarLabel" type="Label" parent="SacrificeCount" unique_id=1658044291]
 layout_mode = 0
-offset_left = 476.0
-offset_top = -22.0
-offset_right = 604.0
-offset_bottom = -6.0
-theme_override_font_sizes/font_size = 11
+offset_left = 517.3913
+offset_top = -21.739124
+offset_right = 645.3913
+offset_bottom = -5.7391243
+theme_override_font_sizes/font_size = 10
 text = "fase lunar"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=721112337]

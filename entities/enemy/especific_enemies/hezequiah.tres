@@ -8,19 +8,20 @@
 
 [resource]
 script = ExtResource("1_8cmv6")
-max_health = 80
+max_health = 60
 heal_amount = 10
-damage = 8
+damage = 5
+heavy_damage = 6
 sprite = ExtResource("2_ku1ia")
 hurt_audio = ExtResource("2_6cde3")
 attack_audio = ExtResource("1_a00ry")
 intro_audio = ExtResource("3_sdc15")
 moon_phase_turns = {
-0: ["HEAL"],
+0: ["HEAL", "HEAL"],
 1: ["HEAL", "HEAL"],
 2: ["PASS"],
-3: ["ATTACK"],
-4: ["ATTACK", "ATTACK", "ATTACK", "ATTACK"],
+3: ["HEAVY ATTACK", "HEAVY ATTACK"],
+4: ["HEAVY ATTACK", "HEAVY ATTACK"],
 5: ["PASS"],
 6: ["HEAL", "HEAL"],
 7: ["PASS"]

@@ -9,7 +9,7 @@
 script = ExtResource("2_nsnov")
 lunar_phase_to_change = 4
 effect_name = "New moon change"
-target_type = 5
+target_type = 4
 random_targets_count = 0
 metadata/_custom_type_script = "uid://died6fq2dhv1m"
 

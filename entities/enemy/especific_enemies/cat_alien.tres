@@ -14,13 +14,13 @@ sprite = ExtResource("2_0t1mu")
 hurt_audio = ExtResource("2_k4sp6")
 attack_audio = ExtResource("1_ryihw")
 moon_phase_turns = {
-0: ["SHIELD", "SHIELD", "SHIELD"],
+0: ["DEFEND", "DEFEND"],
 1: ["ATTACK"],
 2: ["ATTACK", "ATTACK"],
-3: ["ATTACK", "ATTACK", "ATTACK"],
+3: ["HEAVY ATTACK", "HEAVY ATTACK"],
 4: ["PASS"],
-5: ["SHIELD", "SHIELD"],
-6: ["ATTACK"],
+5: ["DEFEND", "DEFEND"],
+6: ["DEFEND", "DEFEND"],
 7: ["PASS"]
 }
 metadata/_custom_type_script = "uid://b3q4jk3aickui"

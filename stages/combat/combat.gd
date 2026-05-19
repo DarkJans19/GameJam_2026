@@ -9,37 +9,27 @@ enum StageType { EARLY, MID, LATE, BOSS }
 enum TurnState { START_BATTLE, FINISH_BATTLE, PLAYER_TURN, ENEMY_TURN }
 
 enum LunarPhase { 
-	NEW_MOON, 
-	WANING_CRESCENT, 
-	LAST_QUARTER,
-	WANING_GIBBOUS, 
-	FULL_MOON, 
-	WAXING_GIBBOUS, 
-	FIRST_QUARTER, 
-	WAXING_CRESCENT
+	NEW_MOON,         # Cuadro 1: Luna Nueva (Completamente oscura)
+	WAXING_CRESCENT,  # Cuadro 2: Luna Creciente
+	FIRST_QUARTER,    # Cuadro 3: Cuarto Creciente (Media Luna)
+	WAXING_GIBBOUS,    # Cuadro 4: Gibosa Creciente
+	FULL_MOON,        # Cuadro 5: Luna Llena
+	WANING_GIBBOUS,   # Cuadro 6: Gibosa Menguante
+	LAST_QUARTER,     # Cuadro 7: Cuarto Menguante (Media Luna)
+	WANING_CRESCENT,  # Cuadro 8: Luna Menguante
 }
 
-const MOON_PHASE_FRAMES = {
-	LunarPhase.NEW_MOON: 2,
-	LunarPhase.WAXING_CRESCENT: 5,
-	LunarPhase.FIRST_QUARTER: 4,
-	LunarPhase.WAXING_GIBBOUS: 1,
-	LunarPhase.FULL_MOON: 0,
-	LunarPhase.WANING_GIBBOUS: 7,
-	LunarPhase.LAST_QUARTER: 6,
-	LunarPhase.WANING_CRESCENT: 3
-}
+# Ya no necesitas MOON_PHASE_FRAMES porque el Enum coincide con el cuadro (0 al 7)
 
-# Diccionario para traducir los nombres de las fases lunares a español
 const MOON_PHASE_NAMES_ES = {
-	LunarPhase.NEW_MOON: "Luna Nueva",
-	LunarPhase.WAXING_CRESCENT: "Luna Creciente",
-	LunarPhase.FIRST_QUARTER: "Cuarto Creciente",
-	LunarPhase.WAXING_GIBBOUS: "Gibosa Creciente",
 	LunarPhase.FULL_MOON: "Luna Llena",
 	LunarPhase.WANING_GIBBOUS: "Gibosa Menguante",
 	LunarPhase.LAST_QUARTER: "Cuarto Menguante",
-	LunarPhase.WANING_CRESCENT: "Luna Menguante"
+	LunarPhase.WANING_CRESCENT: "Luna Menguante",
+	LunarPhase.NEW_MOON: "Luna Nueva",
+	LunarPhase.WAXING_CRESCENT: "Luna Creciente",
+	LunarPhase.FIRST_QUARTER: "Cuarto Creciente",
+	LunarPhase.WAXING_GIBBOUS: "Gibosa Creciente"
 }
 
 var lunar_phase = LunarPhase.NEW_MOON:
@@ -91,8 +81,9 @@ var skip_next_enemy_turn : bool = false
 @onready var deck_node: Node2D = $Deck
 @onready var player_hand: Node2D = $PlayerHand
 @onready var card_manager: Node2D = $CardManager
-@onready var moon_phases_sprite: Sprite2D = $moonPhases
-@onready var faseLunarLabel: Label = $sacrificeCount/faseLunarLabel
+@onready var moon_phases_sprite: AnimatedSprite2D = $Fases_lunares
+
+@onready var faseLunarLabel: Label = $SacrificeCount/faseLunarLabel
 @onready var finish_turn_button = $FinishTurn
 
 @onready var pause_menu : PauseMenu = $Pause
@@ -144,7 +135,7 @@ func _ready() -> void:
 	game_manager.vida_cambiada.connect(_on_player_life_changed)
 	
 	_actualizar_sprite_luna()
-	_actualizar_texto_luna() # <-- Inicializa el texto al empezar la batalla
+	_actualizar_texto_luna()
 	start_battle()
 
 func _on_player_life_changed(actual: int, maxima: int) -> void:
@@ -334,10 +325,9 @@ func change_phase(fase: LunarPhase) -> void:
 	lunar_phase = fase
 
 func _actualizar_sprite_luna() -> void:
-	if moon_phases_sprite and MOON_PHASE_FRAMES.has(lunar_phase):
-		moon_phases_sprite.frame = MOON_PHASE_FRAMES[lunar_phase]
+	if moon_phases_sprite:
+		moon_phases_sprite.frame = lunar_phase
 
-# NUEVA FUNCIÓN: Traduce y actualiza el texto del Label
 func _actualizar_texto_luna() -> void:
 	if faseLunarLabel and MOON_PHASE_NAMES_ES.has(lunar_phase):
 		faseLunarLabel.text = MOON_PHASE_NAMES_ES[lunar_phase]
@@ -387,12 +377,9 @@ func _on_sacrifice_button_down() -> void:
 	var cm = get_tree().get_first_node_in_group("CardManager")
 	if not cm or cm.selected_cards.is_empty(): return
 	
-	var cantidad_a_sacrificar = cm.selected_cards.size()
-	
 	cm.sacrifice_card()
 	print(puntos_sacrificio)
 	
-	puntos_sacrificio += cantidad_a_sacrificar
 	print("[Combat] Cartas sacrificadas. Puntos actuales: ", puntos_sacrificio)
 
 func set_botones_bloqueados(bloquear: bool) -> void:
