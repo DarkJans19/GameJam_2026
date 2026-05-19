@@ -30,6 +30,30 @@ const MOON_PHASE_FRAMES = {
 	LunarPhase.WANING_CRESCENT: 3
 }
 
+
+const MOON_PHASE_FRAMESr = {
+	LunarPhase.NEW_MOON: 3,
+	LunarPhase.WAXING_CRESCENT: 2,
+	LunarPhase.FIRST_QUARTER: 5,
+	LunarPhase.WAXING_GIBBOUS: 4,
+	LunarPhase.FULL_MOON: 1,
+	LunarPhase.WANING_GIBBOUS: 0,
+	LunarPhase.LAST_QUARTER: 7,
+	LunarPhase.WANING_CRESCENT: 6
+}
+
+
+const MOON_PHASE_FRAMESl = {
+	LunarPhase.NEW_MOON: 5,
+	LunarPhase.WAXING_CRESCENT: 4,
+	LunarPhase.FIRST_QUARTER: 1,
+	LunarPhase.WAXING_GIBBOUS: 0,
+	LunarPhase.FULL_MOON: 7,
+	LunarPhase.WANING_GIBBOUS: 6,
+	LunarPhase.LAST_QUARTER: 3,
+	LunarPhase.WANING_CRESCENT: 2
+}
+
 # Diccionario para traducir los nombres de las fases lunares a español
 const MOON_PHASE_NAMES_ES = {
 	LunarPhase.NEW_MOON: "Luna Nueva",
@@ -94,6 +118,9 @@ var skip_next_enemy_turn : bool = false
 @onready var moon_phases_sprite: Sprite2D = $moonPhases
 @onready var faseLunarLabel: Label = $sacrificeCount/faseLunarLabel
 @onready var finish_turn_button = $FinishTurn
+@onready var uppermoon: Sprite2D = $Uppermoon
+@onready var leftmoon: Sprite2D = $leftmoon
+@onready var rigthmoon: Sprite2D = $rightmoon
 
 @onready var pause_menu : PauseMenu = $Pause
 @onready var victory_screen : VictoryScreen = $Victory
@@ -336,7 +363,13 @@ func change_phase(fase: LunarPhase) -> void:
 func _actualizar_sprite_luna() -> void:
 	if moon_phases_sprite and MOON_PHASE_FRAMES.has(lunar_phase):
 		moon_phases_sprite.frame = MOON_PHASE_FRAMES[lunar_phase]
-
+	if uppermoon and MOON_PHASE_FRAMES.has(lunar_phase):
+		uppermoon.frame = MOON_PHASE_FRAMES[lunar_phase]
+	if leftmoon and MOON_PHASE_FRAMESl.has(lunar_phase):
+		leftmoon.frame = MOON_PHASE_FRAMESl[lunar_phase] 
+	if rigthmoon and MOON_PHASE_FRAMESr.has(lunar_phase):
+		rigthmoon.frame = MOON_PHASE_FRAMESr[lunar_phase] 
+			
 # NUEVA FUNCIÓN: Traduce y actualiza el texto del Label
 func _actualizar_texto_luna() -> void:
 	if faseLunarLabel and MOON_PHASE_NAMES_ES.has(lunar_phase):

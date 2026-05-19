@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://74w3tp3cw85h" path="res://stages/combat/combat.gd" id="1_cfiq8"]
 [ext_resource type="Texture2D" uid="uid://x3jbl3bnl2c5" path="res://assets/Escenario/Background.png" id="1_nuwwi"]
 [ext_resource type="Texture2D" uid="uid://cxb2ewynql2xm" path="res://assets/Escenario/Foreground.png" id="2_c2hqt"]
-[ext_resource type="Texture2D" uid="uid://bbopromy71yp3" path="res://assets/Escenario/Midground.png" id="3_b28yy"]
 [ext_resource type="Texture2D" uid="uid://iejk1x6x22be" path="res://assets/UI/UI Lunas Sheet.png" id="4_b28yy"]
+[ext_resource type="Texture2D" uid="uid://dh7o83ymcu5nb" path="res://assets/Escenario/Trial.png" id="4_y48dw"]
 [ext_resource type="Texture2D" uid="uid://dv3ksljt1b8la" path="res://assets/UI/UI Ataque.png" id="8_h28fe"]
 [ext_resource type="Texture2D" uid="uid://iu36y3uavtar" path="res://assets/UI/UI Nosepaque.png" id="9_h28fe"]
 [ext_resource type="Texture2D" uid="uid://76wlby5jsa3g" path="res://assets/UI/UI Sacrificio.png" id="9_lfwqh"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://8rqppus5c82y" path="res://entities/player/sacrifice_count.tscn" id="13_jlhlv"]
 [ext_resource type="PackedScene" uid="uid://dy0ewsimw8mem" path="res://entities/player/health.tscn" id="13_yl2py"]
 [ext_resource type="Texture2D" uid="uid://dss0i0a3pdla7" path="res://assets/UI/UI Pausa.png" id="14_crids"]
+[ext_resource type="FontFile" uid="uid://ebt2bvxsrvd2" path="res://assets/PixelOperator8_health.ttf" id="14_y48dw"]
 [ext_resource type="PackedScene" uid="uid://4y02hes2oncj" path="res://stages/ui/pause.tscn" id="15_7oxte"]
 [ext_resource type="PackedScene" uid="uid://cx8d0ndpjfa07" path="res://stages/ui/lose.tscn" id="16_t7ues"]
 [ext_resource type="PackedScene" uid="uid://coiml5msg4gtj" path="res://stages/ui/victory.tscn" id="17_c7lf3"]
@@ -33,10 +34,30 @@ metadata/_edit_lock_ = true
 z_index = 2
 texture = ExtResource("2_c2hqt")
 
+[node name="Uppermoon" type="Sprite2D" parent="." unique_id=596876034]
+position = Vector2(0, -30)
+texture = ExtResource("4_y48dw")
+hframes = 2
+vframes = 4
+frame = 2
+
+[node name="leftmoon" type="Sprite2D" parent="." unique_id=263196119]
+position = Vector2(-39, -18)
+texture = ExtResource("4_y48dw")
+hframes = 2
+vframes = 4
+frame = 3
+
+[node name="rightmoon" type="Sprite2D" parent="." unique_id=268451953]
+position = Vector2(39, -18)
+texture = ExtResource("4_y48dw")
+hframes = 2
+vframes = 4
+frame = 4
+
 [node name="Midground" type="Sprite2D" parent="." unique_id=1050102443]
 z_index = 1
 position = Vector2(0, 12)
-texture = ExtResource("3_b28yy")
 
 [node name="EnemySpawn1" type="Marker2D" parent="Midground" unique_id=1754860450]
 position = Vector2(0, 6)
@@ -131,6 +152,7 @@ offset_left = 476.0
 offset_top = -22.0
 offset_right = 604.0
 offset_bottom = -6.0
+theme_override_fonts/font = ExtResource("14_y48dw")
 theme_override_font_sizes/font_size = 11
 text = "fase lunar"
 
