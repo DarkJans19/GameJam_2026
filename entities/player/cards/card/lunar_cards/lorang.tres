@@ -41,5 +41,6 @@ script = ExtResource("6_ygap4")
 card_name = "Lorang"
 sacrifice_cost = 2
 image = ExtResource("5_vn2y0")
+effect_value = 2
 type = 2
 effects = Array[ExtResource("1_o0w7d")]([SubResource("Resource_etdyn"), SubResource("Resource_xsr31"), SubResource("Resource_yrb61")])

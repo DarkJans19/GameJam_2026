@@ -28,7 +28,9 @@ metadata/_custom_type_script = "uid://dq7ir856ygn6n"
 [resource]
 script = ExtResource("3_x4l73")
 card_name = "Antonio"
+sacrifice_cost = 2
 image = ExtResource("2_eq2hb")
-card_type_action = 1
+card_type_action = 2
+effect_value = 3
 type = 2
 effects = Array[ExtResource("1_psgkm")]([SubResource("Resource_cywwi"), SubResource("Resource_lqmqp")])

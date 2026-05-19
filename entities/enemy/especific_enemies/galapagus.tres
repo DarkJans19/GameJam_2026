@@ -8,8 +8,8 @@
 [resource]
 script = ExtResource("3_dab7e")
 enemy_name = "Galapagus"
-max_health = 25
-damage = 5
+max_health = 30
+damage = 8
 heavy_damage = 10
 sprite = ExtResource("4_yrxjc")
 hurt_audio = ExtResource("2_dhhyc")

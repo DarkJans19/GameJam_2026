@@ -22,9 +22,18 @@ random_targets_count = 0
 requires_specific_phase = true
 metadata/_custom_type_script = "uid://dcd2te2eyjk85"
 
+[sub_resource type="Resource" id="Resource_qha12"]
+script = ExtResource("2_6simd")
+damage_quantity = 5
+target_type = 2
+required_lunar_phase = 7
+requires_specific_phase = true
+metadata/_custom_type_script = "uid://dbc7m5yy3bseg"
+
 [resource]
 script = ExtResource("5_dnwia")
 card_name = "Mago dan"
 image = ExtResource("4_g1xq8")
+effect_value = 3
 type = 2
-effects = Array[ExtResource("1_df601")]([SubResource("Resource_j34a6"), SubResource("Resource_5rbsl")])
+effects = Array[ExtResource("1_df601")]([SubResource("Resource_j34a6"), SubResource("Resource_5rbsl"), SubResource("Resource_qha12")])

@@ -64,5 +64,7 @@ metadata/_custom_type_script = "uid://cr1r0pvuprqr2"
 script = ExtResource("2_k2gtg")
 card_name = "menguantes"
 image = ExtResource("2_x6018")
+card_type_action = 2
+effect_value = 5
 type = 2
 effects = Array[ExtResource("1_3ac2h")]([SubResource("Resource_qujcf"), SubResource("Resource_x3qd7"), SubResource("Resource_8sgv1"), SubResource("Resource_yw3vv"), SubResource("Resource_sxcvd"), SubResource("Resource_j28hi")])
