@@ -1,7 +1,9 @@
 [gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://wcrwrs8v2vti"]
 
+[ext_resource type="AudioStream" uid="uid://dhnqp1qn3d2pw" path="res://assets/Audios/enemy_attack_2.mp3" id="1_5tnqf"]
 [ext_resource type="Script" uid="uid://b3q4jk3aickui" path="res://entities/enemy/EnemyData.gd" id="1_fpjrd"]
 [ext_resource type="Texture2D" uid="uid://bugks4ckj6cv5" path="res://assets/Enemies/Abeja.png" id="2_bl4ls"]
+[ext_resource type="AudioStream" uid="uid://clbxwknsq4ts7" path="res://assets/Audios/Enemie HurtL.mp3" id="2_jlf4e"]
 
 [resource]
 script = ExtResource("1_fpjrd")
@@ -9,8 +11,9 @@ enemy_name = "Bee"
 max_health = 25
 heal_amount = 10
 damage = 7
-heavy_damage = 0
 sprite = ExtResource("2_bl4ls")
+hurt_audio = ExtResource("2_jlf4e")
+attack_audio = ExtResource("1_5tnqf")
 moon_phase_turns = {
 0: ["ATTACK", "ATTACK", "ATTACK"],
 1: ["ATTACK"],

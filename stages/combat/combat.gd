@@ -36,9 +36,16 @@ var lunar_phase = LunarPhase.NEW_MOON:
 
 var actual_turn: TurnState = TurnState.START_BATTLE
 
+# Enemies
 const BATLASER = preload("res://entities/enemy/especific_enemies/batlaser.tres")
 const BEE = preload("res://entities/enemy/especific_enemies/bee.tres")
 const CAT_ALIEN = preload("res://entities/enemy/especific_enemies/cat_alien.tres")
+const GALAPAGOS = preload("res://entities/enemy/especific_enemies/galapagus.tres")
+const MARCO = preload("res://entities/enemy/especific_enemies/marco.tres")
+const HENRIK = preload("res://entities/enemy/especific_enemies/henrik.tres")
+const RATONCOPTERO = preload("res://entities/enemy/especific_enemies/ratoncoptero.tres")
+
+# Bosses
 const CARISTAN = preload("res://entities/enemy/especific_enemies/caristan.tres")
 const HEZEQUIAH = preload("res://entities/enemy/especific_enemies/hezequiah.tres")
 
@@ -78,6 +85,7 @@ var skip_next_enemy_turn : bool = false
 # Audio
 @onready var button_effect = $button_effect
 @onready var enemy_select_effect = $enemy_select
+@onready var music = $music
 
 var enemy_scene : PackedScene = preload("res://entities/enemy/enemy.tscn")
 const PAUSE_MENU_SCENE = preload("res://stages/ui/pause.tscn")
@@ -90,15 +98,17 @@ var early_formations : Array = [
 	{"weight": 10, "enemies": [BEE, BATLASER]}
 ]
 var mid_formations : Array = [
-	{"weight": 50, "enemies": [CAT_ALIEN]},
-	{"weight": 50, "enemies": [BEE, BEE, BEE]}
+	{"weight": 50, "enemies": [CAT_ALIEN, BATLASER]},
+	{"weight": 50, "enemies": [RATONCOPTERO, BEE]}
 ]
 var late_formations : Array = [
-	{"weight": 90, "enemies": [CAT_ALIEN, BATLASER, BEE]},
-	{"weight": 10, "enemies": [HEZEQUIAH]}
+	{"weight": 50, "enemies": [CAT_ALIEN, BATLASER, BEE]},
+	{"weight": 50, "enemies": [MARCO, GALAPAGOS]},
 ]
 var boss_formations : Array = [
-	{"weight": 100, "enemies": [CARISTAN]}
+	{"weight": 89, "enemies": [CARISTAN]},
+	{"weight": 10, "enemies": [HEZEQUIAH]},
+	{"weight": 1, "enemies": [HENRIK]}
 ]
 
 func _ready() -> void:
@@ -125,7 +135,7 @@ func _on_player_life_changed(actual: int, maxima: int) -> void:
 
 func get_stage_formations() -> Array:
 	match current_stage:
-		StageType.EARLY: return early_formations
+		StageType.EARLY: return boss_formations
 		StageType.MID: return mid_formations
 		StageType.LATE: return late_formations
 		StageType.BOSS: return boss_formations
@@ -152,6 +162,16 @@ func spawn_enemy_formation() -> void:
 	var enemies_data : Array = formation["enemies"]
 	var spawns : Array[Marker2D] = [enemy_spawn_1, enemy_spawn_2, enemy_spawn_3]
 
+	if music:
+			if enemies_data.has(CARISTAN):
+				music.stream = preload("res://assets/Audios/battle_2_theme.mp3") # Pon tu ruta real aquí
+				music.play()
+			elif enemies_data.has(HEZEQUIAH):
+				music.stream = preload("res://assets/Audios/Hezequiah Theme.mp3")
+				music.play()
+			else:
+				_reproducir_musica_por_defecto_etapa()
+
 	for i in enemies_data.size():
 		if i >= spawns.size(): break
 		var enemy_instance : Enemy = enemy_scene.instantiate()
@@ -172,7 +192,20 @@ func spawn_enemy_formation() -> void:
 			if actual_turn == TurnState.PLAYER_TURN: set_botones_bloqueados(false)):
 				enemy_instance.connect("animacion_bloqueante_terminada", func(): 
 					if actual_turn == TurnState.PLAYER_TURN: set_botones_bloqueados(false))
-					
+
+# Función auxiliar para limpiar el código de las etapas normales
+func _reproducir_musica_por_defecto_etapa() -> void:
+	match current_stage:
+		StageType.EARLY:
+			music.stream = preload("res://assets/Audios/Battle Theme.mp3")
+		StageType.MID:
+			music.stream = preload("res://assets/Audios/Battle Theme.mp3")
+		StageType.LATE:
+			music.stream = preload("res://assets/Audios/Battle Theme.mp3")
+		StageType.BOSS:
+			music.stream = preload("res://assets/Audios/battle_2_theme.mp3") 
+	music.play()
+
 func start_battle():
 	actual_turn = TurnState.START_BATTLE
 	if deck_node and deck_node.has_method("preparate_initial_hand"):

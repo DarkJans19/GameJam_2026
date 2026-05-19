@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://c1thtfdbo7evj"]
+
+[ext_resource type="AudioStream" uid="uid://dhnqp1qn3d2pw" path="res://assets/Audios/enemy_attack_2.mp3" id="1_gtdud"]
+[ext_resource type="AudioStream" uid="uid://gdipof6cywbq" path="res://assets/Audios/Enemie HurtS.wav" id="2_ycw83"]
+[ext_resource type="Script" uid="uid://b3q4jk3aickui" path="res://entities/enemy/EnemyData.gd" id="3_acbdc"]
+[ext_resource type="Texture2D" uid="uid://drssvoolxkh2i" path="res://assets/Enemies/Marco.png" id="4_x6okp"]
+
+[resource]
+script = ExtResource("3_acbdc")
+enemy_name = "Marco"
+max_health = 30
+heal_amount = 5
+damage = 5
+heavy_damage = 10
+sprite = ExtResource("4_x6okp")
+hurt_audio = ExtResource("2_ycw83")
+attack_audio = ExtResource("1_gtdud")

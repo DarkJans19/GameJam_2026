@@ -4,13 +4,21 @@
 [ext_resource type="Script" uid="uid://died6fq2dhv1m" path="res://entities/player/cards/card/effects/comodin_effects/ChangeMoonPhase.gd" id="2_3nyog"]
 [ext_resource type="Texture2D" uid="uid://rv050gwj674u" path="res://assets/Cartas/Comodin/Luna nueva.png" id="2_j7oqk"]
 [ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/lunar_cards/cardData.gd" id="3_3nyog"]
+[ext_resource type="Script" uid="uid://dcd2te2eyjk85" path="res://entities/player/cards/card/effects/lunar_effects/CurationEffect.gd" id="3_weetp"]
 
 [sub_resource type="Resource" id="Resource_weetp"]
 script = ExtResource("2_3nyog")
 effect_name = "No moon"
+effect_description = " "
 target_type = 5
 required_lunar_phase = 1
 metadata/_custom_type_script = "uid://died6fq2dhv1m"
+
+[sub_resource type="Resource" id="Resource_abgfe"]
+script = ExtResource("3_weetp")
+heal_quantity = -1
+target_type = 6
+metadata/_custom_type_script = "uid://dcd2te2eyjk85"
 
 [resource]
 script = ExtResource("3_3nyog")
@@ -19,4 +27,4 @@ sacrifice_cost = 3
 image = ExtResource("2_j7oqk")
 description = "Cambia la fase actual a \"Luna nueva\""
 card_type_action = 2
-effects = Array[ExtResource("1_3evnq")]([SubResource("Resource_weetp")])
+effects = Array[ExtResource("1_3evnq")]([SubResource("Resource_weetp"), SubResource("Resource_abgfe")])

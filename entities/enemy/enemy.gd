@@ -19,6 +19,8 @@ var is_defending : bool = false:
 		is_defending = value
 		update_health_bar()
 
+@onready var audio_player: AudioStreamPlayer2D = $sounds
+
 @onready var sprite : Sprite2D = (
 	$Sprite2D
 )
@@ -82,8 +84,10 @@ func _setup_enemy() -> void:
 		sprite.texture = (
 			enemy_data.sprite
 		)
-		
+	# Llamamos a la función para reproducir el audio de daño
+	play_enemy_sound(enemy_data.intro_audio)
 	update_health_bar()
+
 
 func set_selected(is_selected: bool) -> void:
 	if selection_cursor:
@@ -216,7 +220,7 @@ func execute_action(action_name : String) -> void:
 
 func action_attack() -> void:
 	is_busy = true
-	emit_signal("animacion_bloqueante_iniciada") # <-- BLOQUEA
+	emit_signal("animacion_bloqueante_iniciada")
 	print(enemy_data.enemy_name + " usa ATTACK")
 	play_attack()
 	await animation_player.animation_finished
@@ -348,14 +352,22 @@ func play_idle() -> void:
 
 func play_attack() -> void:
 	if animation_player and animation_player.has_animation("attack"):
+		play_enemy_sound(enemy_data.attack_audio)
 		animation_player.play("attack")
 
 func play_hurt() -> void:
 	if animation_player and animation_player.has_animation("hurt"):
+		play_enemy_sound(enemy_data.hurt_audio)
 		animation_player.play("hurt")
-
 
 func _on_mouse_detector_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		emit_signal("selected", self)
 		get_viewport().set_input_as_handled()
+
+func play_enemy_sound(audio: AudioStream) -> void:
+	if audio != null and audio_player != null:
+		audio_player.stream = audio
+		audio_player.play()
+	else:
+		print("Advertencia: El enemigo o el recurso no tienen este audio asignado.")

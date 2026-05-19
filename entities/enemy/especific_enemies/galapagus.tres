@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://c4a3i0o0iqvi8"]
+
+[ext_resource type="AudioStream" uid="uid://bchicrxs16axg" path="res://assets/Audios/enemy_attack_1.mp3" id="1_mkcpi"]
+[ext_resource type="AudioStream" uid="uid://br7bh5nxisjxu" path="res://assets/Audios/Enemie HurtC.wav" id="2_dhhyc"]
+[ext_resource type="Script" uid="uid://b3q4jk3aickui" path="res://entities/enemy/EnemyData.gd" id="3_dab7e"]
+[ext_resource type="Texture2D" uid="uid://cwwjtmnxhjlip" path="res://assets/Enemies/Galapagus.png" id="4_yrxjc"]
+
+[resource]
+script = ExtResource("3_dab7e")
+enemy_name = "Galapagus"
+sprite = ExtResource("4_yrxjc")
+hurt_audio = ExtResource("2_dhhyc")
+attack_audio = ExtResource("1_mkcpi")

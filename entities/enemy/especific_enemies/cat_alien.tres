@@ -1,13 +1,18 @@
 [gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://cbrryjbn2c4ou"]
 
 [ext_resource type="Script" uid="uid://b3q4jk3aickui" path="res://entities/enemy/EnemyData.gd" id="1_8vvpt"]
+[ext_resource type="AudioStream" uid="uid://bchicrxs16axg" path="res://assets/Audios/enemy_attack_1.mp3" id="1_ryihw"]
 [ext_resource type="Texture2D" uid="uid://b86utgti1oo4e" path="res://assets/Enemies/GatoAlien.png" id="2_0t1mu"]
+[ext_resource type="AudioStream" uid="uid://cukr2aq7qasyr" path="res://assets/Audios/Enemie HurtJ.mp3" id="2_k4sp6"]
 
 [resource]
 script = ExtResource("1_8vvpt")
+enemy_name = "Cat alien"
 max_health = 20
 damage = 8
 sprite = ExtResource("2_0t1mu")
+hurt_audio = ExtResource("2_k4sp6")
+attack_audio = ExtResource("1_ryihw")
 moon_phase_turns = {
 0: ["SHIELD", "SHIELD", "SHIELD"],
 1: ["ATTACK"],

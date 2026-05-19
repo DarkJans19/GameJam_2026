@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://bmg8kww0tqxk3"]
+
+[ext_resource type="Script" uid="uid://d1bnksp4bjli5" path="res://entities/player/cards/card/effects/Effect.gd" id="1_s2xmk"]
+[ext_resource type="Script" uid="uid://ccou5mbrjrjnp" path="res://entities/player/cards/card/effects/comodin_effects/StealCards.gd" id="2_t0mh6"]
+[ext_resource type="Texture2D" uid="uid://c5mdwkqa3b5lh" path="res://assets/Cartas/Comodin/Sacrifica roba.png" id="3_01ypk"]
+[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/lunar_cards/cardData.gd" id="4_jckaw"]
+
+[sub_resource type="Resource" id="Resource_vgdob"]
+script = ExtResource("2_t0mh6")
+amount_of_cards_stolen = 1
+metadata/_custom_type_script = "uid://ccou5mbrjrjnp"
+
+[sub_resource type="Resource" id="Resource_urb2s"]
+script = ExtResource("2_t0mh6")
+amount_of_cards_stolen = 2
+card_type = 1
+target_type = 5
+metadata/_custom_type_script = "uid://ccou5mbrjrjnp"
+
+[resource]
+script = ExtResource("4_jckaw")
+card_name = "fortune"
+sacrifice_cost = 3
+image = ExtResource("3_01ypk")
+effects = Array[ExtResource("1_s2xmk")]([SubResource("Resource_vgdob"), SubResource("Resource_urb2s")])

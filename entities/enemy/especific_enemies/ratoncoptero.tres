@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://bfcbwyjk7xvyp"]
+
+[ext_resource type="AudioStream" uid="uid://bchicrxs16axg" path="res://assets/Audios/enemy_attack_1.mp3" id="1_hjrqs"]
+[ext_resource type="AudioStream" uid="uid://clbxwknsq4ts7" path="res://assets/Audios/Enemie HurtL.mp3" id="2_ath71"]
+[ext_resource type="Script" uid="uid://b3q4jk3aickui" path="res://entities/enemy/EnemyData.gd" id="3_5y3ph"]
+[ext_resource type="Texture2D" uid="uid://dlclvq66g7ons" path="res://assets/Enemies/Ratoncoptero.png" id="4_htn1u"]
+
+[resource]
+script = ExtResource("3_5y3ph")
+enemy_name = "Ratoncoptero"
+max_health = 20
+heal_amount = 10
+damage = 2
+heavy_damage = 3
+sprite = ExtResource("4_htn1u")
+hurt_audio = ExtResource("2_ath71")
+attack_audio = ExtResource("1_hjrqs")

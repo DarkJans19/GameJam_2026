@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://dt7xrpwjgtdbe"]
+
+[ext_resource type="AudioStream" uid="uid://bchicrxs16axg" path="res://assets/Audios/enemy_attack_1.mp3" id="1_vhfe6"]
+[ext_resource type="AudioStream" uid="uid://cukr2aq7qasyr" path="res://assets/Audios/Enemie HurtJ.mp3" id="2_fwlof"]
+[ext_resource type="Script" uid="uid://b3q4jk3aickui" path="res://entities/enemy/EnemyData.gd" id="3_7v2k1"]
+[ext_resource type="Texture2D" uid="uid://dmpfskr7f3qrb" path="res://assets/Enemies/Henrik.png" id="4_ur17p"]
+
+[resource]
+script = ExtResource("3_7v2k1")
+max_health = 1
+heal_amount = 0
+damage = 1
+heavy_damage = 1
+sprite = ExtResource("4_ur17p")
+hurt_audio = ExtResource("2_fwlof")
+attack_audio = ExtResource("1_vhfe6")

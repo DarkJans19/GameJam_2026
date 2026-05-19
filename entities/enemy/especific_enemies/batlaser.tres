@@ -1,6 +1,8 @@
 [gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://bnenqx1b34odc"]
 
+[ext_resource type="AudioStream" uid="uid://br7bh5nxisjxu" path="res://assets/Audios/Enemie HurtC.wav" id="1_arjxa"]
 [ext_resource type="Script" uid="uid://b3q4jk3aickui" path="res://entities/enemy/EnemyData.gd" id="1_k3i0p"]
+[ext_resource type="AudioStream" uid="uid://clbxwknsq4ts7" path="res://assets/Audios/Enemie HurtL.mp3" id="2_ebqah"]
 [ext_resource type="Texture2D" uid="uid://btmbjh5mpr2a8" path="res://assets/Enemies/BatLaser.png" id="2_he4h5"]
 
 [resource]
@@ -10,6 +12,8 @@ max_health = 30
 damage = 5
 heavy_damage = 10
 sprite = ExtResource("2_he4h5")
+hurt_audio = ExtResource("2_ebqah")
+attack_audio = ExtResource("1_arjxa")
 moon_phase_turns = {
 0: ["ATTACK"],
 1: ["DEFEND"],

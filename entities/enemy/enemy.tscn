@@ -168,6 +168,8 @@ layout_mode = 2
 mouse_filter = 2
 scroll_active = false
 
+[node name="sounds" type="AudioStreamPlayer2D" parent="." unique_id=383840566]
+
 [connection signal="input_event" from="mouseDetector" to="." method="_on_mouse_detector_input_event"]
 [connection signal="mouse_entered" from="mouseDetector" to="." method="_on_mouse_detector_mouse_entered"]
 [connection signal="mouse_exited" from="mouseDetector" to="." method="_on_mouse_detector_mouse_exited"]

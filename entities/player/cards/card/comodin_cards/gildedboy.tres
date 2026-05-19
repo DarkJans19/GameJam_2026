@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://b5j2qwcwlyjvq"]
+
+[ext_resource type="Script" uid="uid://d1bnksp4bjli5" path="res://entities/player/cards/card/effects/Effect.gd" id="1_sdepq"]
+[ext_resource type="Script" uid="uid://cr1r0pvuprqr2" path="res://entities/player/cards/card/effects/lunar_effects/DefenseEffect.gd" id="2_3xn8s"]
+[ext_resource type="Script" uid="uid://dq7ir856ygn6n" path="res://entities/player/cards/card/effects/lunar_effects/CoinsEffect.gd" id="3_aihi4"]
+[ext_resource type="Texture2D" uid="uid://dccsam6jgqxmn" path="res://assets/Cartas/Comodin/Escudo sin dinero.png" id="4_e5eva"]
+[ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/lunar_cards/cardData.gd" id="5_gg5cr"]
+
+[sub_resource type="Resource" id="Resource_wswqr"]
+script = ExtResource("2_3xn8s")
+defense_quantity = 3
+target_type = 7
+metadata/_custom_type_script = "uid://cr1r0pvuprqr2"
+
+[sub_resource type="Resource" id="Resource_ffbrv"]
+script = ExtResource("3_aihi4")
+amount_of_coins = -3
+target_type = 6
+metadata/_custom_type_script = "uid://dq7ir856ygn6n"
+
+[resource]
+script = ExtResource("5_gg5cr")
+card_name = "gildedboy"
+sacrifice_cost = 3
+image = ExtResource("4_e5eva")
+card_type_action = 2
+effect_value = 3
+effects = Array[ExtResource("1_sdepq")]([SubResource("Resource_wswqr"), SubResource("Resource_ffbrv")])

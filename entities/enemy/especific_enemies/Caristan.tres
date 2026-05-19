@@ -1,13 +1,21 @@
 [gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://c11b777pv3hu0"]
 
+[ext_resource type="AudioStream" uid="uid://dailajxn8fgto" path="res://assets/Audios/Lobo Attack.wav" id="1_mva7h"]
 [ext_resource type="Script" uid="uid://b3q4jk3aickui" path="res://entities/enemy/EnemyData.gd" id="1_ule3u"]
+[ext_resource type="AudioStream" uid="uid://1f14aatgk66c" path="res://assets/Audios/Lobo Hurt.wav" id="2_3uavi"]
 [ext_resource type="Texture2D" uid="uid://b1emeupica2ph" path="res://assets/Enemies/Caristan.png" id="2_f4xk0"]
+[ext_resource type="AudioStream" uid="uid://3bslbo0qus7i" path="res://assets/Audios/Lobo Intro.wav" id="3_63di5"]
 
 [resource]
 script = ExtResource("1_ule3u")
-max_health = 150
-heal_amount = 0
+enemy_name = "Caristan"
+max_health = 60
+damage = 10
+heavy_damage = 20
 sprite = ExtResource("2_f4xk0")
+hurt_audio = ExtResource("2_3uavi")
+attack_audio = ExtResource("1_mva7h")
+intro_audio = ExtResource("3_63di5")
 moon_phase_turns = {
 0: ["HEAVY ATTACK"],
 1: ["ATTACK", "ATTACK", "ATTACK"],

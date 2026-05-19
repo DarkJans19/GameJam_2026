@@ -1,13 +1,19 @@
 [gd_resource type="Resource" script_class="CardData" format=3 uid="uid://cmuen7t7ybhva"]
 
 [ext_resource type="Script" uid="uid://d1bnksp4bjli5" path="res://entities/player/cards/card/effects/Effect.gd" id="1_qhugs"]
+[ext_resource type="Script" uid="uid://cr1r0pvuprqr2" path="res://entities/player/cards/card/effects/lunar_effects/DefenseEffect.gd" id="2_lx6ea"]
 [ext_resource type="Texture2D" uid="uid://k7l3ulq2auwk" path="res://assets/Cartas/Comodin/Vida escudo.png" id="2_phajc"]
 [ext_resource type="Script" uid="uid://cexhnf6og8iov" path="res://entities/player/cards/card/lunar_cards/cardData.gd" id="2_rtslv"]
 
+[sub_resource type="Resource" id="Resource_tyh66"]
+script = ExtResource("2_lx6ea")
+defense_quantity = 4
+metadata/_custom_type_script = "uid://cr1r0pvuprqr2"
+
 [resource]
 script = ExtResource("2_rtslv")
-card_name = "Vida escudo"
+card_name = "Papaleta"
 image = ExtResource("2_phajc")
-description = "Esta carta brinda vida y escudo"
 card_type_action = 1
-effect_value = 3
+effect_value = 4
+effects = Array[ExtResource("1_qhugs")]([SubResource("Resource_tyh66"), null])

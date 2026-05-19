@@ -1,14 +1,20 @@
 [gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://cc3xah2tnlmcu"]
 
 [ext_resource type="Script" uid="uid://b3q4jk3aickui" path="res://entities/enemy/EnemyData.gd" id="1_8cmv6"]
+[ext_resource type="AudioStream" uid="uid://bxhmpoyt1wc4n" path="res://assets/Audios/Hezequiah attack.wav" id="1_a00ry"]
+[ext_resource type="AudioStream" uid="uid://bcofhkwpop5eg" path="res://assets/Audios/Hezequiah Hurt.wav" id="2_6cde3"]
 [ext_resource type="Texture2D" uid="uid://b8ivc06y3lk4x" path="res://assets/Enemies/Hezequiah.png" id="2_ku1ia"]
+[ext_resource type="AudioStream" uid="uid://pjk3imm2seyj" path="res://assets/Audios/Hezequiah Intro.wav" id="3_sdc15"]
 
 [resource]
 script = ExtResource("1_8cmv6")
-max_health = 200
-heal_amount = 40
+max_health = 80
+heal_amount = 10
 damage = 8
 sprite = ExtResource("2_ku1ia")
+hurt_audio = ExtResource("2_6cde3")
+attack_audio = ExtResource("1_a00ry")
+intro_audio = ExtResource("3_sdc15")
 moon_phase_turns = {
 0: ["HEAL"],
 1: ["HEAL", "HEAL"],
