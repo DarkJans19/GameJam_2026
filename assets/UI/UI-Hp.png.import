@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jsuiejuy5f5j"
-path="res://.godot/imported/UI HP - Copy.png-02559f8a7a1ab002c1e4da2fce872bee.ctex"
+uid="uid://wpnhfq35ilct"
+path="res://.godot/imported/UI-Hp.png-ccaa2737046867e1a1df073a9cb5f17c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI/UI HP - Copy.png"
-dest_files=["res://.godot/imported/UI HP - Copy.png-02559f8a7a1ab002c1e4da2fce872bee.ctex"]
+source_file="res://assets/UI/UI-Hp.png"
+dest_files=["res://.godot/imported/UI-Hp.png-ccaa2737046867e1a1df073a9cb5f17c.ctex"]
 
 [params]
 

@@ -2,9 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://cgh8itya8jdjf" path="res://entities/player/cards/assets/Balatro.jpg" id="1_if3u5"]
 [ext_resource type="Script" uid="uid://b3ap5f216vjks" path="res://stages/shop/shop.gd" id="1_w58nr"]
-[ext_resource type="AudioStream" uid="uid://dq1rps3yfgg3s" path="res://assets/Audios/Shop Theme.mp3" id="3_as8v6"]
 [ext_resource type="Texture2D" uid="uid://cxh82feibry64" path="res://assets/Escenario/Store Midground.png" id="2_as8v6"]
-[ext_resource type="Texture2D" uid="uid://jsuiejuy5f5j" path="res://assets/UI/UI HP - Copy.png" id="4_dujof"]
+[ext_resource type="AudioStream" uid="uid://dq1rps3yfgg3s" path="res://assets/Audios/Shop Theme.mp3" id="3_as8v6"]
+[ext_resource type="Texture2D" uid="uid://wpnhfq35ilct" path="res://assets/UI/UI-Hp.png" id="4_6rtka"]
+[ext_resource type="FontFile" uid="uid://ebt2bvxsrvd2" path="res://assets/PixelOperator8_health.ttf" id="5_7au7j"]
 
 [node name="Shop" type="Control" unique_id=589026888]
 layout_mode = 3
@@ -38,14 +39,15 @@ texture = ExtResource("1_if3u5")
 [node name="vida" type="Sprite2D" parent="." unique_id=1999037954]
 position = Vector2(98.99999, -31.999996)
 scale = Vector2(0.293366, 0.24807692)
-texture = ExtResource("4_dujof")
+texture = ExtResource("4_6rtka")
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="vida" unique_id=1315266365]
-offset_left = -105.67004
+offset_left = -156.8007
 offset_top = 124.96123
-offset_right = 110.32996
+offset_right = 198.1993
 offset_bottom = 163.96123
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 28
 text = "Vida (25 HP) 30g"
 
@@ -54,6 +56,7 @@ offset_left = -57.948074
 offset_top = 165.2713
 offset_right = 60.234505
 offset_bottom = 217.67441
+theme_override_fonts/font = ExtResource("5_7au7j")
 theme_override_font_sizes/font_size = 20
 text = "Comprar"
 
@@ -62,6 +65,7 @@ offset_left = -787.4123
 offset_top = 128.99225
 offset_right = -603.4123
 offset_bottom = 167.99225
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 24
 text = "Carta Lunar 50g"
 
@@ -70,6 +74,7 @@ offset_left = -739.69037
 offset_top = 169.30232
 offset_right = -628.1727
 offset_bottom = 223.38234
+theme_override_fonts/font = ExtResource("5_7au7j")
 theme_override_font_sizes/font_size = 20
 text = "Comprar"
 
@@ -87,6 +92,8 @@ mouse_filter = 2
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("5_7au7j")
+theme_override_fonts/mono_font = ExtResource("5_7au7j")
 theme_override_font_sizes/normal_font_size = 12
 theme_override_font_sizes/bold_font_size = 12
 theme_override_font_sizes/bold_italics_font_size = 12
@@ -109,6 +116,8 @@ mouse_filter = 2
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("5_7au7j")
+theme_override_fonts/mono_font = ExtResource("5_7au7j")
 theme_override_font_sizes/normal_font_size = 22
 theme_override_font_sizes/bold_font_size = 22
 theme_override_font_sizes/bold_italics_font_size = 22
@@ -122,6 +131,7 @@ offset_left = 64.76555
 offset_top = 366.82172
 offset_right = 184.07047
 offset_bottom = 423.25583
+theme_override_fonts/font = ExtResource("5_7au7j")
 theme_override_font_sizes/font_size = 34
 text = "Salir"
 

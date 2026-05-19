@@ -265,6 +265,12 @@ scale = Vector2(0.025780402, 1)
 points = PackedVector2Array(38.789063, -73, 2637.662, -12)
 default_color = Color(18.892002, 18.892002, 18.892002, 0.267)
 
+[node name="Line2D21" type="Line2D" parent="." unique_id=998013589]
+position = Vector2(1189, 399)
+scale = Vector2(0.025780402, 1)
+points = PackedVector2Array(38.789063, -73, 2637.662, -12)
+default_color = Color(18.892002, 18.892002, 18.892002, 0.267)
+
 [node name="Line2D13" type="Line2D" parent="." unique_id=711030679]
 position = Vector2(719.5249, 525)
 scale = Vector2(0.16056277, 1)
@@ -352,6 +358,7 @@ icon = ExtResource("9_1oiya")
 flat = true
 
 [node name="Pause" parent="." unique_id=1715612470 instance=ExtResource("10_2afta")]
+visible = false
 layout_mode = 0
 offset_left = 547.0
 offset_top = 55.000023

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://blbg2o7wftxry"]
 
 [ext_resource type="Script" uid="uid://73jn4finnni5" path="res://stages/random/random.gd" id="1_dtgml"]
+[ext_resource type="FontFile" uid="uid://ebt2bvxsrvd2" path="res://assets/PixelOperator8_health.ttf" id="2_sr4qf"]
 
 [sub_resource type="Gradient" id="Gradient_51n5f"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -58,5 +59,6 @@ offset_left = -76.0
 offset_top = 120.0
 offset_right = 84.0
 offset_bottom = 158.0
+theme_override_fonts/font = ExtResource("2_sr4qf")
 theme_override_font_sizes/font_size = 21
 text = "Siguiente"

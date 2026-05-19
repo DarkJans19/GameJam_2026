@@ -155,10 +155,10 @@ func _select_event(event_name: String) -> void:
 		scene_path = "res://stages/combat/combat.tscn"
 
 	elif event_name.begins_with("Shop_event"):
-		scene_path = "res://stages/map/shop.tscn"
+		scene_path = "res://stages/shop/shop.tscn"
 
 	elif event_name.begins_with("Random_event"):
-		scene_path = "res://stages/map/random.tscn"
+		scene_path = "res://stages/random/random.tscn"
 
 	if scene_path == "":
 		push_error(

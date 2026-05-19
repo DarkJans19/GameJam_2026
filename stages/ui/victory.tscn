@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://coiml5msg4gtj"]
 
 [ext_resource type="Script" uid="uid://gj6y6titfjti" path="res://stages/ui/victory.gd" id="1_cluts"]
+[ext_resource type="FontFile" uid="uid://ebt2bvxsrvd2" path="res://assets/PixelOperator8_health.ttf" id="2_sg6va"]
 
 [node name="Victory" type="Control" unique_id=793316884]
 process_mode = 2
@@ -33,10 +34,12 @@ text = "Ganaste"
 
 [node name="LabelOro" type="Label" parent="." unique_id=1816941633]
 layout_mode = 0
-offset_left = 94.0
+offset_left = 71.0
 offset_top = 137.0
-offset_right = 286.0
+offset_right = 263.0
 offset_bottom = 160.0
+theme_override_fonts/font = ExtResource("2_sg6va")
+theme_override_font_sizes/font_size = 12
 text = "Has ganado XX G"
 
 [node name="Button" type="Button" parent="." unique_id=1403785238]
